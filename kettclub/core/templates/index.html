@@ -1,11 +1,288 @@
+{% extends "base.html" %}
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>TESTE</h1>
+<html lang="pt">
 
-</body>
+{% block content %}
+    <body id="page-top" class="index">
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <img class="img-responsive" src="{% static 'img/staff.jpg' %}" alt="">
+
+                    <div class="intro-text">
+                        <span class="name">Functional Training</span>
+                        <hr class="star-primary">
+                        <span class="skills">Ginásio de treino funcional</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+{#    <!-- Sobre Section -->#}
+{#    <section class="subsctiption" id="about">#}
+{#        <div class="container">#}
+{#            <div class="row">#}
+{#                <div class="col-lg-12 text-center">#}
+{#                    <h2>Sobre</h2>#}
+{#                    <hr class="star-primary">#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="row">#}
+{#                <div class="col-lg-4 col-lg-offset-2">#}
+                    {#                    <p> Apaixonado por desenvolvimento de software!</p>#}
+                    {##}
+                    {#                    <p>Atua nas áreas de Tecnologia da Informação avaliando e executando o#}
+                    {#                        desenvolvimento de novos programas, estabelecendo padrões e métodos#}
+                    {#                        para a organização utilizando Software Livre e Métodos Ágeis como#}
+                    {#                        ferramentas para a identificação de problemas técnicos e/ou administrativos,#}
+                    {#                        visando com isto alcançar soluções eficazes.</p>#}
+                    {#                </div>#}
+                    {#                <div class="col-lg-4">#}
+                    {#                    <p>Experiência profissional em Python e Django.</p>#}
+                    {##}
+                    {#                    <p>Conhecimento e experiências acadêmicas nas linguagens de programação C#, Java, ASP .NET MVC,#}
+                    {#                        PHP.</p>#}
+                    {##}
+                    {#                    <p>SGBDs - PostgreSQL, MySQL, SQL Server, FireBird.</p>#}
+                    {##}
+                    {#                    <p>Administração de redes de computadores.</p>#}
+                    {#                </div>#}
+                    {#                <div class="col-lg-8 col-lg-offset-2 text-center">#}
+                    {#                    <a href="#" class="btn btn-lg btn-outline">#}
+                    {#                        <i class="fa fa-download"></i> Download Theme#}
+                    {#                    </a>#}
+                    {#                </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
+
+    <!-- Subscript Grid Section -->
+    <section class="success" id="subscription">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Inscrições</h2>
+                    <hr class="star-primary">
+                    {#                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">#}
+                    {#                        <div class="caption">#}
+                    {#                            <div class="caption-content">#}
+                    {#                                <button type="submit" class="btn btn-success btn-lg">Inscrições</button>#}
+                    {#                                <i class="fa fa-search-plus fa-3x"></i>#}
+                    {#                            </div>#}
+                    {#                        </div>#}
+                    {#                        <img src="{% static 'img/portfolio/eventex.png' %}" class="img-responsive" alt="">#}
+                    {#                    </a>#}
+                </div>
+            </div>
+
+        </div>
+    </section>
+    {#    <!-- Contact Section -->#}
+    {#    <section id="contact">#}
+    {#        <div class="container">#}
+    {#            <div class="row">#}
+    {#                <div class="col-lg-12 text-center">#}
+    {#                    <h2>Contate-nos</h2>#}
+    {#                    <hr class="star-primary">#}
+    {#                    <div class="responsive-iframe-container">#}
+    {#                        <!-- Embedded Google Map using an iframe - to select your location find it on Google maps and paste the link as the iframe src. If you want to use the Google Maps API instead then have at it! -->#}
+    {#                        <iframe src="https://www.google.com/maps/embed?pb=!1m19!1m8!1m3!1d1571.88743580732!2d-7.8661787!3d38.0057113!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0xd1a0ec4f4d5a005%3A0x7e23ee5ee308df69!2sHotel+Melius%2C+Av.+Fialho+de+Almeida%2C+7800-395+Beja!3m2!1d38.006017799999995!2d-7.8654746!5e0!3m2!1spt-PT!2spt!4v1456430754504"#}
+    {#                                width="1920" height="700" frameborder="0" style="border:0" allowfullscreen></iframe>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#                <div class="col-md-10">#}
+    {##}
+    {##}
+    {#                </div>#}
+    {##}
+    {#            </div>#}
+    {#            <div class="row">#}
+    {#                <div class="col-lg-8 col-lg-offset-2">#}
+    {#                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->#}
+    {#                    <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->#}
+    {#                    {% if messages %}#}
+    {#                        {% for message in messages %}#}
+    {#                            <div class="alert alert-success" role="alert">#}
+    {#                                <p>{{ message }}</p>#}
+    {#                            </div>#}
+    {#                        {% endfor %}#}
+    {##}
+    {#                    {% endif %}#}
+    {#                    <form action="/#contact" method="post" name="sentMessage" id="contactForm" novalidate>#}
+    {##}
+    {#                        {% csrf_token %}#}
+    {#                        <div class="row control-group">#}
+    {#                            <div class="form-group col-xs-12 floating-label-form-group controls">#}
+    {#                                <label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>#}
+    {#                                {% if form.name.errors %}#}
+    {#                                    <div class="alert alert-danger" role="alert">{{ form.name.errors }}</div>#}
+    {#                                {% endif %}#}
+    {#                                {{ form.name }}#}
+    {#                                <p class="help-block text-danger"></p>#}
+    {#                            </div>#}
+    {#                        </div>#}
+    {#                        <div class="row control-group">#}
+    {#                            <div class="form-group col-xs-12 floating-label-form-group controls">#}
+    {#                                <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>#}
+    {#                                {% if form.email.errors %}#}
+    {#                                    <div class="alert alert-danger" role="alert">{{ form.email.errors }}</div>#}
+    {#                                {% endif %}#}
+    {#                                {{ form.email }}#}
+    {#                                <p class="help-block text-danger"></p>#}
+    {#                            </div>#}
+    {#                        </div>#}
+    {#                        <div class="row control-group">#}
+    {#                            <div class="form-group col-xs-12 floating-label-form-group controls">#}
+    {#                                <label for="{{ form.phone.id_for_label }}">{{ form.phone.label }}</label>#}
+    {#                                {% if form.phone.errors %}#}
+    {#                                    <div class="alert alert-danger" role="alert">{{ form.phone.errors }}</div>#}
+    {#                                {% endif %}#}
+    {#                                {{ form.phone }}#}
+    {#                                <p class="help-block text-danger"></p>#}
+    {#                            </div>#}
+    {#                        </div>#}
+    {#                        <div class="row control-group">#}
+    {#                            <div class="form-group col-xs-12 floating-label-form-group controls">#}
+    {#                                <label for="{{ form.message.id_for_label }}">{{ form.message.label }}</label>#}
+    {#                                {% if form.message.errors %}#}
+    {#                                    <div class="alert alert-danger" role="alert">{{ form.message.errors }}</div>#}
+    {#                                {% endif %}#}
+    {#                                {{ form.message }}#}
+    {#                                <p class="help-block text-danger"></p>#}
+    {#                            </div>#}
+    {#                        </div>#}
+    {#                        <br>#}
+    {##}
+    {#                        <div id="success"></div>#}
+    {#                        <div class="row">#}
+    {#                            <div class="form-group col-xs-12">#}
+    {#                                <button type="submit" class="btn btn-success btn-lg">Enviar</button>#}
+    {#                            </div>#}
+    {#                        </div>#}
+    {#                    </form>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </section>#}
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="footer-above">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col col-md-4">
+                        <h3>Localização</h3>
+
+                        <p>Beja<br>Portugal</p>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>Redes sociais</h3>
+                        <ul class="list-inline">
+                            <li>
+                                <a href="https://www.facebook.com/AlentejoKettlebell/" class="btn-social btn-outline"><i
+                                        class="fa fa-fw fa-facebook"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i
+                                        class="fa fa-fw fa-google-plus"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i
+                                        class="fa fa-fw fa-twitter"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>Contatos</h3>
+
+                        <p>email:</p>
+
+                        <p>Telefone:</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        Copyright &copy; Adriano Regis 2016
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll visible-xs visible-sm">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+
+    <!-- Portfolio Modals -->
+    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Inscrição do aluno</h2>
+                            <hr class="star-primary">
+                            <form method="post" action=".">
+
+                                {% csrf_token %}
+                                <div class="row control-group">
+                                    <div class="form-group col-xs-12 controls">
+
+                                        {{ form.as_p }}
+                                        <div class="form-group col-xs-2">
+                                            <button type="submit" class="btn btn-success btn-lg">Enviar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            {#                            <a href="https://eventex-adrianoregis.herokuapp.com/">#}
+                            {#                                <img src="{% static 'img/portfolio/eventex.png' %}" class="img-responsive img-centered"#}
+                            {#                                     alt="">#}
+                            {#                            </a>#}
+                            {#                            <h6>*Textos e Projeto no idioma Pt-br</h6>#}
+                            {#                            <p>O Sistema de gestão de eventos <a href="https://eventex-adrianoregis.herokuapp.com/">Eventex</a>,#}
+                            {#                                foi desenvolvido no decorrer do curso#}
+                            {#                                <a href="http://welcometothedjango.com.br/">Welcome to the Django (WTTD)</a>, ministrado#}
+                            {#                                pelo mestre <a href="http://henriquebastos.net/">Henrique Bastos</a>.</p>#}
+                            {#                            <ul class="list-inline item-details">#}
+                            {#                                <li>Client:#}
+                            {#                                    <strong><a href="http://welcometothedjango.com.br/">WTTD</a>#}
+                            {#                                    </strong>#}
+                            {#                                </li>#}
+                            {#                                <li>Date:#}
+                            {#                                    <strong>Fevereiro 2016</strong>#}
+                            {#                                </li>#}
+                            {#                                <li>Service:#}
+                            {#                                    <strong>Desenvolvimento de software</strong>#}
+                            {#                                </li>#}
+                            {#                            </ul>#}
+                            {#                            <button type="button" class="btn btn-default" data-dismiss="modal"><i#}
+                            {#                                    class="fa fa-times"></i> Close#}
+                            {#                            </button>#}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+{% endblock content %}
 </html>

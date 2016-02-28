@@ -21,44 +21,32 @@
             </div>
         </div>
     </header>
-{#    <!-- Sobre Section -->#}
-{#    <section class="subsctiption" id="about">#}
-{#        <div class="container">#}
-{#            <div class="row">#}
-{#                <div class="col-lg-12 text-center">#}
-{#                    <h2>Sobre</h2>#}
-{#                    <hr class="star-primary">#}
-{#                </div>#}
-{#            </div>#}
-{#            <div class="row">#}
-{#                <div class="col-lg-4 col-lg-offset-2">#}
-                    {#                    <p> Apaixonado por desenvolvimento de software!</p>#}
-                    {##}
-                    {#                    <p>Atua nas áreas de Tecnologia da Informação avaliando e executando o#}
-                    {#                        desenvolvimento de novos programas, estabelecendo padrões e métodos#}
-                    {#                        para a organização utilizando Software Livre e Métodos Ágeis como#}
-                    {#                        ferramentas para a identificação de problemas técnicos e/ou administrativos,#}
-                    {#                        visando com isto alcançar soluções eficazes.</p>#}
-                    {#                </div>#}
-                    {#                <div class="col-lg-4">#}
-                    {#                    <p>Experiência profissional em Python e Django.</p>#}
-                    {##}
-                    {#                    <p>Conhecimento e experiências acadêmicas nas linguagens de programação C#, Java, ASP .NET MVC,#}
-                    {#                        PHP.</p>#}
-                    {##}
-                    {#                    <p>SGBDs - PostgreSQL, MySQL, SQL Server, FireBird.</p>#}
-                    {##}
-                    {#                    <p>Administração de redes de computadores.</p>#}
-                    {#                </div>#}
-                    {#                <div class="col-lg-8 col-lg-offset-2 text-center">#}
-                    {#                    <a href="#" class="btn btn-lg btn-outline">#}
-                    {#                        <i class="fa fa-download"></i> Download Theme#}
-                    {#                    </a>#}
-                    {#                </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </section>#}
+    <!-- Subscribe Section -->
+    <section class="subsctiption" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+{#                    <div>#}
+                    <h2>Marcação de presença</h2>
+                    <hr class="star-primary">
+                        <div class="intro-text">
+                        <span class="skills">Lista de assiduidade</span>
+                        </div>
+                    <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
+                            <div class="caption">
+                                <div class="caption-content">
+                                    <button type="submit" class="btn btn-success">Presença</button>
+{#                                    <i class="fa fa-search-plus fa-3x"></i>#}
+                                </div>
+                            </div>
+{#                                            <img src="{% static 'img/portfolio/eventex.png' %}" class="img-responsive" alt="">#}
+                        </a>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </section>
 
     <!-- Subscript Grid Section -->
     <section class="success" id="subscription">
@@ -67,15 +55,19 @@
                 <div class="col-lg-12 text-center">
                     <h2>Inscrições</h2>
                     <hr class="star-primary">
-                    {#                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">#}
-                    {#                        <div class="caption">#}
-                    {#                            <div class="caption-content">#}
-                    {#                                <button type="submit" class="btn btn-success btn-lg">Inscrições</button>#}
-                    {#                                <i class="fa fa-search-plus fa-3x"></i>#}
-                    {#                            </div>#}
-                    {#                        </div>#}
-                    {#                        <img src="{% static 'img/portfolio/eventex.png' %}" class="img-responsive" alt="">#}
-                    {#                    </a>#}
+                    <div class="intro-text">
+                        <span class="skills">Insrcição de um novo Atleta</span>
+                        </div>
+{#                      <a href="{% url 'subscription:new' %}" class="portfolio-link" data-toggle="modal">#}
+                        <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                            <div class="caption">
+                                <div class="caption-content">
+                                    <button type="submit" class="btn btn-success">Inscrições</button>
+{#                                    <i class="fa fa-search-plus fa-3x"></i>#}
+                                </div>
+                            </div>
+{#                                            <img src="{% static 'img/portfolio/eventex.png' %}" class="img-responsive" alt="">#}
+                        </a>
                 </div>
             </div>
 
@@ -199,7 +191,7 @@
                     <div class="footer-col col-md-4">
                         <h3>Contatos</h3>
 
-                        <p>email:</p>
+                        <p>Email:</p>
 
                         <p>Telefone:</p>
 
@@ -236,49 +228,46 @@
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
+                    <div class="col-lg-12 "><!--col-lg-offset-2-->
                         <div class="modal-body">
-                            <h2>Inscrição do aluno</h2>
-                            <hr class="star-primary">
-                            <form method="post" action=".">
-
-                                {% csrf_token %}
-                                <div class="row control-group">
-                                    <div class="form-group col-xs-12 controls">
-
-                                        {{ form.as_p }}
-                                        <div class="form-group col-xs-2">
-                                            <button type="submit" class="btn btn-success btn-lg">Enviar</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                            {#                            <a href="https://eventex-adrianoregis.herokuapp.com/">#}
-                            {#                                <img src="{% static 'img/portfolio/eventex.png' %}" class="img-responsive img-centered"#}
-                            {#                                     alt="">#}
-                            {#                            </a>#}
-                            {#                            <h6>*Textos e Projeto no idioma Pt-br</h6>#}
-                            {#                            <p>O Sistema de gestão de eventos <a href="https://eventex-adrianoregis.herokuapp.com/">Eventex</a>,#}
-                            {#                                foi desenvolvido no decorrer do curso#}
-                            {#                                <a href="http://welcometothedjango.com.br/">Welcome to the Django (WTTD)</a>, ministrado#}
-                            {#                                pelo mestre <a href="http://henriquebastos.net/">Henrique Bastos</a>.</p>#}
-                            {#                            <ul class="list-inline item-details">#}
-                            {#                                <li>Client:#}
-                            {#                                    <strong><a href="http://welcometothedjango.com.br/">WTTD</a>#}
-                            {#                                    </strong>#}
-                            {#                                </li>#}
-                            {#                                <li>Date:#}
-                            {#                                    <strong>Fevereiro 2016</strong>#}
-                            {#                                </li>#}
-                            {#                                <li>Service:#}
-                            {#                                    <strong>Desenvolvimento de software</strong>#}
-                            {#                                </li>#}
-                            {#                            </ul>#}
-                            {#                            <button type="button" class="btn btn-default" data-dismiss="modal"><i#}
-                            {#                                    class="fa fa-times"></i> Close#}
-                            {#                            </button>#}
+{#                            <h2>Inscrição do Atleta</h2>#}
+{#                            <hr class="star-primary">#}
+{#                            <div class="responsive-iframe-container">#}
+                            <iframe src="https://docs.google.com/forms/d/17KZqNVqaw67HwxceXG0an2oAWS7n1lsjIIU1RkJuijQ/viewform?embedded=true"
+                                    width="100%" height="1532" frameborder="0" marginheight="0" marginwidth="0">A carregar...</iframe>
                         </div>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">
+                        <i class="fa fa-times"></i> Fechar
+                    </button>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Presença Modals -->
+    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 "><!--col-lg-offset-2-->
+                        <div class="modal-body">
+{#                            <h2>Inscrição do Atleta</h2>#}
+{#                            <hr class="star-primary">#}
+{#                            <div class="responsive-iframe-container">#}
+                            <iframe src="https://docs.google.com/forms/d/1V4BGfyPyiMY6wWmR9Ww95VDisbX4P72cncypx_HtkPo/viewform?embedded=true"
+                                    width="100%" height="1086" frameborder="0" marginheight="0" marginwidth="0">A carregar...</iframe>
+                            </div>
+
+                    </div>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">
+                        <i class="fa fa-times"></i> Fechar
+                    </button>
                 </div>
             </div>
         </div>

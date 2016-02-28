@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'kettclub.core',
+    'kettclub.subscriptions',
 ]
 
 MIDDLEWARE_CLASSES = [

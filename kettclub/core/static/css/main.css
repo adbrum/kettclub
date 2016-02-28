@@ -104,9 +104,9 @@ header .intro-text .name {
     font-weight: 700;
 }
 
-header .intro-text .skills {
+.intro-text .skills {
     color: #2C3E50;
-    font-size: 1.25em;
+    font-size: 1.75em;
     font-weight: 300;
 }
 

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from kettclub.core.form import SubscriptionForm
+from kettclub.subscriptions.forms import SubscriptionForm
 
 
 def new(request):

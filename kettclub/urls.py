@@ -6,5 +6,7 @@ urlpatterns = [
     url(r'^$', home, name='home'),
     url(r'^inscricao/', include('kettclub.subscriptions.urls',
                                 namespace='subscriptions')),
+    url(r'^presenca/', include('kettclub.assiduousness.urls',
+                                namespace='assiduousness')),
     url(r'^admin/', admin.site.urls),
 ]

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+    <!-- Header -->
+    <section id="subscription" style="padding-top: 200px;">
+        <div class="container"">
+            <div class="row">
+                <div class="col-lg-8">
+                    <form action="." method="post" novalidate="novalidate">
+                        {% csrf_token %}
+                        {{ form.non_field_errors }}
+                        <div class="form-row label-block input-text">
+                            <label for="{{ form.nome.id_for_label }}">{{ form.nome.label }}</label>
+                            {{ form.nome.errors }}
+                            {{ form.nome }}
+                        </div>
+                        <div class="form-row label-block input-text">
+                            <label for="{{ form.sobrenome.id_for_label }}">{{ form.sobrenome.label }}</label>
+                            {{ form.sobrenome.errors }}
+                            {{ form.sobrenome }}
+                        </div>
+                        <div class="form-row label-block input-text">
+                            <label for="{{ form.date.id_for_label }}">{{ form.date.label }}</label>
+                            {{ form.date.errors }}
+                            <div class="form-row label-block input-text"><!--input-group -->
+                                <input type="text" placeholder="dd/mm/yyyy" id="datetimepicker" class="form-control" name="date">
+{#                                <label class="input-group-addon btn">#}
+{#                                    <span id="t" class="fa fa-calendar open-datetimepicker"></span>#}
+{#                                </label>#}
+                            </div>
+                        </div>
+                        </br>
+                        <div>
+                        <button class="btn btn-success" type="submit">Entrar</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Load jQuery and bootstrap datepicker scripts -->
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+    <script type="text/javascript">
+        // When the document is ready
+        $(document).ready(function () {
+
+            $('#datetimepicker').datepicker({
+                format: "dd/mm/yyyy"
+            });
+        });
+    </script>
+{% endblock content %}

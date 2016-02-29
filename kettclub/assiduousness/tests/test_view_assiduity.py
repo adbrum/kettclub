@@ -1,11 +1,11 @@
 from django.test import TestCase
 from django.shortcuts import resolve_url as r
-from kettclub.subscriptions.forms import SubscriptionForm
+from kettclub.assiduousness.forms import AssiduityForm
 
 
 class SubscriptionsNewGet(TestCase):
     def setUp(self):
-        self.resp = self.client.get(r('subscriptions:new'))
+        self.resp = self.client.get(r('assiduousness:new'))
 
     def test_get(self):
         """Get /inscrição/ must return code 200 """
@@ -13,10 +13,9 @@ class SubscriptionsNewGet(TestCase):
 
     def test_template(self):
         """Must use sbscription/subscription_form.html"""
-        self.assertTemplateUsed(self.resp, 'subscriptions/subscription_form.html')
+        self.assertTemplateUsed(self.resp, 'assiduousness/assiduity_form.html')
 
     def test_has_form(self):
         """Context must have subscription form"""
         form = self.resp.context['form']
-        self.assertIsInstance(form, SubscriptionForm)
-
+        self.assertIsInstance(form, AssiduityForm)

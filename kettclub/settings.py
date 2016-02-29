@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'kettclub.core',
     'kettclub.subscriptions',
+    'kettclub.assiduousness',
 ]
 
 MIDDLEWARE_CLASSES = [

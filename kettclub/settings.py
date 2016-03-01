@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'kettclub.core',
     'kettclub.subscriptions',
     'kettclub.assiduousness',
+    'kettclub.reviewsphysicals'
 ]
 
 MIDDLEWARE_CLASSES = [

@@ -8,5 +8,7 @@ urlpatterns = [
                                 namespace='subscriptions')),
     url(r'^presenca/', include('kettclub.assiduousness.urls',
                                 namespace='assiduousness')),
+    url(r'^avaliacaofisica/', include('kettclub.reviewsphysicals.urls',
+                                namespace='reviewsphysical')),
     url(r'^admin/', admin.site.urls),
 ]

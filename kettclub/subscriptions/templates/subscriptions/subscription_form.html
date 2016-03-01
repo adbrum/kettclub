@@ -8,11 +8,15 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <form method="post" action=".">
+                   <form method="post" action="{% url 'subscriptions:new' %}">
                     {% csrf_token %}
-                    {{ form.as_p }}
-                    <div>
-                        <button class="btn btn-success" type="submit">Entrar</button>
+                       <iframe src="https://docs.google.com/forms/d/17KZqNVqaw67HwxceXG0an2oAWS7n1lsjIIU1RkJuijQ/viewform?embedded=true"
+                                    width="100%" height="1532" frameborder="0" marginheight="0" marginwidth="0">A carregar...</iframe>
+{#                    {{ form.as_p }}#}
+                    <div class="col-md-offset-5">
+                        <button type="submit" class="btn btn-success" data-dismiss="modal">
+                            <i class="fa fa-check-circle"></i> Novo
+                        </button>
                     </div>
                 </form>
             </div>

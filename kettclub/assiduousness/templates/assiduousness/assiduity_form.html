@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
+{% load cache %}
 
 {% block content %}
-
+{% cache 10 form_assiduity %}
     <section id="subscription" style="padding-top: 200px;">
     <div class="container">
         <div class="row">
@@ -22,7 +23,7 @@
         </div>
     </div>
 </section>
-
+{% endcache %}
     <!-- Header -->
 {#    <section id="subscription" style="padding-top: 200px;">#}
 {#        <div class="container"">#}
@@ -61,15 +62,15 @@
 {#        </div>#}
 {#    </section>#}
     <!-- Load jQuery and bootstrap datepicker scripts -->
-    <script src="{% static 'js/jquery.js' %}"></script>
-    <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
-    <script type="text/javascript">
-        // When the document is ready
-        $(document).ready(function () {
-
-            $('#datetimepicker').datepicker({
-                format: "dd/mm/yyyy"
-            });
-        });
-    </script>
+{#    <script src="{% static 'js/jquery.js' %}"></script>#}
+{#    <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>#}
+{#    <script type="text/javascript">#}
+{#        // When the document is ready#}
+{#        $(document).ready(function () {#}
+{##}
+{#            $('#datetimepicker').datepicker({#}
+{#                format: "dd/mm/yyyy"#}
+{#            });#}
+{#        });#}
+{#    </script>#}
 {% endblock content %}

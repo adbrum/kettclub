@@ -2,12 +2,9 @@
 {% load static %}
 
 {% block content %}
-{% load cache %}
 
 <!-- Header -->
-{% cache 60 form_subscriprion %}
 <section id="subscription" style="padding-top: 200px;">
-
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -28,5 +25,4 @@
         </div>
     </div>
 </section>
-{% endcache %}
 {% endblock content %}

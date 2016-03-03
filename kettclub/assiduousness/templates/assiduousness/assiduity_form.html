@@ -1,9 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
-{% load cache %}
 
 {% block content %}
-{% cache 60 form_assiduity %}
     <section id="subscription" style="padding-top: 200px;">
     <div class="container">
         <div class="row">
@@ -23,7 +21,6 @@
         </div>
     </div>
 </section>
-{% endcache %}
     <!-- Header -->
 {#    <section id="subscription" style="padding-top: 200px;">#}
 {#        <div class="container"">#}

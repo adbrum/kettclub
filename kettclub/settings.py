@@ -43,6 +43,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=[], cast=Csv())
 # Application definition
 
 INSTALLED_APPS = [
+    'django_admin_bootstrapped',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -52,7 +53,8 @@ INSTALLED_APPS = [
     'kettclub.core',
     'kettclub.subscriptions',
     'kettclub.assiduousness',
-    'kettclub.reviewsphysicals'
+    'kettclub.reviewsphysicals',
+
 ]
 
 MIDDLEWARE_CLASSES = [

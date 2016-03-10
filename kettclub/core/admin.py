@@ -1,7 +1,5 @@
 from django.contrib import admin
-from kettclub.core import models
 from kettclub.core.models import Atleta, PlanoMensalidade, SaudeAnamnese
-from django_admin_bootstrapped.widgets import GenericContentTypeSelect
 
 
 class AtletaAdmin(admin.ModelAdmin):

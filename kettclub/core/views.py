@@ -7,3 +7,9 @@ from kettclub.subscriptions.forms import SubscriptionForm
 def home(request):
     context = {'form': SubscriptionForm}
     return render(request, 'index.html', context)
+
+
+@cache_page(60)
+def report(request):
+    # context = {'form': SubscriptionForm}
+    return render(request, 'report.html')

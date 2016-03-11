@@ -85,7 +85,6 @@ class SaudeAnamnese(models.Model):
         verbose_name = 'Questionário de Saúde e Anamnese Desportiva'
         ordering = ('pk',)
 
-
     def __str__(self):
         return self.atleta.nome + ' ' + self.atleta.sobrenome
 
@@ -99,3 +98,6 @@ class Presenca(models.Model):
         verbose_name_plural = 'Presenças'
         verbose_name = 'Presença'
         ordering = ('datapresenca',)
+
+    def __str__(self):
+        return str(self.numeroatleta)

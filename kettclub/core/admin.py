@@ -1,5 +1,5 @@
 from django.contrib import admin
-from kettclub.core.models import Atleta, PlanoMensalidade, SaudeAnamnese
+from kettclub.core.models import Atleta, PlanoMensalidade, SaudeAnamnese, Presenca
 
 
 class AtletaAdmin(admin.ModelAdmin):
@@ -67,11 +67,36 @@ class SaudeAnamneseAdmin(admin.ModelAdmin):
 
     def pk(self, obj):
         pk = Atleta.objects.get(pk=obj.pk)
-        return pk.nome.capitalize() + ' ' + pk.sobrenome.capitalize()
+        return pk.nome.title() + ' ' + pk.sobrenome.title()
 
     pk.short_description = 'Nome do atleta'
 
 
+class PresencaAdmin(admin.ModelAdmin):
+    list_display = ('numeroatleta', 'pk',  'datapresenca')
+    fields = ('numeroatleta', 'datapresenca')
+    date_hierarchy = 'created_at'
+    search_fields = ('numeroatleta', 'datapresenca')
+    list_filter = ('created_at',)
+
+    # Cria link no item do segundo campo da lista.
+    def foo_link(self, obj):
+        return u'<a href="/nome/%s/">%s</a>' % (obj.nome, obj)
+
+    foo_link.allow_tags = True
+    foo_link.short_description = "numeroatleta"
+
+    def __init__(self, *args, **kwargs):
+        super(PresencaAdmin, self).__init__(*args, **kwargs)
+        self.list_display_links = ('pk', 'numeroatleta')
+
+    def pk(self, obj):
+        pk = Atleta.objects.get(pk=obj.numeroatleta)
+        return pk.nome.title() + ' ' + pk.sobrenome.title()
+
+    pk.short_description = 'Nome do atleta'
+
 admin.site.register(Atleta, AtletaAdmin)
 admin.site.register(PlanoMensalidade, PlanoMensalidadeAdmin)
 admin.site.register(SaudeAnamnese, SaudeAnamneseAdmin)
+admin.site.register(Presenca, PresencaAdmin)

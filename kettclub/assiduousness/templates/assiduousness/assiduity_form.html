@@ -21,14 +21,19 @@
         </div>
     </div>
 </section>
-    <!-- Header -->
+{#    <!-- Header -->#}
 {#    <section id="subscription" style="padding-top: 200px;">#}
-{#        <div class="container"">#}
+{#        <div class="container">#}
 {#            <div class="row">#}
 {#                <div class="col-lg-8">#}
 {#                    <form action="." method="post" novalidate="novalidate">#}
 {#                        {% csrf_token %}#}
 {#                        {{ form.non_field_errors }}#}
+{#                        <div class="form-row label-block input-text">#}
+{#                            <label for="{{ form.numeromatricula.id_for_label }}">{{ form.numeromatricula.label }}</label>#}
+{#                            {{ form.numeromatricula.errors }}#}
+{#                            {{ form.numeromatricula }}#}
+{#                        </div>#}
 {#                        <div class="form-row label-block input-text">#}
 {#                            <label for="{{ form.nome.id_for_label }}">{{ form.nome.label }}</label>#}
 {#                            {{ form.nome.errors }}#}
@@ -43,7 +48,7 @@
 {#                            <label for="{{ form.date.id_for_label }}">{{ form.date.label }}</label>#}
 {#                            {{ form.date.errors }}#}
 {#                            <div class="form-row label-block input-text"><!--input-group -->#}
-{#                                <input type="text" placeholder="dd/mm/yyyy" id="datetimepicker" class="form-control" name="date">#}
+{#                                <input type="text" placeholder="dia/mês/ano" id="datetimepicker" class="form-control" name="date">#}
 {#                                <label class="input-group-addon btn">#}
 {#                                    <span id="t" class="fa fa-calendar open-datetimepicker"></span>#}
 {#                                </label>#}
@@ -51,14 +56,14 @@
 {#                        </div>#}
 {#                        </br>#}
 {#                        <div>#}
-{#                        <button class="btn btn-success" type="submit">Entrar</button>#}
+{#                        <button class="btn btn-success" type="submit">Enviar</button>#}
 {#                    </div>#}
 {#                    </form>#}
 {#                </div>#}
 {#            </div>#}
 {#        </div>#}
 {#    </section>#}
-    <!-- Load jQuery and bootstrap datepicker scripts -->
+{#    <!-- Load jQuery and bootstrap datepicker scripts -->#}
 {#    <script src="{% static 'js/jquery.js' %}"></script>#}
 {#    <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>#}
 {#    <script type="text/javascript">#}

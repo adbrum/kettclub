@@ -10,6 +10,6 @@ def home(request):
 
 
 @cache_page(60)
-def report(request):
+def dashboard(request):
     # context = {'form': SubscriptionForm}
-    return render(request, 'report.html')
+    return render(request, 'dashboard.html')

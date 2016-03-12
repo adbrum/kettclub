@@ -1,5 +1,5 @@
 from django.contrib import admin
-from kettclub.core.models import Atleta, PlanoMensalidade, SaudeAnamnese, Presenca
+from kettclub.core.models import Atleta, PlanoMensalidade, SaudeAnamnese, Presenca, Avaliacao
 
 
 class AtletaAdmin(admin.ModelAdmin):
@@ -38,7 +38,7 @@ class PlanoMensalidadeAdmin(admin.ModelAdmin):
     list_display = ('nome', 'valor', 'horario')
     fields = ('nome', 'valor', 'horario')
     date_hierarchy = 'created_at'
-    search_fields = ('valor', 'created_at')
+    search_fields = ('nome', 'valor', 'horario', 'created_at')
 
 
 class SaudeAnamneseAdmin(admin.ModelAdmin):
@@ -73,7 +73,7 @@ class SaudeAnamneseAdmin(admin.ModelAdmin):
 
 
 class PresencaAdmin(admin.ModelAdmin):
-    list_display = ('numeroatleta', 'pk',  'datapresenca')
+    list_display = ('numeroatleta', 'pk', 'datapresenca')
     fields = ('numeroatleta', 'datapresenca')
     date_hierarchy = 'created_at'
     search_fields = ('numeroatleta', 'datapresenca')
@@ -96,7 +96,23 @@ class PresencaAdmin(admin.ModelAdmin):
 
     pk.short_description = 'Nome do atleta'
 
+
+class AvaliacaoAdmin(admin.ModelAdmin):
+    list_display = ('__str__', 'dataavaliacao')
+    # fields = ('numeroatleta', 'datapresenca')
+    date_hierarchy = 'created_at'
+    search_fields = ('atleta__nome', 'dataavaliacao')
+    list_filter = ('created_at',)
+
+    # Remove botão add
+    def get_form(self, request, obj=None, **kwargs):  # Just added this override
+        form = super(AvaliacaoAdmin, self).get_form(request, obj, **kwargs)
+        form.base_fields['atleta'].widget.can_add_related = False
+        return form
+
+
 admin.site.register(Atleta, AtletaAdmin)
 admin.site.register(PlanoMensalidade, PlanoMensalidadeAdmin)
 admin.site.register(SaudeAnamnese, SaudeAnamneseAdmin)
 admin.site.register(Presenca, PresencaAdmin)
+admin.site.register(Avaliacao, AvaliacaoAdmin)

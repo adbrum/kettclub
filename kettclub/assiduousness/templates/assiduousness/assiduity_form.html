@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block nav %}
+    <div class="header-frame row">
+        {% include 'nav.html' only %}
+    </div>
+{% endblock nav %}
+
 {% block content %}
     <section id="subscription" style="padding-top: 200px;">
     <div class="container">

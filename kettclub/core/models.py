@@ -94,6 +94,8 @@ class Presenca(models.Model):
     datapresenca = models.DateField('Data da presença', blank=True)
     created_at = models.DateTimeField('Criado em', auto_now_add=True)
 
+
+
     class Meta:
         verbose_name_plural = 'Presenças'
         verbose_name = 'Presença'

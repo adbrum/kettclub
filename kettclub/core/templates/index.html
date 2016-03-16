@@ -3,6 +3,11 @@
 <!DOCTYPE html>
 <html lang="pt">
 
+{% block nav %}
+    <div class="header-frame row">
+        {% include 'nav.html' only %}
+    </div>
+{% endblock nav %}
 {% block content %}
     <body id="page-top" class="index">
     <!-- Header -->

@@ -1,0 +1,439 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Master Free Bootstrap Admin Template</title>
+    <!-- Bootstrap Styles-->
+    <link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.css" rel="stylesheet' %}">
+    <!-- FontAwesome Styles-->
+    <link type="text/css" rel="stylesheet" href="{% static 'css/font-awesome.css" rel="stylesheet' %}">
+    <!-- Morris Chart Styles-->
+    <script src="{% static 'js/morris/morris-0.4.3.min.css" rel="stylesheet' %}"></script>
+    <!-- Custom Styles-->
+    <link type="text/css" rel="stylesheet" href="{% static 'css/custom-styles.css" rel="stylesheet' %}">
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+</head>
+{% block content %}
+    <body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'home' %}"><i class="fa fa-home"></i> <strong>Kettclub</strong></a>
+            </div>
+
+            <ul class="nav navbar-top-links navbar-right">
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        {% if user.is_authenticated %}
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> {{ user.username }} profile </a>
+                        </li>
+
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configurações</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="/logout/"><i class="fa fa-sign-out fa-fw"></i> Sair</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+        </nav>
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div id="sideNav" href=""><i class="fa fa-caret-right"></i></div>
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+
+                    <li>
+                        <a class="active-menu" href="#"><i class="fa fa-dashboard"></i> Dashboard</a>
+                    </li>
+{#                    <li>#}
+{#                        <a href="ui-elements.html"><i class="fa fa-desktop"></i> UI Elements</a>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                        <a href="chart.html"><i class="fa fa-bar-chart-o"></i> Charts</a>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                        <a href="tab-panel.html"><i class="fa fa-qrcode"></i> Tabs & Panels</a>#}
+{#                    </li>#}
+{##}
+{#                    <li>#}
+{#                        <a href="table.html"><i class="fa fa-table"></i> Responsive Tables</a>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                        <a href="form.html"><i class="fa fa-edit"></i> Forms </a>#}
+{#                    </li>#}
+
+
+                    <li>
+                        <a href="#"><i class="fa fa-sitemap"></i> Gestão dos dados<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="#">Second Level Link</a>
+                            </li>
+                            <li>
+                                <a href="#">Second Level Link</a>
+                            </li>
+                            <li>
+                                <a href="#">Second Level Link<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="#">Third Level Link</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Third Level Link</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Third Level Link</a>
+                                    </li>
+
+                                </ul>
+
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="empty.html"><i class="fa fa-fw fa-file"></i> Empty Page</a>
+                    </li>
+                </ul>
+
+            </div>
+                </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner">
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <br>
+
+                        <h1 class="page-header">
+                            <small>Administração Kettclub</small>
+                        </h1>
+                    </div>
+                </div>
+
+
+                <!-- /. ROW  -->
+
+
+                <div class="row">
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="panel panel-primary text-center no-boder bg-color-green green">
+                            <div class="panel-left pull-left green">
+                                <i class="fa fa-users fa-5x"></i>
+
+                            </div>
+                            <div class="panel-right pull-right">
+                                <h3>{{ presencas }}</h3>
+                                <strong> Presenças do dia </strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="panel panel-primary text-center no-boder bg-color-blue blue">
+                            <div class="panel-left pull-left blue">
+                                <i class="fa fa-check-circle fa-5x"></i>
+                            </div>
+
+                            <div class="panel-right pull-right">
+                                <h3>0 </h3>
+                                <strong> Inscrições do dia</strong>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="panel panel-primary text-center no-boder bg-color-red red">
+                            <div class="panel-left pull-left red">
+                                <i class="fa fa fa-comments fa-5x"></i>
+
+                            </div>
+                            <div class="panel-right pull-right">
+                                <h3>15,823 </h3>
+                                <strong> Comments </strong>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="panel panel-primary text-center no-boder bg-color-brown brown">
+                            <div class="panel-left pull-left brown">
+                                <i class="fa fa-bar-chart-o fa-5x"></i>
+
+                            </div>
+                            <div class="panel-right pull-right">
+                                <h3>36,752 </h3>
+                                <strong>No. of Visits</strong>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                {#				<div class="row">#}
+                {#				<div class="col-md-12">#}
+                {#					<div class="panel panel-default">#}
+                {#						<div class="panel-heading">#}
+                {#							Line Chart#}
+                {#						</div>#}
+                {#						<div class="panel-body">#}
+                {#							<div id="morris-line-chart"></div>#}
+                {#						</div>#}
+                {#					</div>#}
+                {#					</div>#}
+                {#				</div>#}
+
+
+                <div class="row">
+                    <div class="col-xs-6 col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-body easypiechart-panel">
+                                <h4>Customers</h4>
+
+                                <div class="easypiechart" id="easypiechart-blue" data-percent="82"><span
+                                        class="percent">82%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-body easypiechart-panel">
+                                <h4>Sales</h4>
+
+                                <div class="easypiechart" id="easypiechart-orange" data-percent="55"><span
+                                        class="percent">55%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-body easypiechart-panel">
+                                <h4>Profits</h4>
+
+                                <div class="easypiechart" id="easypiechart-teal" data-percent="84"><span
+                                        class="percent">84%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-body easypiechart-panel">
+                                <h4>No. of Visits</h4>
+
+                                <div class="easypiechart" id="easypiechart-red" data-percent="46"><span class="percent">46%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--/.row-->
+                <div class="row">
+
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Top 20
+                            </div>
+                            <div class="panel-body">
+
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                        <tr class="text-center">
+                                            <th class="text-center">Posição</th>
+                                            <th class="text-center">Atleta</th>
+                                            <th class="text-center">Treinos</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for key, value in chan.items %}
+                                            <tr class="text-center">
+                                                <td>{{ pos.pk }}</td>
+                                                <td>{{ key }}</td>
+                                                <td>{{ value }}</td>
+                                            </tr>
+                                        {% endfor %}
+{#                                        {% for pos in atletas %}#}
+{#                                        <tr class="text-center">#}
+{##}
+{#                                                <td>{{ pos.pk }}</td>#}
+{#                                                <td>{{ pos.nome}}</td>#}
+{#                                                <td>{{ pos.emailatleta }}</td>#}
+{##}
+{#                                        </tr>#}
+{#                                        {% endfor %}#}
+{#                                        <tr class="text-center">#}
+{#                                            <td>1</td>#}
+{#                                            <td>Ana Catarina</td>#}
+{#                                            <td>22</td>#}
+{#                                        </tr>#}
+{#                                        <tr class="text-center">#}
+{#                                            <td>1</td>#}
+{#                                            <td>Paula Ferreira</td>#}
+{#                                            <td>22</td>#}
+{#                                        </tr>#}
+{#                                        <tr class="text-center">#}
+{#                                            <td>1</td>#}
+{#                                            <td>Sara Furtado</td>#}
+{#                                            <td>22</td>#}
+{#                                        </tr>#}
+{#                                        <tr class="text-center">#}
+{#                                            <td>4</td>#}
+{#                                            <td>Filipa Troncão</td>#}
+{#                                            <td>21</td>#}
+{#                                        </tr>#}
+{#                                        <tr class="text-center">#}
+{#                                            <td>5</td>#}
+{#                                            <td>Joaquim Palmeiro</td>#}
+{#                                            <td>20</td>#}
+{#                                        </tr>#}
+{#                                        <tr class="text-center">#}
+{#                                            <td>5</td>#}
+{#                                            <td>Luís Ildefonso</td>#}
+{#                                            <td>20</td>#}
+{#                                        </tr>#}
+{#                                        <tr class="text-center">#}
+{#                                            <td>5</td>#}
+{#                                            <td>Miguel Pereira</td>#}
+{#                                            <td>20</td>#}
+{#                                        </tr>#}
+{#                                        <tr class="text-center">#}
+{#                                            <td>5</td>#}
+{#                                            <td>Miguel Valente</td>#}
+{#                                            <td>20</td>#}
+{#                                        </tr>#}
+{#                                        <tr class="text-center">#}
+{#                                            <td>9</td>#}
+{#                                            <td>Armando Palma</td>#}
+{#                                            <td>19</td>#}
+{#                                        </tr>#}
+{#                                        <tr class="text-center">#}
+{#                                            <td>9</td>#}
+{#                                            <td>Vanessa Amaro</td>#}
+{#                                            <td>19</td>#}
+{#                                        </tr>#}
+{#                                        <tr class="text-center">#}
+{#                                            <td>11</td>#}
+{#                                            <td>Ruben Bento</td>#}
+{#                                            <td>18</td>#}
+{#                                        </tr>#}
+{#                                        <tr class="text-center">#}
+{#                                            <td>12</td>#}
+{#                                            <td>Ana Mira</td>#}
+{#                                            <td>17</td>#}
+{#                                        </tr>#}
+{#                                        <tr class="text-center">#}
+{#                                            <td>12</td>#}
+{#                                            <td>José Brito</td>#}
+{#                                            <td>17</td>#}
+{#                                        </tr>#}
+{#                                        <tr class="text-center">#}
+{#                                            <td>14</td>#}
+{#                                            <td>Célia Grazina</td>#}
+{#                                            <td>16</td>#}
+{#                                        </tr>#}
+{#                                        <tr class="text-center">#}
+{#                                            <td>14</td>#}
+{#                                            <td>Inês Pereira</td>#}
+{#                                            <td>16</td>#}
+{#                                        </tr>#}
+{#                                        <tr class="text-center">#}
+{#                                            <td>14</td>#}
+{#                                            <td>José Correga</td>#}
+{#                                            <td>16</td>#}
+{#                                        </tr>#}
+{#                                        <tr class="text-center">#}
+{#                                            <td>14</td>#}
+{#                                            <td>Pedro Bigodinho</td>#}
+{#                                            <td>16</td>#}
+{#                                        </tr>#}
+{#                                        <tr class="text-center">#}
+{#                                            <td>18</td>#}
+{#                                            <td>Adriano Leal</td>#}
+{#                                            <td>15</td>#}
+{#                                        </tr>#}
+{#                                        <tr class="text-center">#}
+{#                                            <td>18</td>#}
+{#                                            <td>Carmen Godinho</td>#}
+{#                                            <td>15</td>#}
+{#                                        </tr>#}
+{#                                        <tr class="text-center">#}
+{#                                            <td>18</td>#}
+{#                                            <td>Filipa Mestre</td>#}
+{#                                            <td>15</td>#}
+{#                                        </tr>#}
+{#                                        <tr class="text-center">#}
+{#                                            <td>18</td>#}
+{#                                            <td>Luísa Alvarenga</td>#}
+{#                                            <td>15</td>#}
+{#                                        </tr>#}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+                <footer><p>All right reserved. Template by: <a href="http://webthemez.com">WebThemez</a></p></footer>
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="{% static 'js/jquery-1.10.2.js' %}"></script>
+    <!-- Bootstrap Js -->
+    <
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <!-- Metis Menu Js -->
+    <script src="{% static 'js/jquery.metisMenu.js' %}"></script>
+    <!-- Morris Chart Js -->
+    <script src="{% static 'js/morris/raphael-2.1.0.min.js' %}"></script>
+    <script src="{% static 'js/morris/morris.js' %}"></script>
+
+
+    <script src="{% static 'js/easypiechart.js' %}"></script>
+    <script src="{% static 'js/easypiechart-data.js' %}"></script>
+
+    <!-- DATA TABLE SCRIPTS -->
+    <script src="{% static 'js/dataTables/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'js/dataTables/dataTables.bootstrap.js' %}"></script>
+        <script>
+            $(document).ready(function () {
+                $('#dataTables-example').dataTable();
+            });
+    </script>
+
+    <!-- Custom Js -->
+    <script src="{% static 'js/custom-scripts.js' %}"></script>
+
+    </body>
+
+    </html>
+{% endblock content %}

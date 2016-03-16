@@ -1,3 +1,4 @@
+{% load static %}
 <!-- Navigation -->
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -29,8 +30,9 @@
                 <li class="page-scroll">
                     <a href="{% url 'subscriptions:new' %}" class="portfolio-link" data-toggle="modal">Inscrições</a>
                 </li>
-                <li class="page-scroll">
-                    <a href="{% url 'dashboard' %}" class="portfolio-link" data-toggle="modal">Dashboard</a>
+
+                    <li class="page-scroll">
+                    <a href="/dashboard/" class="portfolio-link" data-toggle="modal">Dashboard</a>
                 </li>
 
 {#                <li class="page-scroll">#}

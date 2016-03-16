@@ -59,8 +59,11 @@ INSTALLED_APPS = [
     'kettclub.subscriptions',
     'kettclub.assiduousness',
     'kettclub.reviewsphysicals',
+    'kettclub.dashboard',
 
 ]
+
+LOGIN_URL = '/login/'
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',

@@ -35,7 +35,6 @@ def empty_form(request):
                   {'form': SubscriptionForm()})
 
 
-@login_required
 def empty_prototipo_form(request):
     return render(request, 'subscriptions/subscription_form.html',
                   {'form': SubscriptionForm()})

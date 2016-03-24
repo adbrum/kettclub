@@ -4,7 +4,7 @@ from kettclub.core.models import Atleta, PlanoMensalidade, SaudeAnamnese, Presen
 
 class AtletaAdmin(admin.ModelAdmin):
     list_display = ('pk', 'nome', 'sobrenome', 'emailatleta', 'telefone', 'planomensalidade')
-    fields = ('nome', 'sobrenome', 'emailatleta', 'datanascimento', 'idade', 'cc', 'nif', 'telefone', 'telefone2',
+    fields = ('ativo', 'nome', 'sobrenome', 'emailatleta', 'datanascimento', 'idade', 'cc', 'nif', 'telefone', 'telefone2',
               'datainicio', 'planomensalidade')
     date_hierarchy = 'created_at'
     search_fields = ('nome', 'sobrenome', 'emailatleta', 'telefone', 'created_at')
@@ -35,10 +35,10 @@ class AtletaAdmin(admin.ModelAdmin):
 
 
 class PlanoMensalidadeAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'valor', 'horario')
-    fields = ('nome', 'valor', 'horario')
+    list_display = ('nome', 'valor', 'horario', 'ativo')
+    fields = ('nome', 'valor', 'horario', 'ativo')
     date_hierarchy = 'created_at'
-    search_fields = ('nome', 'valor', 'horario', 'created_at')
+    search_fields = ('nome', 'valor', 'horario', 'ativo', 'created_at')
 
 
 class SaudeAnamneseAdmin(admin.ModelAdmin):
@@ -73,7 +73,7 @@ class SaudeAnamneseAdmin(admin.ModelAdmin):
 
 
 class PresencaAdmin(admin.ModelAdmin):
-    list_display = ('numeroatleta', 'pk', 'datapresenca')
+    list_display = ('numeroatleta', 'nome', 'datapresenca')
     fields = ('numeroatleta', 'datapresenca')
     date_hierarchy = 'created_at'
     search_fields = ('numeroatleta', 'datapresenca')
@@ -88,13 +88,13 @@ class PresencaAdmin(admin.ModelAdmin):
 
     def __init__(self, *args, **kwargs):
         super(PresencaAdmin, self).__init__(*args, **kwargs)
-        self.list_display_links = ('pk', 'numeroatleta')
+        self.list_display_links = ('nome', 'numeroatleta')
 
-    def pk(self, obj):
-        pk = Atleta.objects.get(pk=obj.numeroatleta)
-        return pk.nome.title() + ' ' + pk.sobrenome.title()
-
-    pk.short_description = 'Nome do atleta'
+    # def pk(self, obj):
+    #     pk = Atleta.objects.get(pk=obj.numeroatleta)
+    #     return pk.nome.title() + ' ' + pk.sobrenome.title()
+    #
+    # pk.short_description = 'Nome do atleta'
 
 
 class AvaliacaoAdmin(admin.ModelAdmin):

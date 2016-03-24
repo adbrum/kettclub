@@ -1,0 +1,89 @@
+{% load i18n %}
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-title">
+            <span><b>{% trans "Apagar Plano(s)" %}</b></span>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </span>
+        </div>
+        <div class="modal-body">
+            {% if planos %}
+                <p>{% trans "Deseja mesmo apagar o(s) plano(s):" %}</p>
+                <ul>
+                    {% for plano in planos %}
+                        <li class="values_delete" value="{{ plano.pk }}">{{ plano.nome }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>{% trans "Não selecionou nenhuma plano!" %}</p>
+                <div class="modal-footer">
+                    <input id="" data-dismiss="modal" type="button" class="btn btn-primary" value="{% trans 'Voltar' %}"
+                           style="float:left;">
+                </div>
+            {% endif %}
+        </div>
+        {% if planos %}
+            <div class="modal-footer">
+                <input id="btn_apagarSim" data-dismiss="modal" type="button" class="btn btn-primary"
+                       value="{% trans 'Sim' %}" style="float:left;">
+                <div class="cancel"><span class="text_small">ou</span>
+                    <a href="#" data-dismiss="modal" class="btn_cancelar">{% trans "Não" %}</a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        console.log("REMOVE!");
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie != '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        $('#btn_apagarSim').on("click", function () {
+
+            var ids = new Array();
+            console.log(ids)
+            $('.values_delete').each(function () {
+                ids.push($(this).val());
+            });
+
+            var target = "{%url 'monthlyplans:delconfirme'%}"
+            var csrftoken = getCookie('csrftoken');
+
+            $('#apagarModal_plano').modal('hide');
+
+            $.ajax({
+                type: "POST",
+                url: target,
+                data: {valores_list: ids},
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                },
+                success: function (data) {
+                    location.reload(true);//refresh na página
+                    {#          		$('.form_id').html(data);#}
+                    $('div').removeClass("modal-backdrop fade in");
+                },
+                error: function (rs, e) {
+
+                }
+            });
+        });
+    });
+
+
+</script>

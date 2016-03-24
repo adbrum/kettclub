@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% load static %}
+
+{#{% block nav %}#}
+{#    <div class="header-frame row">#}
+{#        {% include 'nav.html' only %}#}
+{#    </div>#}
+{#{% endblock nav %}#}
+
+{% block content %}
+    <div id="content">
+        <div class="panel">
+            <div class="panel-body">
+                <div class="col-md-6 col-sm-12">
+                    {#                <h3 class="animated fadeInLeft">Customer Service</h3>#}
+                    {##}
+                    {#                <p class="animated fadeInDown"><span class="fa  fa-map-marker"></span> Batavia,Indonesia</p>#}
+                    {##}
+                    {#                <ul class="nav navbar-nav">#}
+                    {#                    <li><a href="">Impedit</a></li>#}
+                    {#                    <li><a href="" class="active">Virtute</a></li>#}
+                    {#                    <li><a href="">Euismod</a></li>#}
+                    {#                    <li><a href="">Explicar</a></li>#}
+                    {#                    <li><a href="">Rebum</a></li>#}
+                    {#                </ul>#}
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-12" style="padding:20px;">
+            <div class="col-md-12 padding-0">
+                <div class="col-md-12 padding-0">
+                    <div class="col-md-12 padding-0">
+                        <div class="col-md-4">
+                            <div class="panel box-v1">
+                                <div class="panel-heading bg-white border-none">
+                                    <div class="col-md-6 col-sm-6 col-xs-6 text-left padding-0">
+                                        <h4 class="text-left">Presenças dia</h4>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                                        <h4>
+                                            <span class="icon-user icons icon text-right"></span>
+                                        </h4>
+                                    </div>
+                                </div>
+                                <div class="panel-body text-center">
+                                    <h1>{{ presencas }}</h1>
+
+                                    <p>Atletas presentes</p>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="panel box-v1">
+                                <div class="panel-heading bg-white border-none">
+                                    <div class="col-md-6 col-sm-6 col-xs-6 text-left padding-0">
+                                        <h4 class="text-left">Presenças mês</h4>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                                        <h4>
+                                            <span class="icon-user icons icon text-right"></span>
+                                        </h4>
+                                    </div>
+                                </div>
+                                <div class="panel-body text-center">
+                                    <h1>{{ mes }}</h1>
+
+                                    <p>Atletas presentes</p>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="panel box-v1">
+                                <div class="panel-heading bg-white border-none">
+                                    <div class="col-md-6 col-sm-6 col-xs-6 text-left padding-0">
+                                        <h4 class="text-left">Novos atletas</h4>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                                        <h4>
+                                            <span class="icon-user-follow icons icon text-right"></span>
+                                        </h4>
+                                    </div>
+                                </div>
+                                <div class="panel-body text-center">
+                                    <h1>{{ novos }}</h1>
+
+                                    <p>Quantidade do mês</p>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 top-20">
+            <div class="col-md-12 ">
+                <div class="panel form_id">
+                    <div class="panel-heading"><h4>TOP 20</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="responsive-table">
+                            <table id="datatables-example" class="table table-striped table-bordered"
+                                   cellspacing="0">
+                                <thead>
+                                <tr class="text-center">
+                                    <th class="text-center">POSIÇÂO</th>
+                                    <th class="text-center">ATLETA</th>
+                                    <th class="text-center">TREINOS</th>
+                                </tr>
+                                </thead>
+                                <tbody class="text-center">
+
+                                {% for val in top %}
+                                    <tr>
+                                        <td><a style="color: #337ab7" href="#" class="edit_atleta navbar-link"
+                                               data-toggle="modal">-</a></td>
+                                        <td>{{ val.nome }}</td>
+                                        <td>{{ val.numeroatleta_count }}</td>
+                                    </tr>
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" style="padding:20px;">
+
+
+        </div>
+    </div>
+    <!-- end: content -->
+{% endblock content %}
+
+{#{% block javascript %}#}
+{#    <script src="{% static 'js/plugins/jquery.nicescroll.js' %}"></script>#}
+{#    <!-- custom -->#}
+{#    <script src="{% static 'js/main.js' %}"></script>#}
+{#{% endblock javascript %}#}
+

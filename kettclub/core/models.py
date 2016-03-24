@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.forms import ChoiceField, RadioSelect
 
@@ -18,11 +19,15 @@ class Atleta(models.Model):
     telefone = models.CharField('Nº Telefone', max_length=9)
     telefone2 = models.CharField('Nº Telefone urgência', max_length=9, blank=True)
     created_at = models.DateTimeField('Criado em', auto_now_add=True)
+    ativo = models.BooleanField('Ativo', default=True, choices=BOOL_CHOICES)
 
     class Meta:
         verbose_name_plural = 'Inscrições Atletas'
         verbose_name = 'Inscrição Atleta'
         ordering = ('nome',)
+
+    def get_absolute_url(self):
+        return reverse('editatleta', kwargs={'pk': self.pk})
 
     def __str__(self):
         return str(self.pk)  # self.nome + ' ' + self.sobrenome
@@ -33,11 +38,15 @@ class PlanoMensalidade(models.Model):
     valor = models.DecimalField('Valor €', max_digits=5, decimal_places=2)
     horario = models.CharField('Horário', max_length=20)
     created_at = models.DateTimeField('Criado em', auto_now_add=True)
+    ativo = models.BooleanField('Ativo', default=True, choices=BOOL_CHOICES)
 
     class Meta:
         verbose_name_plural = 'Planos e mensalidade'
         verbose_name = 'Plano e mensalidade'
         ordering = ('valor',)
+
+    def get_absolute_url(self):
+        return reverse('editatleta', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.nome + ' - ' + str(self.valor) + '€'
@@ -90,10 +99,16 @@ class SaudeAnamnese(models.Model):
 
 
 class Presenca(models.Model):
+    nome = models.CharField('Nome', max_length=50)
     numeroatleta = models.IntegerField('Nº do Atleta')
     datapresenca = models.DateField('Data da presença', blank=True)
     created_at = models.DateTimeField('Criado em', auto_now_add=True)
 
+    # this is not needed if small_image is created at set_image
+    def save(self, *args, **kwargs):
+        atleta = Atleta.objects.get(pk=self.numeroatleta)
+        self.nome = atleta.nome.title() + ' ' + atleta.sobrenome.title()
+        super(Presenca, self).save(*args, **kwargs)
 
 
     class Meta:

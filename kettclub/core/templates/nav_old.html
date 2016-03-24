@@ -1,0 +1,54 @@
+{% load static %}
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'home' %}">Kettclub</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+                <li class="page-scroll">
+                    <a href="{% url 'home' %}#page-top">Início</a>
+                </li>
+                <li class="page-scroll">
+                    <a href="{% url 'assiduousness:new' %}" class="portfolio-link" data-toggle="modal">Presenças</a>
+                </li>
+                <li class="page-scroll">
+                    <a href="{% url 'subscriptions:new' %}" class="portfolio-link" data-toggle="modal">Inscrições</a>
+                </li>
+
+                    <li class="page-scroll">
+                    <a href="/administracao/" class="portfolio-link" data-toggle="modal">Administração</a>
+                </li>
+                    <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#" aria-expanded="false"><i class="glyphicon glyphicon-user"></i> Admin <span class="caret"></span></a>
+                    <ul id="g-account-menu" class="dropdown-menu" role="menu">
+                        <li><a href="#">My Profile</a></li>
+                    </ul>
+                </li>
+                <li><a href="#"><i class="glyphicon glyphicon-lock"></i> Logout</a></li>
+            </ul>
+{#                <li class="page-scroll">#}
+{#                    <a href="#contact">Contate-nos</a>#}
+{#                </li>#}
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>

@@ -59,7 +59,8 @@ INSTALLED_APPS = [
     'kettclub.subscriptions',
     'kettclub.assiduousness',
     'kettclub.reviewsphysicals',
-    'kettclub.dashboard',
+    'kettclub.administration',
+    'kettclub.monthlyplans',
 
 ]
 

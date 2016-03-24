@@ -1,46 +1,331 @@
+{#{% extends "base.html" %}#}
 {% load static %}
-<!-- Navigation -->
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{% url 'home' %}">Kettclub</a>
-        </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="hidden">
-                    <a href="#page-top"></a>
-                </li>
-                <li class="page-scroll">
-                    <a href="{% url 'home' %}#page-top">Início</a>
-                </li>
-                <li class="page-scroll">
-                    <a href="{% url 'assiduousness:new' %}" class="portfolio-link" data-toggle="modal">Presenças</a>
-                </li>
-                <li class="page-scroll">
-                    <a href="{% url 'subscriptions:new' %}" class="portfolio-link" data-toggle="modal">Inscrições</a>
-                </li>
+{#{% block content %}#}
+    <!-- start: Header -->
 
-                    <li class="page-scroll">
-                    <a href="/dashboard/" class="portfolio-link" data-toggle="modal">Dashboard</a>
-                </li>
 
-{#                <li class="page-scroll">#}
-{#                    <a href="#contact">Contate-nos</a>#}
+<div class="container-fluid mimin-wrapper">
+
+    <!-- start:Left Menu -->
+    <div id="left-menu">
+        <div class="sub-left-menu scroll">
+            <ul class="nav nav-list">
+                <li>
+                    <div class="left-bg"></div>
+                </li>
+                <li class="time">
+                    <h1 class="animated fadeInLeft">21:00</h1>
+
+                    <p class="animated fadeInRight">Sat,October 1st 2029</p>
+                </li>
+                <li class="active ripple">
+                    <a href="{% url 'administration:dash' %}" class="nav-header"><span class="fa-dashboard fa"></span> Dashboard
+                        <span class="fa-angle-right fa right-arrow text-right"></span>
+                    </a>
+                </li>
+                <li class="ripple">
+                    <a class="tree-toggle nav-header">
+                        <span class="fa-users fa"></span> Registos
+                        <span class="fa-angle-right fa right-arrow text-right"></span>
+                    </a>
+                    <ul class="nav nav-list tree">
+                        <li><a href="{% url 'subscriptions:list' %}">Inscrição atletas</a></li>
+                        <li><a href="{% url 'assiduousness:list' %}">Assiduidade atleta</a></li>
+                        <li><a href="#">Anamnese desportiva</a></li>
+                        <li><a href="#">Avaliação física</a></li>
+                    </ul>
+                </li>
+{#                <li class="ripple">#}
+{#                    <a class="tree-toggle nav-header">#}
+{#                        <span class="fa-area-chart fa"></span> Charts#}
+{#                        <span class="fa-angle-right fa right-arrow text-right"></span>#}
+{#                    </a>#}
+{#                    <ul class="nav nav-list tree">#}
+{#                        <li><a href="chartjs.html">ChartJs</a></li>#}
+{#                        <li><a href="morris.html">Morris</a></li>#}
+{#                        <li><a href="flot.html">Flot</a></li>#}
+{#                        <li><a href="sparkline.html">SparkLine</a></li>#}
+{#                    </ul>#}
 {#                </li>#}
+{#                <li class="ripple"><a class="tree-toggle nav-header">#}
+{#                    <span class="fa fa-pencil-square"></span> Ui Elements <span#}
+{#                        class="fa-angle-right fa right-arrow text-right"></span> </a>#}
+{#                    <ul class="nav nav-list tree">#}
+{#                        <li><a href="color.html">Color</a></li>#}
+{#                        <li><a href="weather.html">Weather</a></li>#}
+{#                        <li><a href="typography.html">Typography</a></li>#}
+{#                        <li><a href="icons.html">Icons</a></li>#}
+{#                        <li><a href="buttons.html">Buttons</a></li>#}
+{#                        <li><a href="media.html">Media</a></li>#}
+{#                        <li><a href="panels.html">Panels & Tabs</a></li>#}
+{#                        <li><a href="notifications.html">Notifications & Tooltip</a></li>#}
+{#                        <li><a href="badges.html">Badges & Label</a></li>#}
+{#                        <li><a href="progress.html">Progress</a></li>#}
+{#                        <li><a href="sliders.html">Sliders</a></li>#}
+{#                        <li><a href="timeline.html">Timeline</a></li>#}
+{#                        <li><a href="modal.html">Modals</a></li>#}
+{#                    </ul>#}
+{#                </li>#}
+{#                <li class="ripple"><a class="tree-toggle nav-header"><span class="fa fa-check-square-o"></span> Forms#}
+{#                    <span class="fa-angle-right fa right-arrow text-right"></span> </a>#}
+{#                    <ul class="nav nav-list tree">#}
+{#                        <li><a href="formelement.html">Form Element</a></li>#}
+{#                        <li><a href="#">Wizard</a></li>#}
+{#                        <li><a href="#">File Upload</a></li>#}
+{#                        <li><a href="#">Text Editor</a></li>#}
+{#                    </ul>#}
+{#                </li>#}
+{#                <li class="ripple"><a class="tree-toggle nav-header"><span class="fa fa-table"></span> Tables <span#}
+{#                        class="fa-angle-right fa right-arrow text-right"></span> </a>#}
+{#                    <ul class="nav nav-list tree">#}
+{#                        <li><a href="datatables.html">Data Tables</a></li>#}
+{#                        <li><a href="handsontable.html">handsontable</a></li>#}
+{#                        <li><a href="tablestatic.html">Static</a></li>#}
+{#                    </ul>#}
+{#                </li>#}
+{#                <li class="ripple"><a href="calendar.html"><span class="fa fa-calendar-o"></span>Calendar</a></li>#}
+{#                <li class="ripple"><a class="tree-toggle nav-header"><span class="fa fa-envelope-o"></span> Mail <span#}
+{#                        class="fa-angle-right fa right-arrow text-right"></span> </a>#}
+{#                    <ul class="nav nav-list tree">#}
+{#                        <li><a href="mail-box.html">Inbox</a></li>#}
+{#                        <li><a href="compose-mail.html">Compose Mail</a></li>#}
+{#                        <li><a href="view-mail.html">View Mail</a></li>#}
+{#                    </ul>#}
+{#                </li>#}
+{#                <li class="ripple"><a class="tree-toggle nav-header"><span class="fa fa-file-code-o"></span> Pages <span#}
+{#                        class="fa-angle-right fa right-arrow text-right"></span> </a>#}
+{#                    <ul class="nav nav-list tree">#}
+{#                        <li><a href="forgotpass.html">Forgot Password</a></li>#}
+{#                        <li><a href="login.html">SignIn</a></li>#}
+{#                        <li><a href="reg.html">SignUp</a></li>#}
+{#                        <li><a href="article-v1.html">Article v1</a></li>#}
+{#                        <li><a href="search-v1.html">Search Result v1</a></li>#}
+{#                        <li><a href="productgrid.html">Product Grid</a></li>#}
+{#                        <li><a href="profile-v1.html">Profile v1</a></li>#}
+{#                        <li><a href="invoice-v1.html">Invoice v1</a></li>#}
+{#                    </ul>#}
+{#                </li>#}
+{#                <li class="ripple"><a class="tree-toggle nav-header"><span class="fa "></span> MultiLevel <span#}
+{#                        class="fa-angle-right fa right-arrow text-right"></span> </a>#}
+{#                    <ul class="nav nav-list tree">#}
+{#                        <li><a href="view-mail.html">Level 1</a></li>#}
+{#                        <li><a href="view-mail.html">Level 1</a></li>#}
+{#                        <li class="ripple">#}
+{#                            <a class="sub-tree-toggle nav-header">#}
+{#                                <span class="fa fa-envelope-o"></span> Level 1#}
+{#                                <span class="fa-angle-right fa right-arrow text-right"></span>#}
+{#                            </a>#}
+{#                            <ul class="nav nav-list sub-tree">#}
+{#                                <li><a href="mail-box.html">Level 2</a></li>#}
+{#                                <li><a href="compose-mail.html">Level 2</a></li>#}
+{#                                <li><a href="view-mail.html">Level 2</a></li>#}
+{#                            </ul>#}
+{#                        </li>#}
+{#                    </ul>#}
+{#                </li>#}
+{#                <li><a href="credits.html">Credits</a></li>#}
             </ul>
         </div>
-        <!-- /.navbar-collapse -->
     </div>
-    <!-- /.container-fluid -->
-</nav>
+    </div>
+    <!-- end: Left Menu -->
+  <!-- start: Mobile -->
+    <div id="mimin-mobile" class="reverse">
+        <div class="mimin-mobile-menu-list">
+            <div class="col-md-12 sub-mimin-mobile-menu-list animated fadeInLeft">
+                <ul class="nav nav-list">
+                    <li class="active ripple">
+                        <a class="tree-toggle nav-header">
+                            <span class="fa-home fa"></span>Dashboard
+                            <span class="fa-angle-right fa right-arrow text-right"></span>
+                        </a>
+                        <ul class="nav nav-list tree">
+                            <li><a href="dashboard-v1.html">Dashboard v.1</a></li>
+                            <li><a href="dashboard-v2.html">Dashboard v.2</a></li>
+                        </ul>
+                    </li>
+                    <li class="ripple">
+                        <a class="tree-toggle nav-header">
+                            <span class="fa-diamond fa"></span>Layout
+                            <span class="fa-angle-right fa right-arrow text-right"></span>
+                        </a>
+                        <ul class="nav nav-list tree">
+                            <li><a href="topnav.html">Top Navigation</a></li>
+                            <li><a href="boxed.html">Boxed</a></li>
+                        </ul>
+                    </li>
+                    <li class="ripple">
+                        <a class="tree-toggle nav-header">
+                            <span class="fa-area-chart fa"></span>Charts
+                            <span class="fa-angle-right fa right-arrow text-right"></span>
+                        </a>
+                        <ul class="nav nav-list tree">
+                            <li><a href="chartjs.html">ChartJs</a></li>
+                            <li><a href="morris.html">Morris</a></li>
+                            <li><a href="flot.html">Flot</a></li>
+                            <li><a href="sparkline.html">SparkLine</a></li>
+                        </ul>
+                    </li>
+                    <li class="ripple">
+                        <a class="tree-toggle nav-header">
+                            <span class="fa fa-pencil-square"></span>Ui Elements
+                            <span class="fa-angle-right fa right-arrow text-right"></span>
+                        </a>
+                        <ul class="nav nav-list tree">
+                            <li><a href="color.html">Color</a></li>
+                            <li><a href="weather.html">Weather</a></li>
+                            <li><a href="typography.html">Typography</a></li>
+                            <li><a href="icons.html">Icons</a></li>
+                            <li><a href="buttons.html">Buttons</a></li>
+                            <li><a href="media.html">Media</a></li>
+                            <li><a href="panels.html">Panels & Tabs</a></li>
+                            <li><a href="notifications.html">Notifications & Tooltip</a></li>
+                            <li><a href="badges.html">Badges & Label</a></li>
+                            <li><a href="progress.html">Progress</a></li>
+                            <li><a href="sliders.html">Sliders</a></li>
+                            <li><a href="timeline.html">Timeline</a></li>
+                            <li><a href="modal.html">Modals</a></li>
+                        </ul>
+                    </li>
+                    <li class="ripple">
+                        <a class="tree-toggle nav-header">
+                            <span class="fa fa-check-square-o"></span>Forms
+                            <span class="fa-angle-right fa right-arrow text-right"></span>
+                        </a>
+                        <ul class="nav nav-list tree">
+                            <li><a href="formelement.html">Form Element</a></li>
+                            <li><a href="#">Wizard</a></li>
+                            <li><a href="#">File Upload</a></li>
+                            <li><a href="#">Text Editor</a></li>
+                        </ul>
+                    </li>
+                    <li class="ripple">
+                        <a class="tree-toggle nav-header">
+                            <span class="fa fa-table"></span>Tables
+                            <span class="fa-angle-right fa right-arrow text-right"></span>
+                        </a>
+                        <ul class="nav nav-list tree">
+                            <li><a href="datatables.html">Data Tables</a></li>
+                            <li><a href="handsontable.html">handsontable</a></li>
+                            <li><a href="tablestatic.html">Static</a></li>
+                        </ul>
+                    </li>
+                    <li class="ripple">
+                        <a href="calendar.html">
+                            <span class="fa fa-calendar-o"></span>Calendar
+                        </a>
+                    </li>
+                    <li class="ripple">
+                        <a class="tree-toggle nav-header">
+                            <span class="fa fa-envelope-o"></span>Mail
+                            <span class="fa-angle-right fa right-arrow text-right"></span>
+                        </a>
+                        <ul class="nav nav-list tree">
+                            <li><a href="mail-box.html">Inbox</a></li>
+                            <li><a href="compose-mail.html">Compose Mail</a></li>
+                            <li><a href="view-mail.html">View Mail</a></li>
+                        </ul>
+                    </li>
+                    <li class="ripple">
+                        <a class="tree-toggle nav-header">
+                            <span class="fa fa-file-code-o"></span>Pages
+                            <span class="fa-angle-right fa right-arrow text-right"></span>
+                        </a>
+                        <ul class="nav nav-list tree">
+                            <li><a href="forgotpass.html">Forgot Password</a></li>
+                            <li><a href="login.html">SignIn</a></li>
+                            <li><a href="reg.html">SignUp</a></li>
+                            <li><a href="article-v1.html">Article v1</a></li>
+                            <li><a href="search-v1.html">Search Result v1</a></li>
+                            <li><a href="productgrid.html">Product Grid</a></li>
+                            <li><a href="profile-v1.html">Profile v1</a></li>
+                            <li><a href="invoice-v1.html">Invoice v1</a></li>
+                        </ul>
+                    </li>
+                    <li class="ripple"><a class="tree-toggle nav-header"><span class="fa "></span> MultiLevel <span
+                            class="fa-angle-right fa right-arrow text-right"></span> </a>
+                        <ul class="nav nav-list tree">
+                            <li><a href="view-mail.html">Level 1</a></li>
+                            <li><a href="view-mail.html">Level 1</a></li>
+                            <li class="ripple">
+                                <a class="sub-tree-toggle nav-header">
+                                    <span class="fa fa-envelope-o"></span> Level 1
+                                    <span class="fa-angle-right fa right-arrow text-right"></span>
+                                </a>
+                                <ul class="nav nav-list sub-tree">
+                                    <li><a href="mail-box.html">Level 2</a></li>
+                                    <li><a href="compose-mail.html">Level 2</a></li>
+                                    <li><a href="view-mail.html">Level 2</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="credits.html">Credits</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <button id="mimin-mobile-menu-opener" class="animated rubberBand btn btn-circle btn-danger">
+        <span class="fa fa-bars"></span>
+    </button>
+    <!-- end: Mobile -->
+
+{#{% endblock content %}#}
+
+    <!-- start: Javascript -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/jquery.ui.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+
+<!-- plugins -->
+<script src="{% static 'js/plugins/moment.min.js' %}"></script>
+{#<script src="{% static 'js/plugins/fullcalendar.min.js' %}"></script>#}
+<script src="{% static 'js/plugins/jquery.nicescroll.js' %}"></script>
+{#<script src="{% static 'js/plugins/jquery.vmap.min.js' %}"></script>#}
+{#<script src="{% static 'js/plugins/maps/jquery.vmap.world.js' %}"></script>#}
+{#<script src="{% static 'js/plugins/jquery.vmap.sampledata.js' %}"></script>#}
+{#<script src="{% static 'js/plugins/chart.min.js' %}"></script>#}
+
+
+<!-- plugins datatables-->
+{#<script src="{% static 'js/plugins/jquery.datatables.min.js' %}"></script>#}
+{#<script src="{% static 'js/plugins/datatables.bootstrap.min.js' %}"></script>#}
+{#    <!-- custom -->#}
+{#<script src="{% static 'js/main.js' %}"></script>#}
+
+
+{#<ul class="nav navbar-top-links navbar-right">#}
+{##}
+{#                <li class="dropdown">#}
+{#                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">#}
+{#                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>#}
+{#                    </a>#}
+{#                                <ul class="dropdown-menu dropdown-user">#}
+{##}
+{#                                        <li><a href="#"><i class="fa fa-user fa-fw"></i> {{ user.username }} profile </a>#}
+{#                                        </li>#}
+{##}
+{#                                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configurações</a>#}
+{#                                        </li>#}
+{#                                        <li class="divider"></li>#}
+{#                                        <li><a href="/logout/"><i class="fa fa-sign-out fa-fw"></i> Sair</a>#}
+{#                                        </li>#}
+{##}
+{#                                </ul>#}
+{#                    <ul class="dropdown-menu dropdown-user">#}
+{#                        {% if user.is_authenticated %}#}
+{#                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>#}
+{#                        </li>#}
+{#                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>#}
+{#                        </li>#}
+{#                        <li class="divider"></li>#}
+{#                        <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>#}
+{#                        </li>#}
+{#                        {% endif %}#}
+{#                    </ul>#}
+{#                    <!-- /.dropdown-user -->#}
+{#                </li>#}
+{#                <!-- /.dropdown -->#}
+{#            </ul>#}

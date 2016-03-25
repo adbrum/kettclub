@@ -3,8 +3,6 @@
 Sistema de Administração para academia de ginástica
 
 [![Build Status](https://travis-ci.org/adbrum/kettclub.svg?branch=master)](https://travis-ci.org/adbrum/kettclub)
-[![Code Health](https://landscape.io/github/adbrum/kettclub/master/landscape.svg?style=flat)](https://landscape.io/github/adbrum/kettclub/master)
-
 
 ## Como desenvolver?
 

@@ -4,11 +4,11 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.shortcuts import resolve_url as r
 from django.views.decorators.cache import cache_page
-from kettclub.core.models import Atleta, PlanoMensalidade
+from kettclub.core.models import Atleta
 from kettclub.subscriptions.forms import SubscriptionForm, EditSubscriptionForm
 
 
-@cache_page(60)
+#@cache_page(60)
 @login_required
 def listsubscription(request, *args, **kwargs):
     list_subscription = Atleta.objects.all()

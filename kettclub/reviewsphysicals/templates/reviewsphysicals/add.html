@@ -1,0 +1,30 @@
+<div class="col-md-8">
+    <div class="panel form-element-padding">
+        <div class="panel-heading">
+            <h4>Avaliação física do atleta</h4>
+        </div>
+        <div class="panel-body" style="padding-bottom:30px;">
+            <div class="col-md-12">
+                <form method="post" action="{% url 'reviewsphysicals:new' %}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div>
+                        <button class="btn btn-primary" type="submit">Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{#<div class="panel-heading"><h3>Adicionar atleta</h3></div>#}
+{#<div class="panel-body">#}
+{#    <form method="post" action="{% url 'subscriptions:new' %}">#}
+{#        {% csrf_token %}#}
+{#        {{ form.as_p }}#}
+{#        <div>#}
+{#            <button class="btn btn-default" type="submit">Salvar</button>#}
+{#        </div>#}
+{#    </form>#}
+{#</div>#}

@@ -1,7 +1,120 @@
-from django.shortcuts import render
-from kettclub.reviewsphysicals.forms import EvaluationForm
+from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404
+from django.shortcuts import resolve_url as r
+from django.views.decorators.cache import cache_page
+from kettclub.core.models import Avaliacao
+from kettclub.reviewsphysicals.forms import EvaluationForm, EditEvaluationForm
+
+
+#@cache_page(60)
+@login_required
+def listavaliacao(request, *args, **kwargs):
+    list_avaliacao = Avaliacao.objects.all()
+    tamLista = len(list_avaliacao)
+
+    print(tamLista)
+
+    context = {
+        'list': list_avaliacao,
+        'tamLista': tamLista
+    }
+
+    return render(request, "reviewsphysicals/index.html", context)
 
 
 def new(request):
+    if request.method == 'POST':
+        return create(request)
+
+    return empty_form(request)
+
+
+def empty_form(request):
+    return render(request, 'reviewsphysicals/add.html',
+                  {'form': EvaluationForm()})
+
+
+def empty_prototipo_form(request):
     return render(request, 'reviewsphysicals/evaluation_form.html',
                   {'form': EvaluationForm()})
+
+
+@login_required
+def create(request):
+    form = EvaluationForm(request.POST or None)
+    if not form.is_valid():
+        return render(request, 'reviewsphysicals/add.html', {'form': form})
+    else:
+        form.save()
+        return HttpResponseRedirect(r('reviewsphysicals:list'))
+
+
+@login_required
+def editAvaliacao(request, pk):
+    avaliacao = get_object_or_404(Avaliacao, pk=pk)
+    form = EditEvaluationForm(request.POST or None, instance=avaliacao)
+    if not form.is_valid():
+        return render(request, 'reviewsphysicals/edit.html', {'form': form, 'avaliacao': avaliacao})
+    else:
+        form.save()
+        return HttpResponseRedirect(r('reviewsphysicals:list'))
+# def editAvaliacao(request, pk):
+    # avaliacao = get_object_or_404(Avaliacao, pk=pk)
+    # form = EditEvaluationForm(request.POST or None, instance=avaliacao)
+    # if not form.is_valid():
+    #     return render(request, 'reviewsphysicals/edit.html', {'form': form, 'avaliacao': avaliacao})
+    # else:
+    #     form.save()
+    #     return HttpResponseRedirect(r('reviewsphysicals:list'))
+
+
+@login_required
+def delDataModalAvaliacao(request):
+    id_list = []
+    if request.is_ajax():
+        select = request.POST.getlist('valores[]')
+
+        for pk in select:
+            id_list.append(int(pk))
+
+    avaliacoes = Avaliacao.objects.filter(pk__in=id_list, ativo=True)
+
+    return render(request, 'reviewsphysicals/removeModal.html', {'avaliacoes': avaliacoes})
+
+
+@login_required
+def delConfirmeAvaliacao(request, *args, **kwargs):
+    select = request.POST.getlist('valores_list[]')
+    for valor in select:
+        Avaliacao.objects.filter(pk=valor).update(ativo=False)
+
+    return HttpResponseRedirect(r('reviewsphysicals:list'))
+
+
+# def deleteAvaliacao(request, pk):
+#     avaliacao = get_object_or_404(Avaliacao, pk=pk)
+#     if request.method=='POST':
+#         # avaliacao.delete()
+#         avaliacao.objects.filter(pk=pk).update(ativo=False)
+#         return HttpResponseRedirect(r('reviewsphysicals:list'))
+#     return render(request, 'reviewsphysicals/add.html', {'object':avaliacao})
+
+
+def fichaAvaliacao(request, *args, **kwargs):
+    idAvaliacao = kwargs['idAvaliacao']
+
+    editar = True
+    saveNew = False
+
+    avaliacoes = Avaliacao.objects.get(id=idAvaliacao)
+    argCode = avaliacoes.pk
+
+    if request.method == 'GET':
+        url = reverse('/avaliacao/ficha/' + idAvaliacao)
+        return HttpResponseRedirect(url)
+    else:
+
+        return HttpResponseRedirect(r('reviewsphysicals:list'))
+

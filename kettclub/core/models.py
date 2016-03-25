@@ -146,5 +146,8 @@ class Avaliacao(models.Model):
         verbose_name = 'Avaliação'
         ordering = ('atleta__nome',)
 
+    def get_absolute_url(self):
+        return reverse('editatleta', kwargs={'pk': self.pk})
+
     def __str__(self):
         return self.atleta.nome + ' ' + self.atleta.sobrenome

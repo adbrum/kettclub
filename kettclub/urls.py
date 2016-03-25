@@ -20,7 +20,7 @@ urlpatterns = [
     url(r'^presenca/', include('kettclub.assiduousness.urls',
                                namespace='assiduousness')),
     url(r'^avaliacaofisica/', include('kettclub.reviewsphysicals.urls',
-                                      namespace='reviewsphysical')),
+                                      namespace='reviewsphysicals')),
     url(r'^planosmensais/', include('kettclub.monthlyplans.urls',
                                       namespace='monthlyplans')),
     url(r'^admin/', admin.site.urls),

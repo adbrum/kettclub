@@ -1,0 +1,31 @@
+<div class="col-md-8">
+    <div class="panel form-element-padding">
+        <div class="panel-heading">
+            <h4>Editar dados: {{ avaliacao.atleta.nome }} {{ avaliacao.atleta.sobrenome }}</h4>
+        </div>
+        <div class="panel-body" style="padding-bottom:30px;">
+            <div class="col-md-12">
+                <form method="post" action="/avaliacaofisica/edit/{{ avaliacao.pk }}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div>
+                        <button class="btn btn-primary" type="submit">Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- start: Content -->
+
+{##}
+{#<div class="panel-heading"><h3>Editar dados: {{ avaliacao.nome }} {{ avaliacao.sobrenome }} </h3></div>#}
+{#<div class="panel-body">#}
+{#    <form method="post" action="/inscricao/edit/{{ avaliacao }}">#}
+{#        {% csrf_token %}#}
+{#        {{ form.as_p }}#}
+{#        <div>#}
+{#            <button class="btn btn-default" type="submit">Salvar</button>#}
+{#        </div>#}
+{#    </form>#}
+{#</div>#}

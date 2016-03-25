@@ -6,5 +6,4 @@ from kettclub.administration.forms import LoginForm
 
 @cache_page(60)
 def home(request):
-    context = {'form': LoginForm}
-    return render(request, 'home.html', context, context_instance=RequestContext(request))
+    return render(request, 'home.html', {'form': LoginForm})

@@ -62,6 +62,9 @@
                             <li><a href="{% url 'subscriptions:form' %}">Inscrição atletas</a></li>
                         {% endif %}
                         {% if user.is_authenticated %}
+                            <li><a href="{% url 'reviewsphysicals:list' %}">Avaliação física</a></li>
+                        {% endif %}
+                        {% if user.is_authenticated %}
                             <li><a href="{% url 'assiduousness:list' %}">Assiduidade atleta</a></li>
                         {% else %}
                             <li><a href="{% url 'assiduousness:new' %}">Assiduidade atleta</a></li>
@@ -141,6 +144,9 @@
                             <li><a href="{% url 'subscriptions:list' %}">Inscrição atletas</a></li>
                         {% else %}
                             <li><a href="{% url 'subscriptions:form' %}">Inscrição atletas</a></li>
+                        {% endif %}
+                        {% if user.is_authenticated %}
+                            <li><a href="{% url 'reviewsphysicals:list' %}">Avaliação física</a></li>
                         {% endif %}
                         {% if user.is_authenticated %}
                             <li><a href="{% url 'assiduousness:list' %}">Assiduidade atleta</a></li>

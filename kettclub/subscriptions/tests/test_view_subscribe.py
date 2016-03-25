@@ -13,7 +13,7 @@ class SubscriptionsNewGet(TestCase):
 
     def test_template(self):
         """Must use sbscription/subscription_form.html"""
-        self.assertTemplateUsed(self.resp, 'subscriptions/subscription_form.html')
+        self.assertTemplateUsed(self.resp, 'subscriptions/add.html')
 
     def test_has_form(self):
         """Context must have subscription form"""

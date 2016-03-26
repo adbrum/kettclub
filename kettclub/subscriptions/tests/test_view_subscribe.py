@@ -23,7 +23,7 @@ class SubscriptionsNewGet(TestCase):
 
     def test_html_content(self):
         """HTML must contain input tags"""
-        contents = ['<form method="post"', '<button class="btn btn-primary"']
+        contents = ['<form method="post"', '<div class="panel-body"']
 
         for content in contents:
             with self.subTest():
@@ -31,7 +31,7 @@ class SubscriptionsNewGet(TestCase):
 
         contents = [
             (1, '<form method="post"'),
-            (1, '<button class="btn btn-primary"'),
+            (1, '<div class="panel-body"'),
         ]
 
         for count, content in contents:

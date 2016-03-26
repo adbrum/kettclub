@@ -46,7 +46,7 @@
                                         <td>
                                             <div class="col-sm-10">
                                                 {% if field.errors %}
-                                                    <span class="alert-danger {% if form.errors %}errorField{% endif %}">
+                                                    <span class="help-block {% if form.errors %} has-error errorField{% endif %}">
                                                 {% endif %}
                                                 {{ field }}
                                                 {% if field.errors %}
@@ -68,7 +68,6 @@
                                         </td>
                                         <td>
                                             <div class="col-sm-10">
-                                            <span class="{% if form.errors %} errorField {% endif %}">
                                             {{ field }}
                                                 {% for error in field.errors %}
                                                     {{ error }}

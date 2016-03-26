@@ -42,7 +42,7 @@ def create(request):
         return render(request, 'monthlyplans/add.html', {'form': form})
 
     form.save()
-    return HttpResponseRedirect(r('monthlyplans:list'))
+    return HttpResponseRedirect(r('monthlyplans:success'))
 
 
 @login_required
@@ -53,7 +53,12 @@ def editPlano(request, pk):
         return render(request, 'monthlyplans/edit.html', {'form': form, 'plano': plano})
     else:
         form.save()
-        return HttpResponseRedirect(r('monthlyplans:list'))
+        return HttpResponseRedirect(r('monthlyplans:success'))
+
+
+@login_required
+def success(request):
+    return render(request, 'monthlyplans/monthlyplans_success.html')
 
 
 @login_required

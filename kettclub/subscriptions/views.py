@@ -41,12 +41,13 @@ def empty_prototipo_form(request):
 
 @login_required
 def create(request):
+    # saveNew = True
     form = SubscriptionForm(request.POST or None)
     if not form.is_valid():
-        return render(request, 'subscriptions/add.html', {'form': form})
+        return render(request, 'subscriptions/add.html', locals())
     else:
         form.save()
-        return HttpResponseRedirect(r('subscriptions:list'))
+        return HttpResponseRedirect(r('subscriptions:success'))
 
 
 @login_required
@@ -57,7 +58,12 @@ def editAtleta(request, pk):
         return render(request, 'subscriptions/edit.html', {'form': form, 'atleta': atleta})
     else:
         form.save()
-        return HttpResponseRedirect(r('subscriptions:list'))
+        return HttpResponseRedirect(r('subscriptions:success'))
+
+
+@login_required
+def success(request):
+    return render(request, 'subscriptions/subscription_success.html')
 
 
 @login_required

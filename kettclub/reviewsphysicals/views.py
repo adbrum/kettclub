@@ -48,7 +48,7 @@ def create(request):
         return render(request, 'reviewsphysicals/add.html', {'form': form})
     else:
         form.save()
-        return HttpResponseRedirect(r('reviewsphysicals:list'))
+        return HttpResponseRedirect(r('reviewsphysicals:success'))
 
 
 @login_required
@@ -59,7 +59,14 @@ def editAvaliacao(request, pk):
         return render(request, 'reviewsphysicals/edit.html', {'form': form, 'avaliacao': avaliacao})
     else:
         form.save()
-        return HttpResponseRedirect(r('reviewsphysicals:list'))
+        return HttpResponseRedirect(r('reviewsphysicals:success'))
+
+
+@login_required
+def success(request):
+    return render(request, 'reviewsphysicals/avaliation_success.html')
+
+
 # def editAvaliacao(request, pk):
     # avaliacao = get_object_or_404(Avaliacao, pk=pk)
     # form = EditEvaluationForm(request.POST or None, instance=avaliacao)

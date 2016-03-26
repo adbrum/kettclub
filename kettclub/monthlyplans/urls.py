@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from kettclub.monthlyplans.views import new, editPlano, delDataModalPlano, \
-    delConfirmePlano, listmonthlyplan
+    delConfirmePlano, listmonthlyplan, success
 
 urlpatterns = [
     url(r'^$', new, name='new'),
@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^lista/', listmonthlyplan, name='list'),
     url(r'^deletar/', delDataModalPlano, name='deletarplano'),
     url(r'^confirmedeletar/', delConfirmePlano, name='delconfirme'),
+    url(r'^sucesso/', success, name='success'),
 ]

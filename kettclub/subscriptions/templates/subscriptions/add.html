@@ -1,22 +1,145 @@
-<div class="col-md-8">
-    <div class="panel form-element-padding">
-        <div class="panel-heading">
-            <h4>Adicionar atleta</h4>
-        </div>
-        <div class="panel-body" style="padding-bottom:30px;">
-            <div class="col-md-12">
-                <form method="post" action="{% url 'subscriptions:new' %}">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <div>
-                        <button class="btn btn-primary" type="submit">Salvar</button>
+<form method="post" action="{% url 'subscriptions:new' %}" class="form-horizontal" id="form2"
+      style='visibility:visible;'>
+    {% csrf_token %}
+    <div class="col-md-8">
+        <div class="panel form-element-padding">
+            <div class="panel-heading">
+                <h4>Adicionar atleta</h4>
+            </div>
+            <div class="panel-body" style="padding-bottom:30px;">
+                <div class="form-group">
+                    <div class="col-sm-5">
+                        {% if isDefault != 1 %}
+                            {% if saveNew == 1 %}
+                                <input type="button" id="saveAndNew" class="btn btn-primary" name="SaveAndNew"
+                                       value="Guardar & Novo" style="float:left;margin-right:7px;"/>
+                            {% endif %}
+                            {% if bEdit %}
+                                <input type="button" id="bEdit" class="btn btn-primary" name="Save" value="Editar"
+                                       style="float:left;"/>
+                            {% else %}
+                                <input type="button" id="save" class="btn btn-primary" name="Save" value="Guardar"
+                                       style="float:left;"/>
+                            {% endif %}
+
+                            <div class="cancel"><span class="text_small"></span>
+                                <input type="button" id="b_cancelar" class="btn btn-default" name="Cancelar"
+                                       value="Cancelar"/>
+                            </div>
+                        {% else %}
+                            <div class="cancel">
+                                <input type="button" id="b_cancelar" class="btn_cancelar" name="Cancelar"
+                                       value="Voltar"/>
+                            </div>
+                        {% endif %}
                     </div>
-                </form>
+                </div>
+                <div class="col-md-12">
+                    {% for field in form %}
+                        {% if field.field.required %}
+                            <div class="form-group">
+                                <tr>
+                                    <td class="title">
+                                        <label class="control-label col-xs-2"
+                                               for="id_{{ field.name }}">{{ field.label }}</label>
+                                    </td>
+                                    <td>
+                                        <div class="col-sm-10">
+                                            {% if field.errors %}
+                                                <span class="alert-danger {% if form.errors %}errorField{% endif %}">
+                                            {% endif %}
+                                            {{ field }}
+                                            {% if field.errors %}
+                                                {% for error in field.errors %}
+                                                    {{ error }}
+                                                {% endfor %}
+                                                </span>
+                                            {% endif %}
+                                        </div>
+                                    </td>
+                                </tr>
+                            </div>
+                        {% else %}
+                            <div class="form-group">
+                                <tr>
+                                    <td class="title">
+                                        <label class="control-label col-xs-2"
+                                               for="id_{{ field.name }}">{{ field.label }}</label>
+                                    </td>
+                                    <td>
+                                        <div class="col-sm-10">
+                                            <span class="{% if form.errors %} errorField {% endif %}">
+                                            {{ field }}
+                                                {% for error in field.errors %}
+                                                    {{ error }}
+                                                {% endfor %}
+                                            </span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
-</div>
+</form>
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie != '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        $('#save').click(function () {
+            var nameButton = $(this).attr("name");
+            save_ajax(nameButton);
+        });
+
+        $('#saveAndNew').click(function () {
+            var nameButton = $(this).attr("name");
+            location.reload();
+            save_ajax(nameButton);
+        });
+
+        $('#b_cancelar').click(function () {
+            location.reload();
+            {#            var nameButton = $(this).attr("name");#}
+            {#            save_ajax(nameButton);#}
+        });
+
+        function save_ajax(nameButton) {
+            var csrftoken = getCookie('csrftoken');
+            var form = $("#form2");
+            url = form.attr('action');
+            var data_form = form.serialize() + '&' + nameButton + "=" + 1 + ",";
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: data_form,
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                },
+                success: function (data) {
+                    $(".form_id").html(data);
+                }
+            });
+        }
+    });
+
+</script>
 
 {#<div class="panel-heading"><h3>Adicionar atleta</h3></div>#}
 {#<div class="panel-body">#}

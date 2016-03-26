@@ -1,5 +1,6 @@
 from django.conf.urls import url
-from kettclub.reviewsphysicals.views import new, editAvaliacao, listavaliacao, delDataModalAvaliacao, delConfirmeAvaliacao
+from kettclub.reviewsphysicals.views import new, editAvaliacao, listavaliacao, delDataModalAvaliacao, \
+    delConfirmeAvaliacao, success
 
 urlpatterns = [
     url(r'^$', new, name='new'),
@@ -7,5 +8,6 @@ urlpatterns = [
     url(r'^lista/', listavaliacao, name='list'),
     url(r'^deletar/', delDataModalAvaliacao, name='deletaravaliacao'),
     url(r'^confirmedeletar/', delConfirmeAvaliacao, name='delconfirme'),
+    url(r'^sucesso/', success, name='success'),
 
 ]

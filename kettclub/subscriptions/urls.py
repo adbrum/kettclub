@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from kettclub.subscriptions.views import new, listsubscription, empty_prototipo_form, editAtleta, delDataModalAtleta, \
-    delConfirmeAtleta
+    delConfirmeAtleta, success
 
 urlpatterns = [
     url(r'^$', new, name='new'),
@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^lista/', listsubscription, name='list'),
     url(r'^deletar/', delDataModalAtleta, name='deletaratleta'),
     url(r'^confirmedeletar/', delConfirmeAtleta, name='delconfirme'),
+    url(r'^sucesso/', success, name='success'),
 ]

@@ -46,18 +46,21 @@ def new(request):
         return render(request, 'assiduity.html', locals())
     else:
         print('FORM SIM', request.POST)
-        atleta = Atleta.objects.get(pk=pk_atleta)
+        try:
+            atleta = Atleta.objects.get(pk=pk_atleta)
+        except Atleta.DoesNotExist as e:
+            message = 'Nº de atleta não registado! Tente novamente.'
+
+            return render(request, 'assiduity.html', locals())
+
         if atleta is not None:
             print('ATLETA SIM', request.POST)
             # form.save()
-            return render(request, 'assiduity.html', locals())
 
-        message = 'Nº de atetla inisistente!'
-        return render(request, 'assiduity.html', locals())
+            return render(request, 'assiduity.html', locals())
 
 
 def success(request):
-    print('SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS')
     form = AssiduityForm(request.POST or None)
     form.save()
     # return HttpResponseRedirect(r('subscriptions:'))

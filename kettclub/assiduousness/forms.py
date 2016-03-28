@@ -8,9 +8,11 @@ class AssiduityForm(ModelForm):
     #     attrs={'placeholder': 'Nome', 'class': 'form-control'}))
     # sobrenome = forms.CharField(label='Sobrenome', widget=forms.TextInput(
     #     attrs={'placeholder': 'Sobrenome', 'class': 'form-control'}))
-    numeromatricula = forms.CharField(label='Nº do Atleta', widget=forms.TextInput(
-        attrs={'placeholder': 'Número do atleta', 'class': 'form-control'}))
-    date = forms.DateField(label='Data da presença')
+
+    numeroatleta = forms.CharField(widget=forms.TextInput(
+        attrs={'class': 'form-text', 'name': 'numeromatricula', 'id': 'theDate', 'type': 'text'}))
+    datapresenca = forms.CharField(widget=forms.TextInput(
+        attrs={'class': 'form-text', 'name': 'datapresenca', 'id': 'theDate', 'type': 'date'}))
 
     class Meta:
         model = Presenca

@@ -1,10 +1,12 @@
 from datetime import datetime
 
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404
+from django.shortcuts import resolve_url as r
 from django.views.decorators.cache import cache_page
 from kettclub.assiduousness.forms import AssiduityForm
-from kettclub.core.models import Presenca
+from kettclub.core.models import Presenca, Atleta
 
 
 @cache_page(60)
@@ -35,5 +37,28 @@ def listassiduity(request):
 
 # @cache_page(60)
 def new(request):
-    return render(request, 'assiduousness/assiduity_form.html',
-                  {'form': AssiduityForm()})
+    pk_atleta = request.POST.get('numeroatleta')
+    data = request.POST.get('datapresenca')
+    print('pk_atleta', pk_atleta)
+    form = AssiduityForm(request.POST or None)
+    if not form.is_valid():
+        print('FORM NÂO', request.GET)
+        return render(request, 'assiduity.html', locals())
+    else:
+        print('FORM SIM', request.POST)
+        atleta = Atleta.objects.get(pk=pk_atleta)
+        if atleta is not None:
+            print('ATLETA SIM', request.POST)
+            # form.save()
+            return render(request, 'assiduity.html', locals())
+
+        message = 'Nº de atetla inisistente!'
+        return render(request, 'assiduity.html', locals())
+
+
+def success(request):
+    print('SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS')
+    form = AssiduityForm(request.POST or None)
+    form.save()
+    # return HttpResponseRedirect(r('subscriptions:'))
+    return render(request, 'assiduity.html')

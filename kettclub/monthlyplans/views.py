@@ -8,7 +8,7 @@ from kettclub.core.models import PlanoMensalidade
 from kettclub.monthlyplans.forms import MonthlyPlansForm
 
 
-@cache_page(60)
+# @cache_page(60)
 @login_required
 def listmonthlyplan(request, *args, **kwargs):
     list_plans = PlanoMensalidade.objects.all()

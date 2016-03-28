@@ -127,32 +127,25 @@
                         <span class="fa-angle-right fa right-arrow text-right"></span>
                     </a>
                 </li>
+                {% if user.is_authenticated %}
                 <li class="ripple">
                     <a class="tree-toggle nav-header">
                         <span class="fa-users fa"></span> Administração dados
                         <span class="fa-angle-right fa right-arrow text-right"></span>
                     </a>
+
                     <ul class="nav nav-list tree">
-                        {% if user.is_authenticated %}
+
                             <li><a href="{% url 'subscriptions:list' %}">Inscrição atletas</a></li>
-                        {% else %}
-                            <li><a href="{% url 'subscriptions:form' %}">Inscrição atletas</a></li>
-                        {% endif %}
-                        {% if user.is_authenticated %}
                             <li><a href="{% url 'reviewsphysicals:list' %}">Avaliação física</a></li>
-                        {% endif %}
-                        {% if user.is_authenticated %}
                             <li><a href="{% url 'assiduousness:list' %}">Assiduidade atleta</a></li>
-                        {% else %}
-                            <li><a href="{% url 'assiduousness:new' %}">Assiduidade atleta</a></li>
-                        {% endif %}
-                        {% if user.is_authenticated %}
                             <li><a href="{% url 'monthlyplans:list' %}">Planos mensais</a></li>
-                        {% endif %}
+
                         {#                        <li><a href="#">Anamnese desportiva</a></li>#}
                         {#                        <li><a href="#">Avaliação física</a></li>#}
                     </ul>
                 </li>
+                {% endif %}
             </ul>
         </div>
     </div>

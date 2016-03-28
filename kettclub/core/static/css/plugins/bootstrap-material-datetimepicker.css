@@ -1,5 +1,5 @@
 .dtp { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.4); z-index: 2000; }
-.dtp > .dtp-content { background: #fff; max-width: 300px; box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); max-height: 500px; position: relative; left: 50%; }
+.dtp > .dtp-content { background: #fff; max-width: 400px; box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); max-height: 500px; position: relative; left: 50%; }
 .dtp > .dtp-content > .dtp-date-view > header.dtp-header { background: #2C6AF9; color: #fff; text-align: center; padding: 0.3rem; }
 
 .dtp div.dtp-date, .dtp div.dtp-time { background: #2196F3; text-align: center; color: #fff; padding: 10px; }

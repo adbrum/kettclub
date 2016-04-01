@@ -24,7 +24,6 @@ def listmonthlyplan(request, *args, **kwargs):
 
 def new(request):
     if request.method == 'POST':
-        print('POST 1', request.POST)
         return create(request)
 
     return empty_form(request)

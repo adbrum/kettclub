@@ -46,7 +46,6 @@
                     <div class="panel-body text-center">
                         <a href="{% url 'home' %}"><h1 class="atomic-symbol">KC</h1></a>
                         <p class="element-name">Presenças</p>
-                        {#                  <p class="atomic-mass">v1.0</p>#}
                         <i class="icons icon-arrow-down"></i>
                         <p class="element-name">{{ atleta.nome }} {{ atleta.sobrenome }}</p>
                         <div class="form-group form-animate-text hidden" style="margin-top:40px !important;">
@@ -61,7 +60,6 @@
                         </div>
                         <div class="col-md-12">
                             <input type="submit" class="btn col-md-12" value="Confirma"/>
-                            {#                            <div class="col-md-1"></div>#}
                             <input type="button" id="cancel" class="btn col-md-12" value="Cancelar"/>
                         </div>
 
@@ -76,11 +74,10 @@
                     <div class="panel-body text-center">
                         <a href="{% url 'home' %}"><h1 class="atomic-symbol">KC</h1></a>
                         <p class="element-name">Presenças</p>
-                        {#                  <p class="atomic-mass">v1.0</p>#}
                         <i class="icons icon-arrow-down"></i>
                         <p class="atomic-mass">{{ message }}</p>
                         <div class="form-group form-animate-text" style="margin-top:40px !important;">
-                            <input name="numeroatleta" type="text" class="form-text" required>
+                            <input name="numeroatleta" type="text" class="form-text" required autofocus>
                             <span class="bar"></span>
                             <label>Nº do atleta</label>
                         </div>
@@ -91,7 +88,6 @@
                         <div class="col-md-12">
                             <input type="submit" class="btn col-md-12" value="Confirma"/>
                             {% if message %}
-                            {#                            <div class="col-md-1"></div>#}
                             <input type="button" id="cancel" class="btn col-md-12" value="Cancelar"/>
                             {% endif %}
                         </div>

@@ -1,14 +1,13 @@
-import collections
 from datetime import datetime
+from dateutil.relativedelta import relativedelta
 from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import Count
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, resolve_url as r, redirect
-from kettclub.core.models import Presenca, Atleta
+from django.shortcuts import render, resolve_url as r
 from kettclub.administration.forms import LoginForm
-from dateutil.relativedelta import relativedelta
+from kettclub.core.models import Presenca, Atleta
 
 
 def Login(request):

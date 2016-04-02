@@ -1,0 +1,22 @@
+<form method="get" action="{% url 'healthanamnese:list' %}" class="form-horizontal">
+    {% csrf_token %}
+    <div class="col-md-8">
+        <div class="panel form-element-padding">
+            <div class="panel-heading">
+                <h4>Ação</h4>
+            </div>
+            <div class="panel-body" style="padding-bottom:30px;">
+                <div class="form-group">
+                    <div class="col-sm-5">
+
+                        <input type="submit" id="save" class="btn btn-primary" name="Save" value="Ok"
+                               style="float:left;"/>
+                    </div>
+                </div>
+                <div class="alert alert-success">
+                    Ação realizada com sucesso!
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

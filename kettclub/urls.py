@@ -23,5 +23,7 @@ urlpatterns = [
                                       namespace='reviewsphysicals')),
     url(r'^planosmensais/', include('kettclub.monthlyplans.urls',
                                       namespace='monthlyplans')),
+    url(r'^saudeanamnese/', include('kettclub.healthanamnese.urls',
+                                    namespace='healthanamnese')),
     url(r'^admin/', admin.site.urls),
 ]

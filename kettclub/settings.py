@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'kettclub.reviewsphysicals',
     'kettclub.administration',
     'kettclub.monthlyplans',
+    'kettclub.healthanamnese',
 
 ]
 

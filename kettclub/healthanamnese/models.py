@@ -44,7 +44,7 @@ class SaudeAnamnese(models.Model):
     class Meta:
         verbose_name_plural = 'Questionário de Saúde e Anamnese Desportiva'
         verbose_name = 'Questionário de Saúde e Anamnese Desportiva'
-        ordering = ('atleta__pk',)
+        # ordering = ('atleta__pk',)
 
     def __str__(self):
         return self.atleta.nome + ' ' + self.atleta.sobrenome

@@ -19,7 +19,12 @@ def listsubscription(request, *args, **kwargs):
 
         }
     except:
-        pass
+        tamLista = len(list_subscription)
+        context = {
+            'list': list_subscription,
+            'tamLista': tamLista
+
+        }
 
     return render(request, "subscriptions/index.html", context)
 

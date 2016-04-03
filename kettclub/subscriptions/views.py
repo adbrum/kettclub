@@ -13,18 +13,18 @@ def listsubscription(request, *args, **kwargs):
     list_subscription = Atleta.objects.all()
     try:
         tamLista = len(list_subscription)
-        context = {
-            'list': list_subscription,
-            'tamLista': tamLista
-
-        }
     except:
-        tamLista = len(list_subscription)
         context = {
-            'list': list_subscription,
-            'tamLista': tamLista
-
+            'list': list_subscription
         }
+
+        return render(request, "subscriptions/index.html", context)
+
+    tamLista = len(list_subscription)
+    context = {
+        'list': list_subscription,
+        'tamLista': tamLista
+    }
 
     return render(request, "subscriptions/index.html", context)
 
@@ -120,4 +120,3 @@ def fichaAtleta(request, *args, **kwargs):
     else:
 
         return HttpResponseRedirect(r('subscriptions:list'))
-

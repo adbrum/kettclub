@@ -67,9 +67,7 @@ def dash(request):
     try:
         novos = Atleta.objects.filter(created_at__month=now.month).count()
     except:
-        pass
-
-    # novos = Atleta.objects.filter(created_at__month=now.month).count()
+        # novos = Atleta.objects.filter(created_at__month=now.month).count()
         qtmes = Presenca.objects.filter(created_at__month=now.month).count()
 
         context = {'presencas': presenca,

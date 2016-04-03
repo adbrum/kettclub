@@ -14,14 +14,20 @@ from kettclub.reviewsphysicals.models import Avaliacao
 @login_required
 def listavaliacao(request, *args, **kwargs):
     list_avaliacao = Avaliacao.objects.all()
-    tamLista = len(list_avaliacao)
+    if list_avaliacao == None:
+        context = {
+            'list': list_avaliacao,
+            'tamLista': 0
+        }
 
-    print(tamLista)
+        return render(request, "reviewsphysicals/index.html", context)
+    else:
+        tamLista = len(list_avaliacao)
 
-    context = {
-        'list': list_avaliacao,
-        'tamLista': tamLista
-    }
+        context = {
+            'list': list_avaliacao,
+            'tamLista': tamLista
+        }
 
     return render(request, "reviewsphysicals/index.html", context)
 

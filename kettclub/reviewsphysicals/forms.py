@@ -5,7 +5,7 @@ from kettclub.reviewsphysicals.models import Avaliacao
 from kettclub.subscriptions.models import Atleta
 
 
-class EvaluationForm(ModelForm):
+class EvaluationForm(forms.Form):
     atleta = forms.ModelChoiceField(Atleta.objects.all().order_by('pk'),
                                     label=('Nome'),
                                     widget=forms.Select(attrs={'placeholder': 'Nome do atleta',

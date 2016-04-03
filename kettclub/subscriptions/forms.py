@@ -1,7 +1,8 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm
-from kettclub.core.models import PlanoMensalidade, Atleta
+from kettclub.monthlyplans.models import PlanoMensalidade
+from kettclub.subscriptions.models import Atleta
 
 BOOL_CHOICES = ((True, 'Sim'), (False, 'Não'))
 

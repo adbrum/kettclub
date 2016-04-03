@@ -3,11 +3,10 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.shortcuts import resolve_url as r
-from kettclub.core.models import SaudeAnamnese
 from kettclub.healthanamnese.forms import HealthAnamneseForm, EditHealthAnamneseForm
+from kettclub.healthanamnese.models import SaudeAnamnese
 
 
-#@cache_page(60)
 @login_required
 def listhealthanamnese(request, *args, **kwargs):
     list_healthanamnese = SaudeAnamnese.objects.all()

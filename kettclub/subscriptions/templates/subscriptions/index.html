@@ -220,8 +220,7 @@
                         vals.push(valor);
                     }
                 });
-{#                var target = "{%url 'delDataModalAtleta'%}"#}
-                var target = "/inscricao/deletar/"
+                var target = "{%url 'subscriptions:delete'%}"
                 var csrftoken = getCookie('csrftoken');
                 $.ajax({
                     type: "POST",

@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from django.test import TestCase
-from kettclub.core.models import PlanoMensalidade
+from kettclub.monthlyplans.models import PlanoMensalidade
 
 
 class SubscriptionModelTest(TestCase):

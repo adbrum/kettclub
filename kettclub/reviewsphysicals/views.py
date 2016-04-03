@@ -4,11 +4,13 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.shortcuts import resolve_url as r
 from django.views.decorators.cache import cache_page
-from kettclub.core.models import Avaliacao
 from kettclub.reviewsphysicals.forms import EvaluationForm, EditEvaluationForm
 
 
 #@cache_page(60)
+from kettclub.reviewsphysicals.models import Avaliacao
+
+
 @login_required
 def listavaliacao(request, *args, **kwargs):
     list_avaliacao = Avaliacao.objects.all()

@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from django.test import TestCase
-from kettclub.core.models import Atleta
+from kettclub.subscriptions.models import Atleta
 
 
 class SubscriptionModelTest(TestCase):

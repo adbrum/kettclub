@@ -7,7 +7,8 @@ from django.db.models import Count
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, resolve_url as r
 from kettclub.administration.forms import LoginForm
-from kettclub.core.models import Presenca, Atleta
+from kettclub.assiduousness.models import Presenca
+from kettclub.subscriptions.models import Atleta
 
 
 def Login(request):

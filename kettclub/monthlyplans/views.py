@@ -4,11 +4,14 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.shortcuts import resolve_url as r
 from django.views.decorators.cache import cache_page
-from kettclub.core.models import PlanoMensalidade
+
 from kettclub.monthlyplans.forms import MonthlyPlansForm
 
 
 # @cache_page(60)
+from kettclub.monthlyplans.models import PlanoMensalidade
+
+
 @login_required
 def listmonthlyplan(request, *args, **kwargs):
     list_plans = PlanoMensalidade.objects.all()

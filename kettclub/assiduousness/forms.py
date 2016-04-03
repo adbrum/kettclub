@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import SelectDateWidget, ModelForm
-from kettclub.core.models import Presenca
+from kettclub.assiduousness.models import Presenca
 
 
 class AssiduityForm(ModelForm):

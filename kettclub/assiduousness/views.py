@@ -3,10 +3,13 @@ from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from kettclub.assiduousness.forms import AssiduityForm
-from kettclub.core.models import Presenca, Atleta
 
 
 # @cache_page(60)
+from kettclub.assiduousness.models import Presenca
+from kettclub.subscriptions.models import Atleta
+
+
 @login_required
 def listassiduity(request):
     now = datetime.now()

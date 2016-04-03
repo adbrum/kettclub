@@ -1,5 +1,9 @@
 from django.contrib import admin
-from kettclub.core.models import Atleta, PlanoMensalidade, SaudeAnamnese, Presenca, Avaliacao
+from kettclub.assiduousness.models import Presenca
+from kettclub.healthanamnese.models import SaudeAnamnese
+from kettclub.monthlyplans.models import PlanoMensalidade
+from kettclub.reviewsphysicals.models import Avaliacao
+from kettclub.subscriptions.models import Atleta
 
 
 class AtletaAdmin(admin.ModelAdmin):
@@ -73,6 +77,8 @@ class SaudeAnamneseAdmin(admin.ModelAdmin):
 
 
 class PresencaAdmin(admin.ModelAdmin):
+    app = 'kettclub.assiduousness'
+    verbose_name = ('Assiduidade')
     list_display = ('numeroatleta', 'nome', 'datapresenca')
     fields = ('numeroatleta', 'datapresenca')
     date_hierarchy = 'created_at'
@@ -95,6 +101,8 @@ class PresencaAdmin(admin.ModelAdmin):
     #     return pk.nome.title() + ' ' + pk.sobrenome.title()
     #
     # pk.short_description = 'Nome do atleta'
+    class Meta:
+        varbose_app = 'Assiduidade do Atleta'
 
 
 class AvaliacaoAdmin(admin.ModelAdmin):

@@ -4,6 +4,7 @@ from kettclub.subscriptions.models import Atleta
 
 BOOL_CHOICES = ((True, 'Sim'), (False, 'Não'))
 
+
 class Avaliacao(models.Model):
     atleta = models.ForeignKey(Atleta, verbose_name='Nº do atleta')
     dataavaliacao = models.DateField('Data da avaliação')

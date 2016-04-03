@@ -15,7 +15,8 @@ def listsubscription(request, *args, **kwargs):
         tamLista = len(list_subscription)
     except:
         context = {
-            'list': list_subscription
+            'list': list_subscription,
+            'tamLista': 0
         }
 
         return render(request, "subscriptions/index.html", context)

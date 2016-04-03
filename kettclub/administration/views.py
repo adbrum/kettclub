@@ -64,20 +64,17 @@ def dash(request):
         datapresenca__gte=min_date,
         datapresenca__lte=max_date).order_by('-numeroatleta_count')[:20]
 
+    try:
+        novos = Atleta.objects.filter(created_at__month=now.month).count()
+    except:
+        pass
+
     novos = Atleta.objects.filter(created_at__month=now.month).count()
-    if novos == None:
-        qtmes = Presenca.objects.filter(created_at__month=now.month).count()
+    qtmes = Presenca.objects.filter(created_at__month=now.month).count()
 
-        context = {'presencas': presenca,
-                   'top': topT,
-                   'mes': qtmes,
-                   }
-    else:
-        qtmes = Presenca.objects.filter(created_at__month=now.month).count()
-
-        context = {'presencas': presenca,
-                   'top': topT,
-                   'mes': qtmes,
-                   'novos': novos}
+    context = {'presencas': presenca,
+               'top': topT,
+               'mes': qtmes,
+               'novos': novos}
 
     return render(request, 'administration/index.html', context)

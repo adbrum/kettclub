@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^administracao/', include('kettclub.administration.urls',
                                 namespace='administration')),
     url(r'^login/', Login, name='login'),
+
     url(r'^logout/$', Logout, name='logout'),
     # url(r'^novo/', include('kettclub.subscriptions.urls',
     #                             namespace='subscriptions')),

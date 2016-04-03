@@ -15,8 +15,18 @@ from kettclub.monthlyplans.models import PlanoMensalidade
 @login_required
 def listmonthlyplan(request, *args, **kwargs):
     list_plans = PlanoMensalidade.objects.all()
-    tamLista = len(list_plans)
 
+    try:
+        tamLista = len(list_plans)
+    except:
+        context = {
+            'list': list_plans,
+            'tamLista': 0
+        }
+
+        return render(request, "monthlyplans/index.html", context)
+
+    tamLista = len(list_plans)
     context = {
         'list': list_plans,
         'tamLista': tamLista

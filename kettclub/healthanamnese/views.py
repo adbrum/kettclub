@@ -10,8 +10,18 @@ from kettclub.healthanamnese.models import SaudeAnamnese
 @login_required
 def listhealthanamnese(request, *args, **kwargs):
     list_healthanamnese = SaudeAnamnese.objects.all()
-    tamLista = len(list_healthanamnese)
 
+    try:
+        tamLista = len(list_healthanamnese)
+    except:
+        context = {
+            'list': list_healthanamnese,
+            'tamLista': 0
+        }
+
+        return render(request, "healthanamnese/index.html", context)
+
+    tamLista = len(list_healthanamnese)
     context = {
         'list': list_healthanamnese,
         'tamLista': tamLista

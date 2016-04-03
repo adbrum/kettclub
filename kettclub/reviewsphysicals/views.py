@@ -6,28 +6,30 @@ from django.shortcuts import resolve_url as r
 from django.views.decorators.cache import cache_page
 from kettclub.reviewsphysicals.forms import EvaluationForm, EditEvaluationForm
 
-
-#@cache_page(60)
+# @cache_page(60)
 from kettclub.reviewsphysicals.models import Avaliacao
 
 
 @login_required
 def listavaliacao(request, *args, **kwargs):
     list_avaliacao = Avaliacao.objects.all()
-    if list_avaliacao == None:
+
+    try:
+        tamLista = len(list_avaliacao)
+    except:
         context = {
             'list': list_avaliacao,
             'tamLista': 0
         }
 
         return render(request, "reviewsphysicals/index.html", context)
-    else:
-        tamLista = len(list_avaliacao)
 
-        context = {
-            'list': list_avaliacao,
-            'tamLista': tamLista
-        }
+    tamLista = len(list_avaliacao)
+
+    context = {
+        'list': list_avaliacao,
+        'tamLista': tamLista
+    }
 
     return render(request, "reviewsphysicals/index.html", context)
 
@@ -76,13 +78,13 @@ def success(request):
 
 
 # def editAvaliacao(request, pk):
-    # avaliacao = get_object_or_404(Avaliacao, pk=pk)
-    # form = EditEvaluationForm(request.POST or None, instance=avaliacao)
-    # if not form.is_valid():
-    #     return render(request, 'reviewsphysicals/edit.html', {'form': form, 'avaliacao': avaliacao})
-    # else:
-    #     form.save()
-    #     return HttpResponseRedirect(r('reviewsphysicals:list'))
+# avaliacao = get_object_or_404(Avaliacao, pk=pk)
+# form = EditEvaluationForm(request.POST or None, instance=avaliacao)
+# if not form.is_valid():
+#     return render(request, 'reviewsphysicals/edit.html', {'form': form, 'avaliacao': avaliacao})
+# else:
+#     form.save()
+#     return HttpResponseRedirect(r('reviewsphysicals:list'))
 
 
 @login_required
@@ -132,4 +134,3 @@ def fichaAvaliacao(request, *args, **kwargs):
     else:
 
         return HttpResponseRedirect(r('reviewsphysicals:list'))
-

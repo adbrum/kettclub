@@ -5,21 +5,21 @@ from django.shortcuts import render, get_object_or_404
 from django.shortcuts import resolve_url as r
 
 from kettclub.subscriptions.forms import SubscriptionForm, EditSubscriptionForm
-
-
-#@cache_page(60)
 from kettclub.subscriptions.models import Atleta
 
 
 @login_required
 def listsubscription(request, *args, **kwargs):
     list_subscription = Atleta.objects.all()
-    tamLista = len(list_subscription)
+    try:
+        tamLista = len(list_subscription)
+        context = {
+            'list': list_subscription,
+            'tamLista': tamLista
 
-    context = {
-        'list': list_subscription,
-        'tamLista': tamLista
-    }
+        }
+    except:
+        pass
 
     return render(request, "subscriptions/index.html", context)
 

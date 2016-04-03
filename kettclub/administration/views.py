@@ -69,6 +69,16 @@ def dash(request):
     except:
         pass
 
+    # novos = Atleta.objects.filter(created_at__month=now.month).count()
+        qtmes = Presenca.objects.filter(created_at__month=now.month).count()
+
+        context = {'presencas': presenca,
+                   'top': topT,
+                   'mes': qtmes
+                   }
+
+        return render(request, 'administration/index.html', context)
+
     novos = Atleta.objects.filter(created_at__month=now.month).count()
     qtmes = Presenca.objects.filter(created_at__month=now.month).count()
 

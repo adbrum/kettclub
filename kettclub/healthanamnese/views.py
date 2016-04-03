@@ -5,29 +5,35 @@ from django.shortcuts import render, get_object_or_404
 from django.shortcuts import resolve_url as r
 from kettclub.healthanamnese.forms import HealthAnamneseForm, EditHealthAnamneseForm
 from kettclub.healthanamnese.models import SaudeAnamnese
+from kettclub.subscriptions.models import Atleta
 
 
 @login_required
 def listhealthanamnese(request, *args, **kwargs):
-    list_healthanamnese = SaudeAnamnese.objects.all()
+    list_ = Atleta.objects.all()
 
-    try:
-        tamLista = len(list_healthanamnese)
-    except:
+    if list_:
+        data = SaudeAnamnese.objects.all()
+        if not data:
+            context = {
+                'list': data,
+                'tamLista': 0,
+            }
+
+            return render(request, "healthanamnese/index.html", context)
+        else:
+            context = {
+                'list': data,
+                'tamLista': 1,
+            }
+
+            return render(request, "healthanamnese/index.html", context)
+    else:
         context = {
-            'list': list_healthanamnese,
-            'tamLista': 0
+            'list_': 0
         }
 
         return render(request, "healthanamnese/index.html", context)
-
-    tamLista = len(list_healthanamnese)
-    context = {
-        'list': list_healthanamnese,
-        'tamLista': tamLista
-    }
-
-    return render(request, "healthanamnese/index.html", context)
 
 
 def new(request):

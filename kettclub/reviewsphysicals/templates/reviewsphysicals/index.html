@@ -24,6 +24,7 @@
             <div class="col-md-12 ">
                 <div class="panel form_id">
                     <div class="panel-heading"><h3>Lista de avaliações</h3>
+                    {% if list_ != 0 %}
                         {% if tamLista != 0 %}
                             <div class="dropdown">
                                 <input id="criar_avaliacao" class="btn btn-primary" type="button"
@@ -42,7 +43,7 @@
                             <input id="criar_avaliacao" class="btn btn-primary" type="button"
                                        value="Novo"/>
                                 <img src="{% static 'img/empty_arrow_h.png' %}">
-                                <p>Clique para criar um registo.</p>
+                                <p>Habilitado após ser adicionado um atleta.</p>
                             </div>
                         {% else %}
                             </div>
@@ -77,6 +78,14 @@
                                 </div>
                             </div>
                         {% endif %}
+                {% else %}
+                <div class="no_content">
+                            <input id="criar_avaliacao" class="btn btn-primary" type="button"
+                                       value="Novo" disabled/>
+                                <img src="{% static 'img/empty_arrow_h.png' %}">
+                                <p>Habilitado após ser adicionado um atleta.</p>
+                            </div>
+                {% endif %}
                 </div>
             </div>
         </div>

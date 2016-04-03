@@ -3,35 +3,37 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.shortcuts import resolve_url as r
-from django.views.decorators.cache import cache_page
 from kettclub.reviewsphysicals.forms import EvaluationForm, EditEvaluationForm
-
-# @cache_page(60)
 from kettclub.reviewsphysicals.models import Avaliacao
+from kettclub.subscriptions.models import Atleta
 
 
 @login_required
 def listavaliacao(request, *args, **kwargs):
-    list_avaliacao = Avaliacao.objects.all()
+    list_ = Atleta.objects.all()
 
-    try:
-        tamLista = len(list_avaliacao)
-    except:
+    if list_:
+        data = Avaliacao.objects.filter()
+        if not data:
+            context = {
+                'list': data,
+                'tamLista': 0,
+            }
+
+            return render(request, "reviewsphysicals/index.html", context)
+        else:
+            context = {
+                'list': data,
+                'tamLista': 1,
+            }
+
+            return render(request, "reviewsphysicals/index.html", context)
+    else:
         context = {
-            'list': list_avaliacao,
-            'tamLista': 0
+            'list_': 0
         }
 
         return render(request, "reviewsphysicals/index.html", context)
-
-    tamLista = len(list_avaliacao)
-
-    context = {
-        'list': list_avaliacao,
-        'tamLista': tamLista
-    }
-
-    return render(request, "reviewsphysicals/index.html", context)
 
 
 def new(request):

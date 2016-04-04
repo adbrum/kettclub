@@ -7,7 +7,7 @@ from kettclub.assiduousness.forms import AssiduityForm
 
 # @cache_page(60)
 from kettclub.assiduousness.models import Presenca
-from kettclub.subscriptions.models import Atleta
+from kettclub.subscriptions.models import Subscription
 
 
 @login_required
@@ -44,8 +44,8 @@ def new(request):
         return render(request, 'assiduity.html', locals())
     else:
         try:
-            atleta = Atleta.objects.get(pk=pk_atleta)
-        except Atleta.DoesNotExist as e:
+            atleta = Subscription.objects.get(pk=pk_atleta)
+        except Subscription.DoesNotExist as e:
             message = 'Nº de atleta não registado! Tente novamente.'
 
             return render(request, 'assiduity.html', locals())

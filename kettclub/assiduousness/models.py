@@ -1,5 +1,5 @@
 from django.db import models
-from kettclub.subscriptions.models import Atleta
+from kettclub.subscriptions.models import Subscription
 
 
 class Presenca(models.Model):
@@ -10,7 +10,7 @@ class Presenca(models.Model):
 
     # this is not needed if small_image is created at set_image
     def save(self, *args, **kwargs):
-        atleta = Atleta.objects.get(pk=self.numeroatleta)
+        atleta = Subscription.objects.get(pk=self.numeroatleta)
         self.nome = atleta.nome.title() + ' ' + atleta.sobrenome.title()
         super(Presenca, self).save(*args, **kwargs)
 

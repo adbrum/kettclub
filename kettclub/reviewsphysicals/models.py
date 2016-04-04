@@ -1,12 +1,12 @@
 from django.core.urlresolvers import reverse
 from django.db import models
-from kettclub.subscriptions.models import Atleta
+from kettclub.subscriptions.models import Subscription
 
 BOOL_CHOICES = ((True, 'Sim'), (False, 'Não'))
 
 
 class Avaliacao(models.Model):
-    atleta = models.ForeignKey(Atleta, verbose_name='Nº do atleta')
+    atleta = models.ForeignKey(Subscription, verbose_name='Nº do atleta')
     dataavaliacao = models.DateField('Data da avaliação')
     peso = models.DecimalField('Peso Kg', max_digits=4, decimal_places=2)
     metbasal = models.CharField('Met. basal Kcal', max_length=5)

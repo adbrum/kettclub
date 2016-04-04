@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, resolve_url as r
 from kettclub.administration.forms import LoginForm
 from kettclub.assiduousness.models import Presenca
-from kettclub.subscriptions.models import Atleta
+from kettclub.subscriptions.models import Subscription
 
 
 def Login(request):
@@ -64,7 +64,7 @@ def dash(request):
         datapresenca__gte=min_date,
         datapresenca__lte=max_date).order_by('-numeroatleta_count')[:20]
 
-    novos = Atleta.objects.filter(created_at__month=now.month).count()
+    novos = Subscription.objects.filter(created_at__month=now.month).count()
     if not novos:
         qtmes = Presenca.objects.filter(created_at__month=now.month).count()
         context = {'presencas': presenca,

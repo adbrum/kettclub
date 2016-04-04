@@ -5,12 +5,12 @@ from django.shortcuts import render, get_object_or_404
 from django.shortcuts import resolve_url as r
 from kettclub.reviewsphysicals.forms import EvaluationForm, EditEvaluationForm
 from kettclub.reviewsphysicals.models import Avaliacao
-from kettclub.subscriptions.models import Atleta
+from kettclub.subscriptions.models import Subscription
 
 
 @login_required
 def listavaliacao(request, *args, **kwargs):
-    list_ = Atleta.objects.all()
+    list_ = Subscription.objects.all()
 
     if list_:
         data = Avaliacao.objects.filter()

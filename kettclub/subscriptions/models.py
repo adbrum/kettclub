@@ -5,7 +5,7 @@ from kettclub.monthlyplans.models import PlanoMensalidade
 BOOL_CHOICES = ((True, 'Sim'), (False, 'Não'))
 
 
-class Atleta(models.Model):
+class Subscription(models.Model):
     planomensalidade = models.ForeignKey(PlanoMensalidade, verbose_name='Planos e mensalidade')
     nome = models.CharField('Nome', max_length=50)
     sobrenome = models.CharField('Sobrenome', max_length=50)

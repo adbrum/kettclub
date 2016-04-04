@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Atleta',
+            name='Subscription',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('nome', models.CharField(max_length=50, verbose_name='Nome')),
@@ -34,9 +34,9 @@ class Migration(migrations.Migration):
                 ('planomensalidade', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='monthlyplans.PlanoMensalidade', verbose_name='Planos e mensalidade')),
             ],
             options={
-                'verbose_name_plural': 'Inscrições Atletas',
+                'verbose_name_plural': 'Inscrições Subscriptions',
                 'ordering': ('nome',),
-                'verbose_name': 'Inscrição Atleta',
+                'verbose_name': 'Inscrição Subscription',
             },
         ),
     ]

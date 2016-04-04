@@ -70,7 +70,7 @@ class MonthlyPlansForm(ModelForm):
 #                                               )
 #
 #     class Meta:
-#         model = Atleta
+#         model = Subscription
 #         # model = PlanoMensalidade
 #         fields = ['ativo', 'nome', 'sobrenome', 'emailatleta', 'datainicio', 'datanascimento', 'idade', 'nif', 'cc',
 #                   'telefone',
@@ -84,8 +84,8 @@ class MonthlyPlansForm(ModelForm):
 #         emailatleta = self.cleaned_data["emailatleta"]
 #         if self.emailatleta != emailatleta:
 #             try:
-#                 Atleta.objects.get(emailatleta=emailatleta)
-#             except Atleta.DoesNotExist:
+#                 Subscription.objects.get(emailatleta=emailatleta)
+#             except Subscription.DoesNotExist:
 #                 return emailatleta
 #             raise forms.ValidationError(self.error_messages['err_code'])
 #         else:

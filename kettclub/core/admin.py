@@ -3,10 +3,10 @@ from kettclub.assiduousness.models import Presenca
 from kettclub.healthanamnese.models import SaudeAnamnese
 from kettclub.monthlyplans.models import PlanoMensalidade
 from kettclub.reviewsphysicals.models import Avaliacao
-from kettclub.subscriptions.models import Atleta
+from kettclub.subscriptions.models import Subscription
 
 
-class AtletaAdmin(admin.ModelAdmin):
+class SubscriptionAdmin(admin.ModelAdmin):
     list_display = ('pk', 'nome', 'sobrenome', 'emailatleta', 'telefone', 'planomensalidade')
     fields = ('ativo', 'nome', 'sobrenome', 'emailatleta', 'datanascimento', 'idade', 'cc', 'nif', 'telefone', 'telefone2',
               'datainicio', 'planomensalidade')
@@ -16,7 +16,7 @@ class AtletaAdmin(admin.ModelAdmin):
 
     # Remove botão add
     def get_form(self, request, obj=None, **kwargs):  # Just added this override
-        form = super(AtletaAdmin, self).get_form(request, obj, **kwargs)
+        form = super(SubscriptionAdmin, self).get_form(request, obj, **kwargs)
         form.base_fields['planomensalidade'].widget.can_add_related = False
         return form
 
@@ -28,14 +28,14 @@ class AtletaAdmin(admin.ModelAdmin):
     foo_link.short_description = "nome"
 
     def __init__(self, *args, **kwargs):
-        super(AtletaAdmin, self).__init__(*args, **kwargs)
+        super(SubscriptionAdmin, self).__init__(*args, **kwargs)
         self.list_display_links = ('pk', 'nome')
 
     def pk(self, obj):
-        nmatricula = Atleta.objects.get(pk=obj.pk)
+        nmatricula = Subscription.objects.get(pk=obj.pk)
         return str(nmatricula)
 
-    pk.short_description = 'Nº Atleta'
+    pk.short_description = 'Nº Subscription'
 
 
 class PlanoMensalidadeAdmin(admin.ModelAdmin):
@@ -70,7 +70,7 @@ class SaudeAnamneseAdmin(admin.ModelAdmin):
         return form
 
     def pk(self, obj):
-        pk = Atleta.objects.get(pk=obj.pk)
+        pk = Subscription.objects.get(pk=obj.pk)
         return pk.nome.title() + ' ' + pk.sobrenome.title()
 
     pk.short_description = 'Nome do atleta'
@@ -97,12 +97,12 @@ class PresencaAdmin(admin.ModelAdmin):
         self.list_display_links = ('nome', 'numeroatleta')
 
     # def pk(self, obj):
-    #     pk = Atleta.objects.get(pk=obj.numeroatleta)
+    #     pk = Subscription.objects.get(pk=obj.numeroatleta)
     #     return pk.nome.title() + ' ' + pk.sobrenome.title()
     #
     # pk.short_description = 'Nome do atleta'
     class Meta:
-        varbose_app = 'Assiduidade do Atleta'
+        varbose_app = 'Assiduidade do Subscription'
 
 
 class AvaliacaoAdmin(admin.ModelAdmin):
@@ -119,7 +119,7 @@ class AvaliacaoAdmin(admin.ModelAdmin):
         return form
 
 
-admin.site.register(Atleta, AtletaAdmin)
+admin.site.register(Subscription, SubscriptionAdmin)
 admin.site.register(PlanoMensalidade, PlanoMensalidadeAdmin)
 admin.site.register(SaudeAnamnese, SaudeAnamneseAdmin)
 admin.site.register(Presenca, PresencaAdmin)

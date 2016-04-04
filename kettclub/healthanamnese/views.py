@@ -5,12 +5,12 @@ from django.shortcuts import render, get_object_or_404
 from django.shortcuts import resolve_url as r
 from kettclub.healthanamnese.forms import HealthAnamneseForm, EditHealthAnamneseForm
 from kettclub.healthanamnese.models import SaudeAnamnese
-from kettclub.subscriptions.models import Atleta
+from kettclub.subscriptions.models import Subscription
 
 
 @login_required
 def listhealthanamnese(request, *args, **kwargs):
-    list_ = Atleta.objects.all()
+    list_ = Subscription.objects.all()
 
     if list_:
         data = SaudeAnamnese.objects.all()

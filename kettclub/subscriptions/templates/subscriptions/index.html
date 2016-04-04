@@ -15,7 +15,8 @@
                 <div class="col-md-12">
                     <h3 class="animated fadeInLeft">Inscrição Atletas</h3>
                     <p class="animated fadeInDown">
-                        <a href="{% url 'administration:dash' %}" >Dashboard</a> <span class="fa-angle-right fa"></span> Inscrição Atletas
+                        <a href="{% url 'administration:dash' %}">Dashboard</a> <span class="fa-angle-right fa"></span>
+                        Inscrição Atletas
                     </p>
                 </div>
             </div>
@@ -24,96 +25,106 @@
             <div class="col-md-12 ">
                 <div class="panel form_id">
                     <div class="panel-heading"><h3>Lista de atletas</h3>
-                        {% if tamLista != 0 %}
-                            <div class="dropdown">
-                                <input id="criar_atleta" class="btn btn-primary" type="button"
-                                       value="Novo"/>
-                                <a href="#" data-toggle="dropdown" class="btn btn-default ">Mais<b
-                                        class="caret"></b></a>
+                        {% if list_ != 0 %}
+                            {% if tamLista != 0 %}
+                                <div class="dropdown">
+                                    <input id="criar_atleta" class="btn btn-primary" type="button"
+                                           value="Novo"/>
+                                    <a href="#" data-toggle="dropdown" class="btn btn-default ">Mais<b
+                                            class="caret"></b></a>
 
-                                <ul class="dropdown-menu more" role="menu" aria-labelledby="dLabel">
-                                    <li><a href="#" data-toggle="modal" data-target="#apagarModal_atleta"
-                                           class="men_apagar">Desativar</a></li>
-                                </ul>
-                            </div>
-                        {% endif %}
-                        {% if tamLista == 0 %}
-                            <div class="no_content">
-                            <input id="criar_atleta" class="btn btn-primary" type="button"
-                                       value="Novo"/>
-                                <img src="{% static 'img/empty_arrow_h.png' %}">
-                                <p>Clique para criar um registo.</p>
-                            </div>
-                        {% else %}
-                            </div>
-                            <div class="panel-body">
-                                <div class="responsive-table">
-                                    <table id="datatables-example" class="table table-striped table-bordered"
-                                           width="100%"
-                                           cellspacing="0">
-                                        <thead>
-                                        <tr>
-                                            <th width="38px;"><input type="checkbox" class="checkAll"></th>
-                                            <th>Nome</th>
-                                            <th>"Nº do atleta</th>
-                                            <th>Email</th>
-                                            <th>Telefone</th>
-                                            <th>Plano</th>
-                                            <th>Ativo</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        {% for atleta in list %}
-                                            {% if atleta.ativo == True %}
-                                                <tr>
-                                                    <td><input type="checkbox" value="{{ atleta.pk }}"
-                                                               class="checkable">
-                                                    </td>
-                                                    <td><a style="color: #337ab7" href="#"
-                                                           class="edit_atleta navbar-link"
-                                                           data-toggle="modal"
-                                                           name="{{ atleta.pk }}">{{ atleta.nome }} {{ atleta.sobrenome }}</a>
-                                                    </td>
-                                                    <td>{{ atleta.pk }}</td>
-                                                    <td>{{ atleta.emailatleta }}</td>
-                                                    <td>{{ atleta.telefone }}</td>
-                                                    <td>{{ atleta.planomensalidade }}</td>
-                                                    <td>
-                                                        <div style="color: #1B5E20"
-                                                             class="glyphicon glyphicon-ok"></div>
-                                                    </td>
-                                                </tr>
-                                            {% else %}
-                                                <tr style="color: #c0c0c0">
-                                                    <td><input type="checkbox" value="{{ atleta.pk }}"
-                                                               class="checkable">
-                                                    </td>
-                                                    <td><a style="color: #c0c0c0" href="#"
-                                                           class="edit_atleta navbar-link"
-                                                           data-toggle="modal"
-                                                           name="{{ atleta.pk }}">{{ atleta.nome }} {{ atleta.sobrenome }}</a>
-                                                    </td>
-                                                    <td>{{ atleta.pk }}</td>
-                                                    <td>{{ atleta.emailatleta }}</td>
-                                                    <td>{{ atleta.telefone }}</td>
-                                                    <td>{{ atleta.planomensalidade }}</td>
-                                                    <td>
-                                                        <div style="color: #cc1111"
-                                                             class="glyphicon glyphicon-remove"></div>
-                                                    </td>
-                                                </tr>
-                                            {% endif %}
-                                        {% endfor %}
-                                        </tbody>
-                                    </table>
+                                    <ul class="dropdown-menu more" role="menu" aria-labelledby="dLabel">
+                                        <li><a href="#" data-toggle="modal" data-target="#apagarModal_atleta"
+                                               class="men_apagar">Desativar</a></li>
+                                    </ul>
                                 </div>
+                            {% endif %}
+                            {% if tamLista == 0 %}
+                                <div class="no_content">
+                                    <input id="criar_atleta" class="btn btn-primary" type="button"
+                                           value="Novo"/>
+                                    <img src="{% static 'img/empty_arrow_h.png' %}">
+                                    <p>Clique para criar um registo.</p>
+                                </div>
+                            {% else %}
+                                </div>
+                                <div class="panel-body">
+                                    <div class="responsive-table">
+                                        <table id="datatables-example" class="table table-striped table-bordered"
+                                               width="100%"
+                                               cellspacing="0">
+                                            <thead>
+                                            <tr>
+                                                <th width="38px;"><input type="checkbox" class="checkAll"></th>
+                                                <th>Nome</th>
+                                                <th>"Nº do atleta</th>
+                                                <th>Email</th>
+                                                <th>Telefone</th>
+                                                <th>Plano</th>
+                                                <th>Ativo</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for atleta in list %}
+                                                {% if atleta.ativo == True %}
+                                                    <tr>
+                                                        <td><input type="checkbox" value="{{ atleta.pk }}"
+                                                                   class="checkable">
+                                                        </td>
+                                                        <td><a style="color: #337ab7" href="#"
+                                                               class="edit_atleta navbar-link"
+                                                               data-toggle="modal"
+                                                               name="{{ atleta.pk }}">{{ atleta.nome }} {{ atleta.sobrenome }}</a>
+                                                        </td>
+                                                        <td>{{ atleta.pk }}</td>
+                                                        <td>{{ atleta.emailatleta }}</td>
+                                                        <td>{{ atleta.telefone }}</td>
+                                                        <td>{{ atleta.planomensalidade }}</td>
+                                                        <td>
+                                                            <div style="color: #1B5E20"
+                                                                 class="glyphicon glyphicon-ok"></div>
+                                                        </td>
+                                                    </tr>
+                                                {% else %}
+                                                    <tr style="color: #c0c0c0">
+                                                        <td><input type="checkbox" value="{{ atleta.pk }}"
+                                                                   class="checkable">
+                                                        </td>
+                                                        <td><a style="color: #c0c0c0" href="#"
+                                                               class="edit_atleta navbar-link"
+                                                               data-toggle="modal"
+                                                               name="{{ atleta.pk }}">{{ atleta.nome }} {{ atleta.sobrenome }}</a>
+                                                        </td>
+                                                        <td>{{ atleta.pk }}</td>
+                                                        <td>{{ atleta.emailatleta }}</td>
+                                                        <td>{{ atleta.telefone }}</td>
+                                                        <td>{{ atleta.planomensalidade }}</td>
+                                                        <td>
+                                                            <div style="color: #cc1111"
+                                                                 class="glyphicon glyphicon-remove"></div>
+                                                        </td>
+                                                    </tr>
+                                                {% endif %}
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% else %}
+                            <div class="no_content">
+                                <input id="criar_avaliacao" class="btn btn-primary" type="button"
+                                       value="Novo" disabled/>
+                                <img src="{% static 'img/empty_arrow_h.png' %}">
+                                <p>Habilitado após ser adicionado um Plano de mensalidade.</p>
                             </div>
                         {% endif %}
                 </div>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="apagarModal_atleta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+    <div class="modal fade" id="apagarModal_atleta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true"></div>
     <!-- end: content -->
 
     <!-- start: Javascript -->
@@ -195,10 +206,10 @@
 
             $(".edit_atleta").click(function () {
                 var csrftoken = getCookie('csrftoken');
-                var idAtleta = $(this).attr("name");
+                var idSubscription = $(this).attr("name");
 
                 $.ajax({
-                    url: '/inscricao/edit/' + idAtleta,
+                    url: '/inscricao/edit/' + idSubscription,
                     type: 'GET',
                     data: {},
                     beforeSend: function (xhr) {

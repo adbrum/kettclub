@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from django.test import TestCase
-from kettclub.subscriptions.models import Atleta
+from kettclub.subscriptions.models import Subscription
 
 
 class SubscriptionModelTest(TestCase):
@@ -24,7 +24,7 @@ class SubscriptionModelTest(TestCase):
         self.obj.save()
 
     def test_create(self):
-        self.assertTrue(Atleta.objects.exists())
+        self.assertTrue(Subscription.objects.exists())
 
     def test_created_at(self):
         """Subscription must have an auto created_at attr."""

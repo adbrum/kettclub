@@ -1,11 +1,11 @@
 from django.db import models
-from kettclub.subscriptions.models import Atleta
+from kettclub.subscriptions.models import Subscription
 
 BOOL_CHOICES = ((True, 'Sim'), (False, 'Não'))
 
 
 class SaudeAnamnese(models.Model):
-    atleta = models.OneToOneField(Atleta, verbose_name='Nº do atleta')
+    atleta = models.OneToOneField(Subscription, verbose_name='Nº do atleta')
     # DOENÇA CONHECIDA CARDIOVASCULAR E/OU PULMONAR#
     quest01 = models.BooleanField('Doença cardiovascular ou pulmonar (asma, bronquite, etc.)', choices=BOOL_CHOICES)
     quest02 = models.BooleanField('Doença metabólica (tiroide, renal ou hepática)', choices=BOOL_CHOICES)

@@ -43,7 +43,7 @@ class Migration(migrations.Migration):
                 ('quest022', models.TextField(blank=True, verbose_name='Alguma observação importante a declarar?')),
                 ('quest023', models.BooleanField(choices=[(True, 'Sim'), (False, 'Não')], verbose_name='Declara que compreendeu integralmente o conteúdo deste documento?')),
                 ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Criado em')),
-                ('atleta', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='subscriptions.Atleta', verbose_name='Nº do atleta')),
+                ('atleta', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='subscriptions.Subscription', verbose_name='Nº do atleta')),
             ],
             options={
                 'verbose_name': 'Questionário de Saúde e Anamnese Desportiva',

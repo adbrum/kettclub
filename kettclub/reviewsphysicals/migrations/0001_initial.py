@@ -37,7 +37,7 @@ class Migration(migrations.Migration):
                 ('coxaproximal', models.DecimalField(decimal_places=2, max_digits=4, verbose_name='Coxa proximal cm')),
                 ('coxamedial', models.DecimalField(decimal_places=2, max_digits=4, verbose_name='Coxa medial cm')),
                 ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Avaliado em')),
-                ('atleta', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='subscriptions.Atleta', verbose_name='Nº do atleta')),
+                ('atleta', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='subscriptions.Subscription', verbose_name='Nº do atleta')),
             ],
             options={
                 'verbose_name': 'Avaliação',

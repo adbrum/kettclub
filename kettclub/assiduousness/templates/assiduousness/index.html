@@ -169,10 +169,10 @@
 
             $(".edit_atleta").click(function () {
                 var csrftoken = getCookie('csrftoken');
-                var idAtleta = $(this).attr("name");
+                var idSubscription = $(this).attr("name");
 
                 $.ajax({
-                    url: '/inscricao/edit/' + idAtleta,
+                    url: '/inscricao/edit/' + idSubscription,
                     type: 'GET',
                     data: {},
                     beforeSend: function (xhr) {

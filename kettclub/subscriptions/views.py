@@ -3,23 +3,47 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.shortcuts import resolve_url as r
+from kettclub.monthlyplans.models import PlanoMensalidade
 
 from kettclub.subscriptions.forms import SubscriptionForm, EditSubscriptionForm
-from kettclub.subscriptions.models import Atleta
+from kettclub.subscriptions.models import Subscription
 
 
 @login_required
 def listsubscription(request, *args, **kwargs):
-    list_subscription = Atleta.objects.all()
-    try:
-        tamLista = len(list_subscription)
-    except:
+    list_ = PlanoMensalidade.objects.all()
+
+    if list_:
+        data = Subscription.objects.all()
+        if not data:
+            context = {
+                'list': data,
+                'tamLista': 0,
+            }
+
+            return render(request, "subscriptions/index.html", context)
+        else:
+            context = {
+                'list': data,
+                'tamLista': 1,
+            }
+
+            return render(request, "subscriptions/index.html", context)
+    else:
         context = {
-            'list': list_subscription,
-            'tamLista': 0
+            'list_': 0
         }
 
         return render(request, "subscriptions/index.html", context)
+    # try:
+    #     tamLista = len(list_subscription)
+    # except:
+    #     context = {
+    #         'list': list_subscription,
+    #         'tamLista': 0
+    #     }
+    #
+    #     return render(request, "subscriptions/index.html", context)
 
     tamLista = len(list_subscription)
     context = {
@@ -59,8 +83,8 @@ def create(request):
 
 
 @login_required
-def editAtleta(request, pk):
-    atleta = get_object_or_404(Atleta, pk=pk)
+def editSubscription(request, pk):
+    atleta = get_object_or_404(Subscription, pk=pk)
     form = EditSubscriptionForm(request.POST or None, instance=atleta)
     if not form.is_valid():
         return render(request, 'subscriptions/edit.html', {'form': form, 'atleta': atleta})
@@ -75,7 +99,7 @@ def success(request):
 
 
 @login_required
-def delDataModalAtleta(request):
+def delDataModalSubscription(request):
     id_list = []
     if request.is_ajax():
         select = request.POST.getlist('valores[]')
@@ -83,22 +107,22 @@ def delDataModalAtleta(request):
         for pk in select:
             id_list.append(int(pk))
 
-    atletas = Atleta.objects.filter(pk__in=id_list, ativo=True)
+    atletas = Subscription.objects.filter(pk__in=id_list, ativo=True)
 
     return render(request, 'subscriptions/removeModal.html', {'atletas': atletas})
 
 
 @login_required
-def delConfirmeAtleta(request, *args, **kwargs):
+def delConfirmeSubscription(request, *args, **kwargs):
     select = request.POST.getlist('valores_list[]')
     for valor in select:
-        Atleta.objects.filter(pk=valor).update(ativo=False)
+        Subscription.objects.filter(pk=valor).update(ativo=False)
 
     return HttpResponseRedirect(r('subscriptions:list'))
 
 
-# def deleteAtleta(request, pk):
-#     atleta = get_object_or_404(Atleta, pk=pk)
+# def deleteSubscription(request, pk):
+#     atleta = get_object_or_404(Subscription, pk=pk)
 #     if request.method=='POST':
 #         # atleta.delete()
 #         atleta.objects.filter(pk=pk).update(ativo=False)
@@ -106,17 +130,17 @@ def delConfirmeAtleta(request, *args, **kwargs):
 #     return render(request, 'subscriptions/add.html', {'object':atleta})
 
 
-def fichaAtleta(request, *args, **kwargs):
-    idAtleta = kwargs['idAtleta']
+def fichaSubscription(request, *args, **kwargs):
+    idSubscription = kwargs['idSubscription']
 
     editar = True
     saveNew = False
 
-    atletas = Atleta.objects.get(id=idAtleta)
+    atletas = Subscription.objects.get(id=idSubscription)
     argCode = atletas.pk
 
     if request.method == 'GET':
-        url = reverse('/inscricao/ficha/' + idAtleta)
+        url = reverse('/inscricao/ficha/' + idSubscription)
         return HttpResponseRedirect(url)
     else:
 

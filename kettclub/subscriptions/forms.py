@@ -2,7 +2,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm
 from kettclub.monthlyplans.models import PlanoMensalidade
-from kettclub.subscriptions.models import Atleta
+from kettclub.subscriptions.models import Subscription
 
 BOOL_CHOICES = ((True, 'Sim'), (False, 'Não'))
 
@@ -50,7 +50,7 @@ class SubscriptionForm(ModelForm):
                                               )
 
     class Meta:
-        model = Atleta
+        model = Subscription
         # model = PlanoMensalidade
         fields = ['nome', 'sobrenome', 'emailatleta', 'datainicio', 'datanascimento', 'idade', 'nif', 'cc', 'telefone',
                   'telefone2', 'planomensalidade']
@@ -59,8 +59,8 @@ class SubscriptionForm(ModelForm):
         emailatleta = self.cleaned_data["emailatleta"]
         if self.emailatleta != emailatleta:
             try:
-                Atleta.objects.get(emailatleta=emailatleta)
-            except Atleta.DoesNotExist:
+                Subscription.objects.get(emailatleta=emailatleta)
+            except Subscription.DoesNotExist:
                 return emailatleta
             raise forms.ValidationError(self.error_messages['err_code'])
         else:
@@ -115,7 +115,7 @@ class EditSubscriptionForm(ModelForm):
                                               )
 
     class Meta:
-        model = Atleta
+        model = Subscription
         # model = PlanoMensalidade
         fields = ['ativo', 'nome', 'sobrenome', 'emailatleta', 'datainicio', 'datanascimento', 'idade', 'nif', 'cc',
                   'telefone',
@@ -129,8 +129,8 @@ class EditSubscriptionForm(ModelForm):
         emailatleta = self.cleaned_data["emailatleta"]
         if self.emailatleta != emailatleta:
             try:
-                Atleta.objects.get(emailatleta=emailatleta)
-            except Atleta.DoesNotExist:
+                Subscription.objects.get(emailatleta=emailatleta)
+            except Subscription.DoesNotExist:
                 return emailatleta
             raise forms.ValidationError(self.error_messages['err_code'])
         else:

@@ -6,7 +6,7 @@ from kettclub.subscriptions.models import Subscription
 
 class SubscriptionModelTest(TestCase):
     def setUp(self):
-        self.obj = Atleta(
+        self.obj = Subscription(
             planomensalidade_id=1,
             nome='Zé',
             sobrenome=' Ruela',

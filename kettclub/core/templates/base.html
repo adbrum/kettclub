@@ -51,13 +51,13 @@
                     </a>
                 </li>
                 {% if user.is_authenticated %}
-                <li class="ripple">
-                    <a class="tree-toggle nav-header">
-                        <span class="fa-users fa"></span> Administração dados
-                        <span class="fa-angle-right fa right-arrow text-right"></span>
-                    </a>
+                    <li class="ripple">
+                        <a class="tree-toggle nav-header">
+                            <span class="fa-users fa"></span> Administração dados
+                            <span class="fa-angle-right fa right-arrow text-right"></span>
+                        </a>
 
-                    <ul class="nav nav-list tree">
+                        <ul class="nav nav-list tree">
 
                             <li><a href="{% url 'subscriptions:list' %}">Inscrição atletas</a></li>
                             <li><a href="{% url 'healthanamnese:list' %}">Saúde e Anamnese</a></li>
@@ -65,10 +65,22 @@
                             <li><a href="{% url 'assiduousness:list' %}">Assiduidade atleta</a></li>
                             <li><a href="{% url 'monthlyplans:list' %}">Planos mensais</a></li>
 
-                        {#                        <li><a href="#">Anamnese desportiva</a></li>#}
-                        {#                        <li><a href="#">Avaliação física</a></li>#}
-                    </ul>
-                </li>
+                            {#                        <li><a href="#">Anamnese desportiva</a></li>#}
+                            {#                        <li><a href="#">Avaliação física</a></li>#}
+                        </ul>
+                    </li>
+                    <li class="ripple">
+                        <a class="tree-toggle nav-header">
+                            <span class="fa-edit fa"></span> Config. do sistema
+                            <span class="fa-angle-right fa right-arrow text-right"></span>
+                        </a>
+
+                        <ul class="nav nav-list tree">
+
+                            <li><a href="{% url 'config:listGrupos' %}">Grupos</a></li>
+                            <li><a href="{% url 'config:listUsers' %}">Utilizadores</a></li>
+                        </ul>
+                    </li>
                 {% endif %}
             </ul>
         </div>
@@ -99,7 +111,8 @@
                     <img src="{% static 'img/avatar.jpg' %}" class="img-circle avatar" alt="user name"
                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
                     <ul class="dropdown-menu user-dropdown">
-                        <li><a href="#"><span class="fa fa-user"></span>Profile</a></li>
+                        <li><a href="/config/settings/perfil/{{ request.user.pk }}"><span
+                                class="fa fa-user"></span>Profile</a></li>
                         <li role="separator" class="divider"></li>
                         <li class="more">
                             <ul>
@@ -129,13 +142,13 @@
                     </a>
                 </li>
                 {% if user.is_authenticated %}
-                <li class="ripple">
-                    <a class="tree-toggle nav-header">
-                        <span class="fa-users fa"></span> Administração dados
-                        <span class="fa-angle-right fa right-arrow text-right"></span>
-                    </a>
+                    <li class="ripple">
+                        <a class="tree-toggle nav-header">
+                            <span class="fa-users fa"></span> Administração dados
+                            <span class="fa-angle-right fa right-arrow text-right"></span>
+                        </a>
 
-                    <ul class="nav nav-list tree">
+                        <ul class="nav nav-list tree">
 
                             <li><a href="{% url 'subscriptions:list' %}">Inscrição atletas</a></li>
                             <li><a href="{% url 'healthanamnese:list' %}">Saúde e Anamnese</a></li>
@@ -143,10 +156,23 @@
                             <li><a href="{% url 'assiduousness:list' %}">Assiduidade atleta</a></li>
                             <li><a href="{% url 'monthlyplans:list' %}">Planos mensais</a></li>
 
-                        {#                        <li><a href="#">Anamnese desportiva</a></li>#}
-                        {#                        <li><a href="#">Avaliação física</a></li>#}
-                    </ul>
-                </li>
+                            {#                        <li><a href="#">Anamnese desportiva</a></li>#}
+                            {#                        <li><a href="#">Avaliação física</a></li>#}
+                        </ul>
+                    </li>
+                    </li>
+                    <li class="ripple">
+                        <a class="tree-toggle nav-header">
+                            <span class="fa-edit fa"></span> Config. do sistema
+                            <span class="fa-angle-right fa right-arrow text-right"></span>
+                        </a>
+
+                        <ul class="nav nav-list tree">
+
+                            <li><a href="{% url 'config:listGrupos' %}">Grupos</a></li>
+                            <li><a href="{% url 'config:listUsers' %}">Utilizadores</a></li>
+                        </ul>
+                    </li>
                 {% endif %}
             </ul>
         </div>
@@ -166,6 +192,8 @@
 {% block content %}
 {% endblock content %}
 
+{% block perfil %}
+{% endblock perfil %}
 
 
 <!-- start: Javascript -->
@@ -195,8 +223,6 @@
 <script src="{% static 'js/main.js' %}"></script>
 
 {% block javascript %}
-
-
 {% endblock javascript %}
 
 </body>

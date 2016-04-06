@@ -1,0 +1,209 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{#{% block nav %}#}
+{#    <div class="header-frame row">#}
+{#        {% include 'nav.html' only %}#}
+{#    </div>#}
+{#{% endblock nav %}#}
+
+{% block content %}
+    <!-- start: Content -->
+    <div id="content">
+        <div class="panel box-shadow-none content-header">
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <h3 class="animated fadeInLeft">Configuração Utilizadores</h3>
+                    <p class="animated fadeInDown">
+                        <a href="{% url 'administration:dash' %}">Dashboard</a> <span class="fa-angle-right fa"></span>
+                        Configuração Utilizadores
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 top-20">
+            <div class="col-md-12 ">
+                <div class="panel form_id">
+                    <div class="panel-heading"><h3>Grupos de Permissões</h3>
+                        {% if tamLista != 0 %}
+                            <div class="dropdown">
+                                <input id="criar_grupo" class="btn btn-primary" type="button"
+                                       value="Novo"/>
+                                <a href="#" data-toggle="dropdown" class="btn btn-default ">Mais<b
+                                        class="caret"></b></a>
+
+                                <ul class="dropdown-menu more" role="menu" aria-labelledby="dLabel">
+                                    <li><a href="#" data-toggle="modal" data-target="#desativarModal"
+                                           class="men_apagar">{% trans 'Apagar' %}</a></li>
+                                </ul>
+                            </div>
+                        {% endif %}
+                        {% if tamLista == 0 %}
+                            <div class="no_content">
+                                <input id="criar_grupo" class="btn btn-primary" type="button"
+                                       value="Novo"/>
+                                <img src="{% static 'img/empty_arrow_h.png' %}">
+                                <p>Clique para criar um registo.</p>
+                            </div>
+                        {% else %}
+                            </div>
+                            <div class="panel-body">
+                                <div class="responsive-table">
+                                    <table id="datatables-example" class="table table-striped table-bordered"
+                                           width="100%"
+                                           cellspacing="0">
+                                        <thead>
+                                        <tr>
+                                            <th width="38px;"><input type="checkbox" class="checkAll"></th>
+                                            <th>{% trans "Nome Grupo" %}</th>
+                                            <th>{% trans "Permissões" %}</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for grupo in perfis %}
+                                            <tr>
+                                                <td><input type="checkbox" value="{{ grupo.id }}" class="checkable">
+                                                </td>
+                                                <td><a class="edit_grupo" name="{{ grupo.id }}"
+                                                       href="#">{{ grupo.name }}</a></td>
+                                                <td>
+                                                    {% if grupo.permissions.all|length != tamPermissoes %}
+                                                        {% for p in grupo.permissions.all %}
+                                                            {{ p.name }}</br>
+                                                        {% endfor %}
+                                                    {% else %}
+                                                        <span style="color:#255296"><b>{% trans "Todas" %}</b></span>
+                                                    {% endif %}
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="desativarModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true"></div>
+
+    <!-- end: content -->
+
+{% endblock content %}
+
+{% block javascript %}
+
+    <script src="{% static 'js/plugins/jquery.datatables.min.js' %}"></script>
+    <script src="{% static 'js/plugins/datatables.bootstrap.min.js' %}"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            console.log("ready atleta!");
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie != '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+
+            $('#datatables-example').DataTable({
+                "oLanguage": {
+                    "sUrl": "/static/dataTables/lang/pt-pt.txt"
+                },
+                "sScrollY": "710px",
+                "bScrollCollapse": true,
+                "bStateSave": true,
+                "aoColumnDefs": [
+                    {
+                        'bSortable': false,
+                        'aTargets': [0]
+                    }
+                ]
+
+            });
+
+            $('.checkAll').click(function () {
+                $('input:checkbox.checkable').prop('checked', this.checked);
+            });
+
+            $("#criar_grupo").click(function () {
+                var csrftoken = getCookie('csrftoken');
+                $.ajax({
+                    url: "{%url 'config:addGrupo'%}",
+                    type: 'GET',
+                    data: {'value': ""},
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    },
+                    success: function (data) {
+                        console.log("index atleta!");
+                        {#                      console.log(data);#}
+                        $(".form_id").html(data);
+                    }
+                });
+            });
+
+            $(".edit_grupo").click(function () {
+                var csrftoken = getCookie('csrftoken');
+                var idGroup = $(this).attr("name");
+                $.ajax({
+                    url: '/config/users/grupo/edit/' + idGroup,
+                    type: 'GET',
+                    data: {},
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    },
+                    success: function (data) {
+                        $(".form_id").html(data);
+                    }
+                });
+
+            });
+
+            $("#desativarModal").on('show.bs.modal', function (event) {
+                console.log("Apagar!");
+                var vals = [];
+                $('input:checked.checkable').each(function () {
+                    var valor = $(this).val();
+                    if (valor != undefined) {
+                        vals.push(valor);
+                    }
+                });
+                var target = "{%url 'config:confirmApagarGrupos'%}"
+                var csrftoken = getCookie('csrftoken');
+                $.ajax({
+                    type: "POST",
+                    url: target,
+                    data: {valores: vals},
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    },
+                    success: function (data) {
+                        $('#desativarModal').html(data);
+                    },
+                    error: function (rs, e) {
+
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock javascript %}

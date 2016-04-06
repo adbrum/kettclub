@@ -1,0 +1,34 @@
+{% load i18n %}
+<div class="oe_principal">
+	<div class="oe_secondary_menu_section">
+		{% trans "Configurações" %}
+	</div>
+		<ul class="oe_secondary_submenu">
+			{%if '.list_clientes' in user.get_all_permissions%}
+				<li id="clientes"><a tabindex="2" href="{% url 'listClientes'%}"> {% trans "Clientes" %}</a></li>
+			{%else%}
+				<li id="clientes"><a tabindex="2" href="{% url 'listClientes'%}" style="color:#B2B2B2;"> {% trans "Clientes" %}</a></li>
+			{%endif%}
+			{%if '.add_controlo_acessos' in user.get_all_permissions%}
+				<li id="controlo_acessos"><a tabindex="2" href="{%url 'addVar_Titulo'%}"> {% trans "Controlo de Acessos" %}</a></li>
+			{%else%}
+				<li id="controlo_acessos"><a tabindex="2" href="{%url 'addVar_Titulo'%}" style="color:#B2B2B2;"> {% trans "Controlo de Acessos" %}</a></li>
+			{%endif%}
+		</ul>
+	<div class="oe_secondary_menu_section">
+		{% trans "Utilizadores" %}
+	</div>
+		<ul class="oe_secondary_submenu">
+			{%if '.list_perfis' in user.get_all_permissions%}
+				<li id="listPerfis"><a tabindex="2" href="{%url 'listPerfis'%}"> {% trans "Perfis de Utilizador" %}</a></li>
+			{%else%}
+				<li id="listPerfis"><a tabindex="2" href="{%url 'listPerfis'%}" style="color:#B2B2B2;"> {% trans "Perfis de Utilizador" %}</a></li>
+			{%endif%}
+			
+			{%if '.list_users' in user.get_all_permissions%}
+				<li id="listUsers"><a tabindex="2" href="{%url 'listUsers'%}"> {% trans "Utilizadores" %}</a></li>
+			{%else%}
+				<li id="listUsers"><a tabindex="2" href="{%url 'listUsers'%}" style="color:#B2B2B2;"> {% trans "Utilizadores" %}</a></li>
+			{%endif%}
+		</ul>
+</div>

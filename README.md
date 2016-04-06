@@ -11,7 +11,8 @@ Sistema de Administração para academia de ginástica
 3. Ative o virtualenv
 4. Instale as depêndencias
 5. Configure a instância com o .env
-6. Execute os testes
+7. Execute makefile
+8. Execute os testes
 
 ```console
 git clone https://github.com/adbrum/kettclub.git kettclub
@@ -20,6 +21,7 @@ python -m venv .kett
 source .kett/bin/activate
 pip install -r requirements.txt
 cp contrib/env-sample .env
+make
 python manage.py test
 ```
 

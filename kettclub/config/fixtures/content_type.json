@@ -1,0 +1,10 @@
+[
+  {
+    "model": "contenttypes.ContentType",
+    "pk": 500,
+    "fields": {
+      "app_label": "workout",
+      "model": "workout"
+    }
+  }
+]

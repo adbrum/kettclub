@@ -1,0 +1,65 @@
+[
+  {
+    "model": "auth.Permission",
+    "pk": 501,
+    "fields": {
+      "name": "Utilizador | Adicionar",
+      "content_type": 500,
+      "codename": "add_user"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "pk": 505,
+    "fields": {
+      "name": "Grupo | Adicionar",
+      "content_type": 500,
+      "codename": "add_group"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "pk": 509,
+    "fields": {
+      "name": "Inscrição | Adicionar",
+      "content_type": 500,
+      "codename": "add_subscription"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "pk": 513,
+    "fields": {
+      "name": "Presença | Adicionar",
+      "content_type": 500,
+      "codename": "add_presenca"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "pk": 517,
+    "fields": {
+      "name": "Avaliação | Adicionar",
+      "content_type": 500,
+      "codename": "add_avaliacao"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "pk": 521,
+    "fields": {
+      "name": "Plano Mensalidade | Adicionar",
+      "content_type": 500,
+      "codename": "add_planomensalidade"
+    }
+  },
+  {
+    "model": "auth.Permission",
+    "pk": 525,
+    "fields": {
+      "name": "Saúde Anamnese | Adicionar",
+      "content_type": 500,
+      "codename": "add_saudeanamnese"
+    }
+  }
+]

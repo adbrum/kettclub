@@ -35,23 +35,6 @@ def listsubscription(request, *args, **kwargs):
         }
 
         return render(request, "subscriptions/index.html", context)
-    # try:
-    #     tamLista = len(list_subscription)
-    # except:
-    #     context = {
-    #         'list': list_subscription,
-    #         'tamLista': 0
-    #     }
-    #
-    #     return render(request, "subscriptions/index.html", context)
-
-    tamLista = len(list_subscription)
-    context = {
-        'list': list_subscription,
-        'tamLista': tamLista
-    }
-
-    return render(request, "subscriptions/index.html", context)
 
 
 def new(request):

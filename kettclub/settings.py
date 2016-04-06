@@ -62,8 +62,15 @@ INSTALLED_APPS = [
     'kettclub.administration',
     'kettclub.monthlyplans',
     'kettclub.healthanamnese',
+    'kettclub.config',
+    'kettclub.util',
 
 ]
+
+PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
+FIXTURE_DIRS = (
+   os.path.join(PROJECT_DIR, '/fixtures/'),
+)
 
 LOGIN_URL = '/login/'
 

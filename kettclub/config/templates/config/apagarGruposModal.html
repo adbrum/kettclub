@@ -1,0 +1,65 @@
+{% load i18n %}
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-title">
+            <span><b>{{ TITULO_MODAL }}</b></span>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </span>
+        </div>
+        {% if var ==  0 %}
+            <div class="modal-body">
+                {% if isApagar == True %}
+                    <b>{{ PERGUNTA_0 }}</b>
+                    <ul>
+                        {% for perfil in podeApagar_list %}
+                            <li>{{ perfil.name }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                {% if isNotApagar == True %}
+                    {%comment%}<b>{{PERGUNTA_1}}</b>{%endcomment%}
+                    <ul>
+                        {% for perfil, listaObjectosAssociados, variavel in notPodeApagar_list %}
+                            <li>
+                                <b>{{ perfil.name }}</b>
+                                {% if variavel == 1 %}
+                                    , {% trans 'tem os seguintes utilizadores associados' %}:
+                                    <ul>
+                                        {% for utilizador in listaObjectosAssociados %}
+                                            <li>{{ utilizador.username }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+        {% else %}
+            <div class="modal-body">
+                {{ ALERTA }}
+            </div>
+        {% endif %}
+        {% if var ==  0 and isApagar == True %}
+            <div class="modal-footer">
+                <h5>{{ PERGUNTA }}</h5>
+
+                <a href="{% url 'config:apagarGrupo' strUrl %}" type="button" name="Save" class="btn btn-primary"
+                   style="float: left;">{% trans 'Sim' %}</a>
+
+                <div class="cancel"><span class="text_small">ou</span>
+                    <a href="#" data-dismiss="modal" class="btn_cancelar">{% trans "Não" %}</a>
+                </div>
+            </div>
+        {% else %}
+            <div class="modal-footer">
+                <div class="cancel">
+                    <a href="#" data-dismiss="modal" class="btn_cancelar">{% trans "Cancelar" %}</a>
+                </div>
+
+            </div>
+        {% endif %}
+    </div>
+</div>

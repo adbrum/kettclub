@@ -1,0 +1,21 @@
+{#{% extends "base.html" %}#}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+    <!-- start: content -->
+    <div class="col-md-12 text-center">
+        <div class="alert-access-denied">
+            <a href="#" onClick="history.go(-1)">
+                <img src="{% static 'img/lock.png' %}">
+            </a>
+            <div>
+                <h3><strong>Página não autorizada!</strong></h3>
+                <p>Não está autorizado a aceder a esta página.<br/>Por favor contacte o administrador.
+                    <br/><a href="#" onClick="history.go(-1)">Voltar à página anterior.</a></p>
+            </div>
+        </div>
+    </div>
+    <!-- end: content -->
+{% endblock %}

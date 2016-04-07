@@ -6,9 +6,9 @@ green=`tput setaf 2`
 reset=`tput sgr0`
 
 echo "${green}>>> Cloning repo...${reset}"
-git clone https://github.com/adbrum/kettclub.git kettclubls
+git clone https://github.com/adbrum/kettclub.git kettclub
 
-echo "${green}>>> Enter in orcamentos directory.${reset}"
+echo "${green}>>> Enter in kettclub directory.${reset}"
 cd kettclub
 
 echo "${green}>>> Creating virtualenv...${reset}"

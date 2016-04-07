@@ -23,25 +23,10 @@ echo "${green}>>> Short the prompt path.${reset}"
 PS1="(`basename \"$VIRTUAL_ENV\"`)\e[1;34m:/\W\e[00m$ "
 sleep 2
 
-echo "${green}>>> Installing dependencies...${reset}"
-pip install -r requirements-dev.txt
-
 echo "${green}>>> Creating .env${reset}"
 cp contrib/env-sample .env
 
 echo "${green}>>> Load data...${reset}"
 make
-
-echo "${green}>>> Running tests...${reset}"
-python manage.py test
-
-echo "${green}>>> Running migration database...${reset}"
-python manage.py migrate
-
-echo "${green}>>> Running loaddata...${reset}"
-python manage.py loaddata */config/fixtures/*.json
-
-echo "${green}>>> Running loaddata...${reset}"
-python manage.py runserver
 
 echo "${green}>>> Done.${reset}"

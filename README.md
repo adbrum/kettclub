@@ -1,10 +1,28 @@
 # kettclub
-
-Sistema de Administração para academia de ginástica
-
 [![Build Status](https://travis-ci.org/adbrum/kettclub.svg?branch=master)](https://travis-ci.org/adbrum/kettclub)
 
-## Como desenvolver?
+Python 3.5 e Django >= 1.9
+
+
+## Objetivo
+
+Sistema de Administração para academia de ginástica.
+
+Registro de entradas dos atletas.
+
+
+## Baixando e executando a app
+
+Realize o download e execute o `setup.sh`.
+
+```bash
+wget https://raw.githubusercontent.com/adbrum/kettclub/master/setup.sh
+source setup.sh
+```
+
+
+
+## Ou siga o passo a passo.
 
 1. Clone o repositório.
 2. Crie um virtualenv com Python 3.5
@@ -14,18 +32,31 @@ Sistema de Administração para academia de ginástica
 7. Execute makefile
 8. Execute os testes
 
-```console
+```bash
 git clone https://github.com/adbrum/kettclub.git kettclub
 cd kettclub
 python -m venv .kett
 source .kett/bin/activate
-pip install -r requirements.txt
+PS1="(`basename \"$VIRTUAL_ENV\"`):/\W$ " # opcional
+pip install -r requirements-dev.txt
 cp contrib/env-sample .env
 make
 python manage.py test
 ```
 
-## Como fazer o deploy?
+
+## Convenções
+
+**Título de entidades**: primeira maiúscula e no singular. Ex: *Person, Employee, Seller, Proposal, Entry*.
+
+**Classes**: em nomes compostos maiúscula e juntas. Ex: *PersonCreate, PersonList, PersonDetail* ([PEP 8][4]).
+
+**Funções**: nomes compostos minúsculos e separados com underline. Ex: *is_entry* ([PEP 8][4]).
+
+**Templates**: usar a mesma convenção. Ex: *person_list.html, person_detail.html, person_form.html*.
+
+
+## Como fazer o deploy para o heroku?
 
 1. Crie uma instância no heroku.
 2. Envie as configurações para o heroku.

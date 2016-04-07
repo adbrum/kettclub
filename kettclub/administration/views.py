@@ -9,7 +9,7 @@ from django.shortcuts import render, resolve_url as r
 from kettclub.administration.forms import LoginForm
 from kettclub.assiduousness.models import Presenca
 from kettclub.subscriptions.models import Subscription
-
+import json
 
 def Login(request):
     if request.method == 'POST':
@@ -76,9 +76,14 @@ def dash(request):
     else:
         qtmes = Presenca.objects.filter(created_at__month=now.month).count()
 
+        data = [65, 59, 90, 81, 56, 55, 40]
+        data_02 = [28, 48, 40, 19, 96, 27, 100]
+
         context = {'presencas': presenca,
                    'top': topT,
                    'mes': qtmes,
-                   'novos': novos}
+                   'novos': novos,
+                   'data': data,
+                   'data_02': data_02}
 
         return render(request, 'administration/index.html', context)

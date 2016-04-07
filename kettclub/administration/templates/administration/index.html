@@ -28,7 +28,7 @@
             </div>
         </div>
 
-        <div class="col-md-12" style="padding:20px;">
+        <div class="col-md-12 padding-0" style="margin-top:20px;">
             <div class="col-md-12 padding-0">
                 <div class="col-md-12 padding-0">
                     <div class="col-md-12 padding-0">
@@ -96,7 +96,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12 top-20">
+        <div class="col-md-12 padding-0" style="margin-top:20px;">
             <div class="col-md-12 ">
                 <div class="panel form_id">
                     <div class="panel-heading"><h4>TOP 20</h4>
@@ -152,17 +152,294 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12" style="padding:20px;">
+         <!-- start:content -->
+{#          <div id="content">#}
+          <div class="col-md-12 padding-0" style="margin-top:20px;">
+            <div class="col-md-12 padding-0">
+                <div class="col-md-6 padding-0">
+                   <div class="col-md-12 padding-0">
+                      <div class="col-md-12">
+                        <div class="panel chart-title">
+                          <h3><span class="fa fa-area-chart"></span>Gráficos presenças</h3>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="panel">
+                             <div class="panel-heading-white panel-heading text-center">
+                                <h4>Presenças da semana</h4>
+                              </div>
+                              <div class="panel-body">
+                                <center>
+                                <canvas class="doughnut-chart"></canvas>
+                                </center>
+                              </div>
+                        </div>
+                    </div>
 
+                   <div class="col-md-6">
+                        <div class="panel">
+                             <div class="panel-heading-white panel-heading text-center">
+                                <h4>Presenças do mês</h4>
+                              </div>
+                              <div class="panel-body">
+                                  <center>
+                                  <canvas class="pie-chart"></canvas>
+                                  </center>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="panel">
+                            <div class="panel-heading-white panel-heading">
+                              <h4>Polar Area Chart</h4>
+                            </div>
+                            <div class="panel-body" style="padding-bottom:50px;">
+                               <canvas class="polar-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                   </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="panel">
+                           <div class="panel-heading-white panel-heading">
+                              <h4>Presenças meses / 2015-2016</h4>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-md-12">
+                                  <canvas class="line-chart"></canvas>
+                                </div>
+                            </div>
+                      </div>
 
-        </div>
-    </div>
+                      <div class="panel">
+                           <div class="panel-heading-white panel-heading">
+                              <h4>Radar Chart</h4>
+                            </div>
+                            <div class="panel-body">
+                               <canvas class="radar-chart"></canvas>
+                            </div>
+                      </div>
+                  </div>
+            </div>
+            <div class="col-md-12">
+                <div class="panel">
+                       <div class="panel-heading-white panel-heading">
+                          <h4>Intensidde dos Treinos</h4>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-12">
+                             <canvas class="bar-chart"></canvas>
+                            </div>
+                        </div>
+                  </div>
+            </div>
+
+          </div>
+    		  </div>
     <!-- end: content -->
+
 {% endblock content %}
 
-{#{% block javascript %}#}
-{#    <script src="{% static 'js/plugins/jquery.nicescroll.js' %}"></script>#}
-{#    <!-- custom -->#}
-{#    <script src="{% static 'js/main.js' %}"></script>#}
-{#{% endblock javascript %}#}
+{% block javascript %}
+    <script type="text/javascript">
+      (function(jQuery){
+
+        var radarData = {
+            labels: ["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
+            datasets: [
+                {
+                    label: "Ano 2016",
+                    fillColor: "rgba(21,186,103,0.5)",
+                    strokeColor: "rgba(220,220,220,1)",
+                    pointColor: "rgba(220,220,220,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    data: {{ data }}
+                },
+                {
+                    label: "Ano 2015",
+                    fillColor: "rgba(21,113,186,0.5)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    pointColor: "rgba(151,187,205,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
+                    data: {{ data_02 }}
+                }
+            ]
+        };
+
+        var barData = {
+            labels: ["Repouso", "Muito, muito fácil", "Fácil", "Moderado", "Um pouco difícil", "difícil", "-","Muito difícil", "-", "-", "Máximo"],
+            datasets: [
+                {
+                    label: "My First dataset",
+                    fillColor: "rgba(21,186,103,0.5)",
+                    strokeColor: "rgba(220,220,220,0.8)",
+                    highlightFill: "rgba(220,220,220,0.75)",
+                    highlightStroke: "rgba(220,220,220,1)",
+                    data: [65, 59, 80, 81, 56, 55, 40, 56, 55, 40, 2]
+                },
+{#                {#}
+{#                    label: "My Second dataset",#}
+{#                    fillColor: "rgba(21,113,186,0.5)",#}
+{#                    strokeColor: "rgba(151,187,205,0.8)",#}
+{#                    highlightFill: "rgba(151,187,205,0.75)",#}
+{#                    highlightStroke: "rgba(151,187,205,1)",#}
+{#                    data: [28, 48, 40, 19, 86, 27, 90, 56, 55, 40]#}
+{#                }#}
+            ]
+        };
+
+        var lineChartData = {
+            labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+            datasets: [
+                {
+                    label: "Ano 2016",
+                    fillColor: "rgba(21,186,103,0.5)",
+                    strokeColor: "rgba(220,220,220,1)",
+                    pointColor: "rgba(220,220,220,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    data: [65, 59, 80, 81, 56, 55, 40, 25, 0, 0, 0, 0]
+                },
+                {
+                    label: "Ano 2015",
+                    fillColor: "rgba(21,113,186,0.5)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    pointColor: "rgba(151,187,205,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
+                    data: [28, 48, 40, 19, 86, 27, 90, 80, 75, 56, 30]
+                }
+            ]
+        };
+
+
+        var doughnutData = [
+                {
+                    value: 20,
+                    color:"#4ED18F",
+                    highlight: "#15BA67",
+                    label: "Segunda"
+                },
+                {
+                    value: 25,
+                    color: "#15BA67",
+                    highlight: "#15BA67",
+                    label: "Terça"
+                },
+                {
+                    value: 10,
+                    color: "#5BAABF",
+                    highlight: "#15BA67",
+                    label: "Quarta"
+                },
+                {
+                    value: 40,
+                    color: "#94D7E9",
+                    highlight: "#15BA67",
+                    label: "Quinta"
+                },
+                {
+                    value: 12,
+                    color: "#BBE0E9",
+                    highlight: "#15BA67",
+                    label: "Sexta"
+                },
+                {
+                    value: 40,
+                    color: "#94D7E9",
+                    highlight: "#15BA67",
+                    label: "Sabado"
+                }
+
+            ];
+
+          var doughnutData_01 = [
+                {
+                    value: 100,
+                    color:"#4ED18F",
+                    highlight: "#15BA67",
+                    label: "Segunda"
+                },
+                {
+                    value: 250,
+                    color: "#15BA67",
+                    highlight: "#15BA67",
+                    label: "Terça"
+                },
+                {
+                    value: 100,
+                    color: "#5BAABF",
+                    highlight: "#15BA67",
+                    label: "Quarta"
+                },
+                {
+                    value: 40,
+                    color: "#94D7E9",
+                    highlight: "#15BA67",
+                    label: "Quinta"
+                },
+                {
+                    value: 120,
+                    color: "#BBE0E9",
+                    highlight: "#15BA67",
+                    label: "Sexta"
+                },
+                {
+                    value: 40,
+                    color: "#94D7E9",
+                    highlight: "#15BA67",
+                    label: "Sabado"
+                }
+
+            ];
+
+             window.onload = function(){
+                var ctx = $(".doughnut-chart")[0].getContext("2d");
+                window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {
+                    responsive : true,
+                    showTooltips: true
+                });
+
+                var ctx2 = $(".pie-chart")[0].getContext("2d");
+                window.myPie = new Chart(ctx2).Pie(doughnutData_01, {
+                    responsive : true,
+                    showTooltips: true
+                });
+
+                var ctx3 = $(".line-chart")[0].getContext("2d");
+                window.myLine = new Chart(ctx3).Line(lineChartData, {
+                    responsive : true,
+                    showTooltips: true
+                });
+
+                var ctx4 = $(".bar-chart")[0].getContext("2d");
+                window.myBar = new Chart(ctx4).Bar(barData, {
+                    responsive : true,
+                    showTooltips: true
+                });
+
+                var ctx5 = $(".radar-chart")[0].getContext("2d");
+                window.myRadar = new Chart(ctx5).Radar(radarData, {
+                    responsive : true,
+                    showTooltips: true
+                });
+
+                var ctx6 = $(".polar-chart")[0].getContext("2d");
+                window.myPolar = new Chart(ctx6).PolarArea(doughnutData, {
+                    responsive : true,
+                    showTooltips: true
+                });
+            };
+        })(jQuery);
+     </script>
+  <!-- end: Javascript -->
+{% endblock javascript %}
+
 

@@ -22,7 +22,7 @@ source setup.sh
 
 
 
-## Ou siga o passo a passo.
+## Ou passo a passo.
 
 1. Clone o repositório.
 2. Crie um virtualenv com Python 3.5

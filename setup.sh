@@ -6,7 +6,7 @@ green=`tput setaf 2`
 reset=`tput sgr0`
 
 echo "${green}>>> Cloning repo...${reset}"
-git clone https://github.com/adbrum/kettclub.git kettclub
+git clone https://github.com/adbrum/kettclub.git kettclubls
 
 echo "${green}>>> Enter in orcamentos directory.${reset}"
 cd kettclub

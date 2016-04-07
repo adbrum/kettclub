@@ -35,4 +35,13 @@ make
 echo "${green}>>> Running tests...${reset}"
 python manage.py test
 
+echo "${green}>>> Running migration database...${reset}"
+python manage.py migrate
+
+echo "${green}>>> Running loaddata...${reset}"
+python manage.py loaddata */config/fixtures/*.json
+
+echo "${green}>>> Running loaddata...${reset}"
+python manage.py runserver
+
 echo "${green}>>> Done.${reset}"

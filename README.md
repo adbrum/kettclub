@@ -38,10 +38,8 @@ cd kettclub
 python -m venv .kett
 source .kett/bin/activate
 PS1="(`basename \"$VIRTUAL_ENV\"`):/\W$ " # opcional
-pip install -r requirements-dev.txt
-cp contrib/env-sample .env
 make
-python manage.py test
+cp contrib/env-sample .env
 ```
 
 

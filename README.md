@@ -38,8 +38,8 @@ cd kettclub
 python -m venv .kett
 source .kett/bin/activate
 PS1="(`basename \"$VIRTUAL_ENV\"`):/\W$ " # opcional
-make
 cp contrib/env-sample .env
+make
 ```
 
 

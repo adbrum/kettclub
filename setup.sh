@@ -36,7 +36,7 @@ echo "${green}>>> Running loaddata...${reset}"
 python manage.py loaddata */config/fixtures/*.json
 
 echo "${green}>>> Create superuser...${reset}"
-python manage.py createsuperuser --username='admin' --email=''
+python manage.py createsuperuser --email=''
 
 echo "${green}>>> Running tests...${reset}"
 python manage.py test

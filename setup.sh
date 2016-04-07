@@ -26,7 +26,10 @@ sleep 2
 echo "${green}>>> Creating .env${reset}"
 cp contrib/env-sample .env
 
-echo "${green}>>> Load data...${reset}"
+echo "${green}>>> Installing dependencies and load data...${reset}"
 make
 
 echo "${green}>>> Done.${reset}"
+
+echo "${green}>>> Run System...${reset}"
+python manage.py runserver

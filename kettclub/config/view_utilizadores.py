@@ -349,7 +349,7 @@ def resetPassword(request, *args, **kwargs):
 
             messages.success(request, "Password alterado com sucesso!")
 
-            return HttpResponseRedirect(reverse('success'))
+            return HttpResponseRedirect(reverse('config:success'))
     else:
         form = password_change_form(user=userEdit)
 

@@ -290,7 +290,7 @@ p.quote{
    padding-left: 10px;
    position: absolute;
  }
- 
+
  .product-price-bottom{
    top: 49%;
  }
@@ -381,7 +381,7 @@ p.quote{
     }
 
     .search-v1 #search-v1-images{position: absolute;}
-   
+
     .search-v1 #search-v1-images .post { height: 100px; background: cyan; margin-bottom: 20px; }
     .search-v1 #search-v1-images .tall { height: 200px; }
 }
@@ -390,7 +390,7 @@ p.quote{
 
 /*start: article v1*/
   .article-v1{}
-    .article-v1 .article-v1-body 
+    .article-v1 .article-v1-body
     {
       padding: 100px;
       padding-top: 0px;
@@ -436,7 +436,7 @@ p.quote{
   padding-top: 50px;
   margin-top: 80px;
   color: #5C5757;
-} 
+}
 
 .invoice .invoice-v1-content table td,.invoice .invoice-v1-content table th{
   padding: 20px !important;
@@ -498,8 +498,8 @@ p.quote{
     box-shadow: 0 2px 5px 0 rgba(239, 235, 235, 0.16), 0 2px 10px 0 rgba(72, 70, 70, 0.12);
   }
   .boxed #content .col-md-12{padding-right: 0px !important;}
-  .boxed #content .panel{display: table;width: 100%;} 
-  .boxed .panel{box-shadow: none !important;}  
+  .boxed #content .panel{display: table;width: 100%;}
+  .boxed .panel{box-shadow: none !important;}
 
 /*dashboard top navigation*/
 

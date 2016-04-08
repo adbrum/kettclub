@@ -31,34 +31,75 @@
 </head>
 <body>
 <div class="container-fluid mimin-wrapper">
-
+    <!-- Navebar top -->
+    <nav class="navbar navbar-default header navbar-fixed-top">
+        <div class="col-md-12 nav-wrapper">
+            <div class="navbar-header" style="width:100%;">
+                <div class="opener-left-menu is-open">
+                    <span class="top"></span>
+                    <span class="middle"></span>
+                    <span class="bottom"></span>
+                </div>
+                <a href="/" class="navbar-brand">
+                    <b class="fa-home fa"> KETTCLUB</b>
+                </a>
+                <ul class="nav navbar-nav navbar-right user-nav">
+                    <li class="user-name">
+                        {% if user.is_authenticated %}
+                            <span>{{ request.user.username.title }}</span>
+                        {% else %}
+                            Utilizador
+                        {% endif %}
+                    </li>
+                    <li class="dropdown avatar-dropdown">
+                        <img src="{% static 'img/avatar.jpg' %}" class="img-circle avatar" alt="user name"
+                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
+                        <ul class="dropdown-menu user-dropdown">
+                            <li><a href="/config/settings/perfil/{{ request.user.pk }}"><span
+                                    class="fa fa-user"></span>Profile</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li class="more">
+                                <ul>
+                                    <li><a href=""><span class="fa fa-cogs"></span></a></li>
+                                    <li><a href=""><span class="fa fa-lock"></span></a></li>
+                                    <li><a href="{% url 'administration:logout' %}"><span
+                                            class="fa fa-power-off "></span></a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- end: Navebar top -->
     <!-- start:Left Menu -->
     <div id="left-menu">
-        <div class="sub-left-menu scroll">
+        <div class="sub-left-menu scroll" tabindex="5000" style="overflow: hidden; outline: none;">
             <ul class="nav nav-list">
                 <li>
                     <div class="left-bg"></div>
                 </li>
                 <li class="time">
                     <h1 class="animated fadeInLeft">21:00</h1>
-
-                    <p class="animated fadeInRight">Sat,October 1st 2029</p>
+                    <p class="animated fadeInDown">Sat,October 1st 2029</p>
                 </li>
-            {% if not user.is_authenticated %}
-                <li class="active ripple">
-                    <a href="{% url 'administration:dash' %}" class="nav-header"><span class="fa-cogs fa"></span>
-                        Login sistema
-                        <span class="fa-angle-right fa right-arrow text-right"></span>
-                    </a>
-                </li>
-            {% else %}
-                <li class="active ripple">
-                    <a href="{% url 'administration:dash' %}" class="nav-header"><span class="fa-dashboard fa"></span>
-                        Dashboard
-                        <span class="fa-angle-right fa right-arrow text-right"></span>
-                    </a>
-                </li>
-            {% endif %}
+                {% if not user.is_authenticated %}
+                    <li class="active ripple">
+                        <a href="{% url 'administration:dash' %}" class="nav-header"><span class="fa-cogs fa"></span>
+                            Login sistema
+                            <span class="fa-angle-right fa right-arrow text-right"></span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="active ripple">
+                        <a href="{% url 'administration:dash' %}" class="nav-header"><span
+                                class="fa-dashboard fa"></span>
+                            Dashboard
+                            <span class="fa-angle-right fa right-arrow text-right"></span>
+                        </a>
+                    </li>
+                {% endif %}
                 {% if user.is_authenticated %}
                     <li class="ripple">
                         <a class="tree-toggle nav-header">
@@ -96,59 +137,28 @@
     </div>
 </div>
 
-<!-- Navebar top -->
-<nav class="navbar navbar-default header navbar-fixed-top">
-    <div class="col-md-12 nav-wrapper">
-        <div class="navbar-header" style="width:100%;">
-            <div class="opener-left-menu is-open">
-                <span class="top"></span>
-                <span class="middle"></span>
-                <span class="bottom"></span>
-            </div>
-            <a href="/" class="navbar-brand">
-                <b class="fa-home fa"> KETTCLUB</b>
-            </a>
-            <ul class="nav navbar-nav navbar-right user-nav">
-                <li class="user-name">
-                    {% if user.is_authenticated %}
-                        <span>{{ request.user.username.title }}</span>
-                    {% else %}
-                        Utilizador
-                    {% endif %}
-                </li>
-                <li class="dropdown avatar-dropdown">
-                    <img src="{% static 'img/avatar.jpg' %}" class="img-circle avatar" alt="user name"
-                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
-                    <ul class="dropdown-menu user-dropdown">
-                        <li><a href="/config/settings/perfil/{{ request.user.pk }}"><span
-                                class="fa fa-user"></span>Profile</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li class="more">
-                            <ul>
-                                <li><a href=""><span class="fa fa-cogs"></span></a></li>
-                                <li><a href=""><span class="fa fa-lock"></span></a></li>
-                                <li><a href="{% url 'administration:logout' %}"><span
-                                        class="fa fa-power-off "></span></a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<!-- end: Navebar top -->
-
 <!-- start: Mobile -->
 <div id="mimin-mobile" class="reverse">
     <div class="mimin-mobile-menu-list">
         <div class="col-md-12 sub-mimin-mobile-menu-list animated fadeInLeft">
             <ul class="nav nav-list">
                 <li class="active ripple">
-                    <a href="{% url 'administration:dash' %}" class="nav-header"><span class="fa-dashboard fa"></span>
-                        Dashboard
-                        <span class="fa-angle-right fa right-arrow text-right"></span>
-                    </a>
+                    {% if not user.is_authenticated %}
+                    <li class="active ripple">
+                        <a href="{% url 'administration:dash' %}" class="nav-header"><span class="fa-cogs fa"></span>
+                            Login sistema
+                            <span class="fa-angle-right fa right-arrow text-right"></span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="active ripple">
+                        <a href="{% url 'administration:dash' %}" class="nav-header"><span
+                                class="fa-dashboard fa"></span>
+                            Dashboard
+                            <span class="fa-angle-right fa right-arrow text-right"></span>
+                        </a>
+                    </li>
+                {% endif %}
                 </li>
                 {% if user.is_authenticated %}
                     <li class="ripple">

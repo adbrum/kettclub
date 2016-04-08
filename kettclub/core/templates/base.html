@@ -44,12 +44,21 @@
 
                     <p class="animated fadeInRight">Sat,October 1st 2029</p>
                 </li>
+            {% if not user.is_authenticated %}
+                <li class="active ripple">
+                    <a href="{% url 'administration:dash' %}" class="nav-header"><span class="fa-cogs fa"></span>
+                        Login sistema
+                        <span class="fa-angle-right fa right-arrow text-right"></span>
+                    </a>
+                </li>
+            {% else %}
                 <li class="active ripple">
                     <a href="{% url 'administration:dash' %}" class="nav-header"><span class="fa-dashboard fa"></span>
                         Dashboard
                         <span class="fa-angle-right fa right-arrow text-right"></span>
                     </a>
                 </li>
+            {% endif %}
                 {% if user.is_authenticated %}
                     <li class="ripple">
                         <a class="tree-toggle nav-header">

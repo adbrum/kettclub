@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% load i18n %}
 {#{% block nav %}#}
 {#    <div class="header-frame row">#}
 {#        {% include 'nav.html' only %}#}
@@ -34,8 +34,10 @@
 
                                 <ul class="dropdown-menu more" role="menu" aria-labelledby="dLabel">
                                     <li><a href="#" data-toggle="modal" data-target="#apagarModal_plano"
-                                           class="men_apagar">Desativar</a></li>
-                                </ul>
+                                           class="men_apagar">{% trans 'Desativar' %}</a></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#ativarModal_plano"
+                                           class="men_apagar">{% trans 'Ativar' %}</a></li>
+                                    </ul>
                             </div>
                         {% endif %}
                         {% if tamLista == 0 %}
@@ -85,8 +87,8 @@
                                                     <td><input type="checkbox" value="{{ plano.pk }}"
                                                                class="checkable">
                                                     </td>
-                                                    <td><a style="color: #c0c0c0" href="#"
-                                                           class="edit_atleta navbar-link"
+                                                    <td><a style="color: #c0c0c0"
+                                                           class="navbar-link"
                                                            data-toggle="modal"
                                                            name="{{ plano.pk }}">{{ plano.nome }}</a>
                                                     </td>
@@ -110,29 +112,18 @@
     </div>
     <div class="modal fade" id="apagarModal_plano" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true"></div>
+    <div class="modal fade" id="ativarModal_plano" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true"></div>
     <!-- end: content -->
 
-    <!-- start: Javascript -->
-    {#    <script src="{% static 'js/jquery.min.js' %}"></script>#}
-    {#    <script src="{% static 'js/jquery.ui.min.js' %}"></script>#}
-    {#    <script src="{% static 'js/bootstrap.min.js' %}"></script>#}
-
-    <!-- plugins -->
-    {#    <script src="{% static 'js/plugins/moment.min.js' %}"></script>#}
-
-    <!-- end: Javascript -->
 {% endblock content %}
 
 {% block javascript %}
 
     <script src="{% static 'js/plugins/jquery.datatables.min.js' %}"></script>
     <script src="{% static 'js/plugins/datatables.bootstrap.min.js' %}"></script>
-    {#    <script src="{% static 'js/plugins/jquery.nicescroll.js' %}"></script>#}
 
-    <!-- custom -->
-    {#    <script src="{% static 'js/main.js' %}"></script>#}
     <script type="text/javascript">
-
         $(document).ready(function () {
             console.log("ready plano!");
             function getCookie(name) {
@@ -216,8 +207,8 @@
                         vals.push(valor);
                     }
                 });
-                {#                var target = "{%url 'delDataModalSubscription'%}"#}
-                var target = "/planosmensais/deletar/"
+
+                var target = "{%url 'monthlyplans:delete'%}"
                 var csrftoken = getCookie('csrftoken');
                 $.ajax({
                     type: "POST",
@@ -228,6 +219,32 @@
                     },
                     success: function (data) {
                         $('#apagarModal_plano').html(data);
+                    },
+                    error: function (rs, e) {
+
+                    }
+                });
+            });
+
+            $("#ativarModal_plano").on('show.bs.modal', function (event) {
+                var vals = [];
+                $('input:checked.checkable').each(function () {
+                    var valor = $(this).val();
+                    if (valor != undefined) {
+                        vals.push(valor);
+                    }
+                });
+                var target = "{%url 'monthlyplans:activate'%}"
+                var csrftoken = getCookie('csrftoken');
+                $.ajax({
+                    type: "POST",
+                    url: target,
+                    data: {valores: vals},
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    },
+                    success: function (data) {
+                        $('#ativarModal_plano').html(data);
                     },
                     error: function (rs, e) {
 

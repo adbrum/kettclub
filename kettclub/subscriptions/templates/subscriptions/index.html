@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% load i18n %}
 {#{% block nav %}#}
 {#    <div class="header-frame row">#}
 {#        {% include 'nav.html' only %}#}
@@ -32,10 +32,11 @@
                                            value="Novo"/>
                                     <a href="#" data-toggle="dropdown" class="btn btn-default ">Mais<b
                                             class="caret"></b></a>
-
                                     <ul class="dropdown-menu more" role="menu" aria-labelledby="dLabel">
-                                        <li><a href="#" data-toggle="modal" data-target="#apagarModal_atleta"
-                                               class="men_apagar">Desativar</a></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#apagarModal_atleta"
+                                           class="men_apagar">{% trans 'Desativar' %}</a></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#ativarModal_atleta"
+                                           class="men_apagar">{% trans 'Ativar' %}</a></li>
                                     </ul>
                                 </div>
                             {% endif %}
@@ -91,8 +92,8 @@
                                                         <td><input type="checkbox" value="{{ atleta.pk }}"
                                                                    class="checkable">
                                                         </td>
-                                                        <td><a style="color: #c0c0c0" href="#"
-                                                               class="edit_atleta navbar-link"
+                                                        <td><a style="color: #c0c0c0"
+                                                               class="navbar-link"
                                                                data-toggle="modal"
                                                                name="{{ atleta.pk }}">{{ atleta.nome }} {{ atleta.sobrenome }}</a>
                                                         </td>
@@ -125,6 +126,8 @@
         </div>
     </div>
     <div class="modal fade" id="apagarModal_atleta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true"></div>
+    <div class="modal fade" id="ativarModal_atleta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true"></div>
     <!-- end: content -->
 
@@ -243,6 +246,33 @@
                     },
                     success: function (data) {
                         $('#apagarModal_atleta').html(data);
+                    },
+                    error: function (rs, e) {
+
+                    }
+                });
+            });
+
+            $("#ativarModal_atleta").on('show.bs.modal', function (event) {
+                console.log("Ativar xxx!");
+                var vals = [];
+                $('input:checked.checkable').each(function () {
+                    var valor = $(this).val();
+                    if (valor != undefined) {
+                        vals.push(valor);
+                    }
+                });
+                var target = "{%url 'subscriptions:activate'%}"
+                var csrftoken = getCookie('csrftoken');
+                $.ajax({
+                    type: "POST",
+                    url: target,
+                    data: {valores: vals},
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    },
+                    success: function (data) {
+                        $('#ativarModal_atleta').html(data);
                     },
                     error: function (rs, e) {
 

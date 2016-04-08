@@ -92,7 +92,21 @@ def delDataModalSubscription(request):
 
     atletas = Subscription.objects.filter(pk__in=id_list, ativo=True)
 
-    return render(request, 'subscriptions/removeModal.html', {'atletas': atletas})
+    return render(request, 'subscriptions/desativar_modal.html', {'atletas': atletas})
+
+
+@login_required
+def activeDataModalSubscription(request):
+    id_list = []
+    if request.is_ajax():
+        select = request.POST.getlist('valores[]')
+
+        for pk in select:
+            id_list.append(int(pk))
+
+    atletas = Subscription.objects.filter(pk__in=id_list, ativo=False)
+
+    return render(request, 'subscriptions/ativar_modal.html', {'atletas': atletas})
 
 
 @login_required
@@ -104,13 +118,13 @@ def delConfirmeSubscription(request, *args, **kwargs):
     return HttpResponseRedirect(r('subscriptions:list'))
 
 
-# def deleteSubscription(request, pk):
-#     atleta = get_object_or_404(Subscription, pk=pk)
-#     if request.method=='POST':
-#         # atleta.delete()
-#         atleta.objects.filter(pk=pk).update(ativo=False)
-#         return HttpResponseRedirect(r('subscriptions:list'))
-#     return render(request, 'subscriptions/add.html', {'object':atleta})
+@login_required
+def activeConfirmeSubscription(request, *args, **kwargs):
+    select = request.POST.getlist('valores_list[]')
+    for valor in select:
+        Subscription.objects.filter(pk=valor).update(ativo=True)
+
+    return HttpResponseRedirect(r('subscriptions:list'))
 
 
 def fichaSubscription(request, *args, **kwargs):

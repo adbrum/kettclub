@@ -1,0 +1,95 @@
+{% load i18n %}
+
+<div class="col-md-12 modal-example">
+    <div class="col-md-12">
+        <div class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Grupos de Permissões</h4>
+                    </div>
+                    <div class="modal-body">
+                        {% if planos %}
+                            <p>{% trans "Deseja mesmo ativar o(s) plano(s):" %}</p>
+                            <ul>
+                                {% for plano in planos %}
+                                    <li class="values_activeted"
+                                        value="{{ plano.pk }}">{{ plano.nome }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>{% trans "Não selecionou nenhuma plano!" %}</p>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Voltar
+                                </button>
+                            </div>
+                        {% endif %}
+                    </div>
+                    {% if planos %}
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar
+                            </button>
+                            <button id="btn_ativarSim" data-dismiss="modal" type="button" class="btn btn-primary">Sim
+                            </button>
+                        </div>
+                    {% endif %}
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie != '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        $('#btn_ativarSim').on("click", function () {
+        console.log("ATIVA!");
+            var ids = [];
+            console.log(ids)
+            $('.values_activeted').each(function () {
+                ids.push($(this).val());
+            });
+
+            var target = "{%url 'monthlyplans:activeconfirm'%}"
+            var csrftoken = getCookie('csrftoken');
+
+            $('#ativarModal_atleta').modal('hide');
+
+            $.ajax({
+                type: "POST",
+                url: target,
+                data: {valores_list: ids},
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                },
+                success: function (data) {
+                    location.reload(true);//refresh na página
+                    {#          		$('.form_id').html(data);#}
+                    $('div').removeClass("modal-backdrop fade in");
+                },
+                error: function (rs, e) {
+
+                }
+            });
+        });
+    });
+
+
+</script>

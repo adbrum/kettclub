@@ -84,13 +84,39 @@ def delDataModalPlano(request):
 
     planos = PlanoMensalidade.objects.filter(pk__in=id_list, ativo=True)
 
-    return render(request, 'monthlyplans/removeModal.html', {'planos': planos})
+    return render(request, 'monthlyplans/desativar_modal.html', {'planos': planos})
 
 
+@login_required
+def activeDataModalSubscription(request):
+    print('XXXXXXXXXXXXXX: ', request.POST.getlist)
+    id_list = []
+    if request.is_ajax():
+        select = request.POST.getlist('valores[]')
+
+        for pk in select:
+            id_list.append(int(pk))
+
+    planos = PlanoMensalidade.objects.filter(pk__in=id_list, ativo=False)
+
+    return render(request, 'monthlyplans/ativar_modal.html', {'planos': planos})
+
+
+@login_required
 def delConfirmePlano(request, *args, **kwargs):
     select = request.POST.getlist('valores_list[]')
     for valor in select:
         PlanoMensalidade.objects.filter(pk=valor).update(ativo=False)
+
+    return HttpResponseRedirect(r('monthlyplans:list'))
+
+
+@login_required
+def activeConfirmeSubscription(request, *args, **kwargs):
+    print('FFFFFFFFFFFFFFFFFFF')
+    select = request.POST.getlist('valores_list[]')
+    for valor in select:
+        PlanoMensalidade.objects.filter(pk=valor).update(ativo=True)
 
     return HttpResponseRedirect(r('monthlyplans:list'))
 

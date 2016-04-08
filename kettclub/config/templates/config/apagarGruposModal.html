@@ -1,65 +1,71 @@
 {% load i18n %}
-<div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-title">
-            <span><b>{{ TITULO_MODAL }}</b></span>
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </span>
-        </div>
-        {% if var ==  0 %}
-            <div class="modal-body">
-                {% if isApagar == True %}
-                    <b>{{ PERGUNTA_0 }}</b>
-                    <ul>
-                        {% for perfil in podeApagar_list %}
-                            <li>{{ perfil.name }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
+<!-- start: Content -->
+<div class="col-md-12 modal-example">
+            <div class="col-md-12">
+                <div class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">Grupos de Permissões</h4>
+                            </div>
+                            <div class="modal-body">
+                                {% if var ==  0 %}
+                                    <div class="modal-body">
+                                        {% if isApagar == True %}
+                                            <b>{{ PERGUNTA_0 }}</b>
+                                            <ul>
+                                                {% for perfil in podeApagar_list %}
+                                                    <li>{{ perfil.name }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}
 
-                {% if isNotApagar == True %}
-                    {%comment%}<b>{{PERGUNTA_1}}</b>{%endcomment%}
-                    <ul>
-                        {% for perfil, listaObjectosAssociados, variavel in notPodeApagar_list %}
-                            <li>
-                                <b>{{ perfil.name }}</b>
-                                {% if variavel == 1 %}
-                                    , {% trans 'tem os seguintes utilizadores associados' %}:
-                                    <ul>
-                                        {% for utilizador in listaObjectosAssociados %}
-                                            <li>{{ utilizador.username }}</li>
-                                        {% endfor %}
-                                    </ul>
+                                        {% if isNotApagar == True %}
+                                            {%comment%}<b>{{PERGUNTA_1}}</b>{%endcomment%}
+                                            <ul>
+                                                {% for perfil, listaObjectosAssociados, variavel in notPodeApagar_list %}
+                                                    <li>
+                                                        <b>{{ perfil.name }}</b>
+                                                        {% if variavel == 1 %}
+                                                            , {% trans 'tem os seguintes utilizadores associados' %}:
+                                                            <ul>
+                                                                {% for utilizador in listaObjectosAssociados %}
+                                                                    <li>{{ utilizador.username }}</li>
+                                                                {% endfor %}
+                                                            </ul>
+                                                        {% endif %}
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}
+                                    </div>
+                                {% else %}
+                                    <div class="modal-body">
+                                        {{ ALERTA }}
+                                    </div>
                                 {% endif %}
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
+                                {% if var ==  0 and isApagar == True %}
+                                    <div class="modal-footer">
+                                        <h5>{{ PERGUNTA }}</h5>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar
+                                        </button>
+                                        <a href="{% url 'config:apagarGrupo' strUrl %}" type="button" name="Save"
+                                           class="btn btn-primary">{% trans 'Sim' %}</a>
+                                    </div>
+                                {% else %}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar
+                                        </button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                {% endif %}
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
             </div>
+        </div>
+<!-- end: Content -->
 
-        {% else %}
-            <div class="modal-body">
-                {{ ALERTA }}
-            </div>
-        {% endif %}
-        {% if var ==  0 and isApagar == True %}
-            <div class="modal-footer">
-                <h5>{{ PERGUNTA }}</h5>
-
-                <a href="{% url 'config:apagarGrupo' strUrl %}" type="button" name="Save" class="btn btn-primary"
-                   style="float: left;">{% trans 'Sim' %}</a>
-
-                <div class="cancel"><span class="text_small">ou</span>
-                    <a href="#" data-dismiss="modal" class="btn_cancelar">{% trans "Não" %}</a>
-                </div>
-            </div>
-        {% else %}
-            <div class="modal-footer">
-                <div class="cancel">
-                    <a href="#" data-dismiss="modal" class="btn_cancelar">{% trans "Cancelar" %}</a>
-                </div>
-
-            </div>
-        {% endif %}
-    </div>
-</div>

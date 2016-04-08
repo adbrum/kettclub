@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 import tempfile
+import importlib
+import sys
+
 from decouple import config, Csv
 from dj_database_url import parse as dburl
 
@@ -45,31 +48,28 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_SAVE_EVERY_REQUEST = True
 SESSION_IDLE_TIMEOUT = TIME
 
-# Application definition
-
 INSTALLED_APPS = [
-    'kettclub.django_admin_bootstrapped',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'kettclub.core',
-    'kettclub.subscriptions',
-    'kettclub.assiduousness',
-    'kettclub.reviewsphysicals',
-    'kettclub.administration',
-    'kettclub.monthlyplans',
-    'kettclub.healthanamnese',
-    'kettclub.config',
-    'kettclub.util',
-
 ]
 
-PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
+#Inclui apps do sistema no INSTALLD_APPS
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+DIR_NAME = os.path.split(os.path.abspath(PROJECT_ROOT))
+APP_DIRS = os.listdir(PROJECT_ROOT)
+
+APP = ([file for file in APP_DIRS if not (file.startswith('.') or file.startswith('__') or file.endswith('.py'))])
+######
+
+for app in APP:
+    INSTALLED_APPS.append(DIR_NAME[1] + '.' + app)
+
 FIXTURE_DIRS = (
-   os.path.join(PROJECT_DIR, '/fixtures/'),
+   os.path.join(PROJECT_ROOT, '/fixtures/'),
 )
 
 LOGIN_URL = '/login/'

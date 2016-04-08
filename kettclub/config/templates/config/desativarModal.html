@@ -1,37 +1,41 @@
 {% load i18n %}
-<div class="modal-dialog">
-	<div class="modal-content">
-		<div class="modal-title">
-        	<span><b>Alerta</b></span>
-        	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button></span>
-      	</div>
-      	
-      	{%if var ==  0 %}
-	      	<div class="modal-body">
-	      	
-		      	<br />
-		        	{% trans 'Deseja mesmo desativar o(s) utilizador(es):' %}<br />
-		        	<ul>
-			        	{% for u in lUsers_id%}
-			        		<li>{{u}}</li>
-			        	{% endfor %}
-		        	</ul>
-	    {% else %}
-	    	 <div class="modal-body">
-	 			{{message}}
-	 		</div>
-	    {% endif %}
-      	</div>
-      	
-      	{%if var ==  0 %}
-	      	<div class="modal-footer">
-		        	
-		        	<a href="{%url 'config:desativarUsers' strUrl%}" type="button" name="Save" class="btn btn-primary" style="float: left;">{% trans 'Sim' %}</a>
-		        	<div class="cancel"><span class="text_small">ou</span>
-			        	<a href="#"  data-dismiss="modal" class="btn_cancelar">{% trans "Não" %}</a>
-			        </div>
-			</div>
-      	{% endif %}
-	        
+<div class="col-md-12 modal-example">
+    <div class="col-md-12">
+        <div class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Desativar Utilizadores</h4>
+                    </div>
+                    {% if var ==  0 %}
+                        <div class="modal-body">
+
+                        <br/>
+                        {% trans 'Deseja mesmo desativar o(s) utilizador(es):' %}<br/>
+                        <ul>
+                            {% for u in lUsers_id %}
+                                <li>{{ u }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <div class="modal-body">
+                            {{ message }}
+                        </div>
+                    {% endif %}
+                    </div>
+                    {% if var ==  0 %}
+                        <div class="modal-footer">
+                            <h5>{{ PERGUNTA }}</h5>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar
+                            </button>
+                            <a href="{% url 'config:desativarUsers' strUrl %}" type="button" name="Save"
+                               class="btn btn-primary">{% trans 'Sim' %}</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
     </div>
 </div>

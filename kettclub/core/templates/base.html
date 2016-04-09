@@ -54,9 +54,10 @@
                     <li class="dropdown avatar-dropdown">
                         <img src="{% static 'img/avatar.jpg' %}" class="img-circle avatar" alt="user name"
                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
+                        {% if user.is_authenticated %}
                         <ul class="dropdown-menu user-dropdown">
-                            <li><a href="/config/settings/perfil/{{ request.user.pk }}"><span
-                                    class="fa fa-user"></span>Profile</a></li>
+                            <li><a class="edit_perfil" href="/config/settings/perfil/view/{{ request.user.pk }}" ><span
+                                    class="fa fa-user"></span>Perfil</a></li>
                             <li role="separator" class="divider"></li>
                             <li class="more">
                                 <ul>
@@ -66,6 +67,7 @@
                                             class="fa fa-power-off "></span></a></li>
                                 </ul>
                             </li>
+                        {% endif %}
                         </ul>
                     </li>
                 </ul>
@@ -144,21 +146,22 @@
             <ul class="nav nav-list">
                 <li class="active ripple">
                     {% if not user.is_authenticated %}
-                    <li class="active ripple">
-                        <a href="{% url 'administration:dash' %}" class="nav-header"><span class="fa-cogs fa"></span>
-                            Login sistema
-                            <span class="fa-angle-right fa right-arrow text-right"></span>
-                        </a>
-                    </li>
-                {% else %}
-                    <li class="active ripple">
-                        <a href="{% url 'administration:dash' %}" class="nav-header"><span
-                                class="fa-dashboard fa"></span>
-                            Dashboard
-                            <span class="fa-angle-right fa right-arrow text-right"></span>
-                        </a>
-                    </li>
-                {% endif %}
+                        <li class="active ripple">
+                            <a href="{% url 'administration:dash' %}" class="nav-header"><span
+                                    class="fa-cogs fa"></span>
+                                Login sistema
+                                <span class="fa-angle-right fa right-arrow text-right"></span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="active ripple">
+                            <a href="{% url 'administration:dash' %}" class="nav-header"><span
+                                    class="fa-dashboard fa"></span>
+                                Dashboard
+                                <span class="fa-angle-right fa right-arrow text-right"></span>
+                            </a>
+                        </li>
+                    {% endif %}
                 </li>
                 {% if user.is_authenticated %}
                     <li class="ripple">
@@ -243,6 +246,44 @@
 
 {% block javascript %}
 {% endblock javascript %}
+<script type="text/javascript">
 
+    $(document).ready(function () {
+        console.log("ready atleta!");
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie != '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+{#        $(".edit_perfil").click(function () {#}
+{#            console.log('EDIT')#}
+{#            var csrftoken = getCookie('csrftoken');#}
+            {#                var idUser = $(this).attr("name");#}
+{##}
+{#            $.ajax({#}
+{#                url: '/config/settings/perfil/view/' + {{ request.user.pk }},#}
+{#                type: 'GET',#}
+{#                data: {},#}
+{#                beforeSend: function (xhr) {#}
+{#                    xhr.setRequestHeader("X-CSRFToken", csrftoken);#}
+{#                },#}
+{#                success: function (data) {#}
+{#                    $(".form_id").html(data);#}
+{#                }#}
+{#            });#}
+{##}
+{#        });#}
+    });
+</script>
 </body>
 </html>

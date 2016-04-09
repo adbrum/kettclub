@@ -618,11 +618,13 @@ def meuPerfil(request, *args, **kwargs):
             # guardarLogs("U", dateTime_actual(), request.user, \
             #             "Update Meu perfil " + str(idUser))
 
+            print('SUCESSSO')
+
             return HttpResponseRedirect(reverse('config:success'))
     else:
         form = MeuPerfilForm(argUser, argEmail, userAtual, instance=utilizador)  # An unbound form
 
-    return render(request, "config/meuPerfil.html", locals())
+    return render(request, "config/edit_meu_perfil.html", locals())
 
 
 @login_required
@@ -634,6 +636,7 @@ def fichaMeuPerfil(request, *args, **kwargs):
     :param kwargs:
     :return:
     """
+    bEdit = True
 
     # Parametro recebido pelo url
     idUser = kwargs['idUser']
@@ -641,9 +644,11 @@ def fichaMeuPerfil(request, *args, **kwargs):
     utilizador = User.objects.get(id=idUser)
 
     if request.method == 'POST':
-        url = reverse('meuPerfil', kwargs={'idUser': idUser})
-        return HttpResponseRedirect(url)
+        print('FICAHAAAAAAAAAAA PORDT')
+        # url = reverse(kwargs={'idUser': idUser})
+        return HttpResponseRedirect('/config/settings/perfil/' + idUser, {'idUser': idUser})
     else:
+        print('FICAHAAAAAAAAAAA')
         form = FichaMeuPerfilForm(instance=utilizador)
 
     return render(request, "config/meuPerfil.html", locals())

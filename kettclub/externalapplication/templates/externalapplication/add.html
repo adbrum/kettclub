@@ -36,8 +36,7 @@
     <form method="post" action="{% url 'external:new' %}" class="form-horizontal" id="form2"
           style='visibility:visible;'>
 
-        <div class="col-md-8 tabs-area" margin-top:30px;
-        ">
+        <div class="col-md-8 tabs-area" style="left:15%;">
 
         <ul id="tabs-demo6" class="nav nav-tabs nav-tabs-v6" role="tablist">
             <li role="presentation" class="active">
@@ -154,7 +153,8 @@
 
                                                         {% if field.errors %}
                                                             {% for error in field.errors %}
-                                                                <div class="text-center" style="color:red">{{ error }}</div>
+                                                                <div class="text-center"
+                                                                     style="color:red">{{ error }}</div>
                                                             {% endfor %}
                                                             </span>
                                                         {% endif %}
@@ -172,9 +172,9 @@
                                                 <td>
                                                     <div class="col-sm-8">
                                                         <table style="width:100%">
-                                                          <tr>
-                                                            <td class="text-center">{{ field }}</td>
-                                                          </tr>
+                                                            <tr>
+                                                                <td class="text-center">{{ field }}</td>
+                                                            </tr>
                                                         </table>
                                                         {% for error in field.errors %}
                                                             <div class="text-center" style="color:red">{{ error }}</div>
@@ -201,29 +201,13 @@
     <p>&nbsp;</p>
     <p>&nbsp;</p>
 
-
     <!-- start: Javascript -->
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/jquery.ui.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
-
     <!-- plugins -->
-    <script src="{% static 'js/plugins/moment.min.js' %}"></script>
     <script src="{% static 'js/plugins/jquery.nicescroll.js' %}"></script>
-    <script src="{% static 'js/plugins/fullcalendar.min.js' %}"></script>
-
-
-    <script src="{% static 'js/plugins/jquery.vmap.min.js' %}"></script>
-    <script src="{% static 'js/plugins/maps/jquery.vmap.world.js' %}"></script>
-    <script src="{% static 'js/plugins/jquery.vmap.sampledata.js' %}"></script>
-    <script src="{% static 'js/plugins/chart.min.js' %}"></script>
-
-
-    {#<!-- plugins datatables-->#}
-    {#<script src="{% static 'js/plugins/jquery.datatables.min.js' %}"></script>#}
-    {#<script src="{% static 'js/plugins/datatables.bootstrap.min.js' %}"></script>#}
-
 
     <!-- custom -->
     <script src="{% static 'js/main.js' %}"></script>
@@ -249,12 +233,6 @@
 
             $('#save').click(function () {
                 var nameButton = $(this).attr("name");
-                save_ajax(nameButton);
-            });
-
-            $('#saveAndNew').click(function () {
-                var nameButton = $(this).attr("name");
-                location.reload();
                 save_ajax(nameButton);
             });
 

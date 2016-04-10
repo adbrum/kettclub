@@ -5,7 +5,7 @@
 
 {% block content %}
     <section id="subscription" style="padding-top: 200px;">
-        <body id="page-top" class="index  panel box-v1">
+        <body id="page-top" class="form_id index  panel box-v1">
         <!-- Header -->
         <header>
             <div class="container">
@@ -24,7 +24,7 @@
             </div>
         </header>
         <!-- Subscribe Section -->
-        <section class="subsctiption " id="about" style="padding-top: 50px;">
+        <section class="subsctiption" id="about" style="padding-top: 50px;">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
@@ -61,7 +61,7 @@
                         {#                            <span class="skills">Insrcição de um novo Atleta</span>#}
                         {#                        </div>#}
                         {#                      <a href="{% url 'subscription:new' %}" class="portfolio-link" data-toggle="modal">#}
-                        <a href="{% url 'subscriptions:form' %}" class="portfolio-link" data-toggle="modal">
+                        <a id="criar_atleta" href="#" class="portfolio-link" data-toggle="modal">
                             <div class="caption">
                                 <div class="caption-content">
                                     <button type="submit" class="btn btn-primary">Novo atleta</button>
@@ -132,3 +132,50 @@
     </section>
 {% endblock content %}
 </html>
+{% block javascript %}
+
+    <script src="{% static 'js/plugins/jquery.datatables.min.js' %}"></script>
+    <script src="{% static 'js/plugins/datatables.bootstrap.min.js' %}"></script>
+    {#    <script src="{% static 'js/plugins/jquery.nicescroll.js' %}"></script>#}
+
+    <!-- custom -->
+    {#    <script src="{% static 'js/main.js' %}"></script>#}
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            console.log("ready atleta!");
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie != '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+
+
+            $("#criar_atleta").click(function () {
+                var csrftoken = getCookie('csrftoken');
+                console.log("NOVO!");
+                $.ajax({
+                    url: "{% url 'external:new' %}",
+                    type: 'GET',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    },
+                    success: function (data) {
+                        console.log("index atleta!");
+                        {#                      console.log(data);#}
+                        $(".form_id").html(data);
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock javascript %}

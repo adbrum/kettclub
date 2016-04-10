@@ -19,6 +19,8 @@ urlpatterns = [
     #                             namespace='subscriptions')),
     url(r'^inscricao/', include('kettclub.subscriptions.urls',
                                 namespace='subscriptions')),
+    url(r'^inscricaoexterna/', include('kettclub.externalapplication.urls',
+                                namespace='external')),
     url(r'^presenca/', include('kettclub.assiduousness.urls',
                                namespace='assiduousness')),
     url(r'^avaliacaofisica/', include('kettclub.reviewsphysicals.urls',

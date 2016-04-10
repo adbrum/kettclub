@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'kettclub.core',
     'kettclub.subscriptions',
+    'kettclub.externalapplication',
     'kettclub.assiduousness',
     'kettclub.reviewsphysicals',
     'kettclub.administration',

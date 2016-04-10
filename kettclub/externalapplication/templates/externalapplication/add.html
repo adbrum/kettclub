@@ -1,0 +1,287 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Kettclub Admin V1.0">
+    <meta name="author" content="Isna Nur Azis">
+    <meta name="keyword" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kettclub - Ginásio de treino funcional</title>
+
+    <!-- start: Css -->
+    <link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <!-- plugins -->
+    <link type="text/css" rel="stylesheet" href="{% static 'css/plugins/font-awesome.min.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/plugins/simple-line-icons.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/plugins/animate.min.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/plugins/fullcalendar.min.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- end: Css -->
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="col-md-12 dashboard form-signin-wrapper">
+
+    <form method="post" action="{% url 'external:new' %}" class="form-horizontal" id="form2"
+          style='visibility:visible;'>
+
+        <div class="col-md-8 tabs-area" margin-top:30px;
+        ">
+
+        <ul id="tabs-demo6" class="nav nav-tabs nav-tabs-v6" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#tabs-demo7-area1" id="tabs-demo6-1" role="tab" data-toggle="tab" aria-expanded="true">Novo
+                    Atleta</a>
+            </li>
+            <li role="presentation" class="">
+                <a href="#tabs-demo7-area2" role="tab" id="tabs-demo6-2" data-toggle="tab" aria-expanded="false">Anamnese
+                    e Saúde</a>
+            </li>
+        </ul>
+        <div id="tabsDemo6Content" class="tab-content tab-content-v6 col-md-12">
+            <div role="tabpanel" class="tab-pane fade active in" id="tabs-demo7-area1"
+                 aria-labelledby="tabs-demo7-area1">
+                {% csrf_token %}
+                <div class="col-md-12">
+                    <div class="panel form-element-padding">
+                        <div class="panel-heading">
+                            <h4>Adicionar atleta</h4>
+                        </div>
+                        <div class="panel-body" style="padding-bottom:30px;">
+                            <div class="form-group">
+                                <div class="col-sm-5">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                {% for field in form %}
+                                    {% if field.field.required %}
+                                        <div class="form-group">
+                                            <tr>
+                                                <td class="title">
+                                                    <label class="control-label col-xs-2"
+                                                           for="id_{{ field.name }}">{{ field.label }}</label>
+                                                </td>
+                                                <td>
+                                                    <div class="col-sm-10">
+                                                        {% if field.errors %}
+                                                            <span class="help-block {% if form.errors %} has-error errorField{% endif %}">
+                                                        {% endif %}
+                                                        {{ field }}
+                                                        {% if field.errors %}
+                                                            {% for error in field.errors %}
+                                                                <div style="color:red">{{ error }}</div>
+                                                            {% endfor %}
+                                                            </span>
+                                                        {% endif %}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </div>
+                                    {% else %}
+                                        <div class="form-group">
+                                            <tr>
+                                                <td class="title">
+                                                    <label class="control-label col-xs-2"
+                                                           for="id_{{ field.name }}">{{ field.label }}</label>
+                                                </td>
+                                                <td>
+                                                    <div class="col-sm-10">
+                                                        {{ field }}
+                                                        {% for error in field.errors %}
+                                                            <div style="color:red">{{ error }}</div>
+                                                        {% endfor %}
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="tabs-demo7-area2" aria-labelledby="tabs-demo7-area2">
+                <div class="col-md-12">
+                    <div class="panel form-element-padding">
+                        <div class="panel-heading">
+                            <h4>Saúde e Anamnese</h4>
+                        </div>
+                        <div class="panel-body" style="padding-bottom:30px;">
+                            <div class="form-group">
+                                <div class="col-sm-5">
+                                    <input type="button" id="save" class="btn btn-primary" name="Save"
+                                           value="Guardar"
+                                           style="float:left;"/>
+                                    <div class="cancel"><span class="text_small"></span>
+                                        <input type="button" id="b_cancelar" class="btn btn-default"
+                                               name="Cancelar"
+                                               value="Cancelar"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                {% for field in form_02 %}
+                                    {% if field.field.required %}
+                                        <div class="form-group">
+                                            <tr>
+                                                <td class="title">
+                                                    <label class="control-label col-xs-4"
+                                                           for="id_{{ field.name }}">{{ field.label }}</label>
+                                                </td>
+                                                <td>
+                                                    <div class="col-sm-8">
+                                                        {% if field.errors %}
+                                                            <span class="help-block {% if form_02.errors %} has-error errorField{% endif %}">
+                                                        {% endif %}
+                                                        <table style="width:100%">
+                                                          <tr>
+                                                            <td class="text-center">{{ field }}</td>
+                                                          </tr>
+                                                        </table>
+
+                                                        {% if field.errors %}
+                                                            {% for error in field.errors %}
+                                                                <div class="text-center" style="color:red">{{ error }}</div>
+                                                            {% endfor %}
+                                                            </span>
+                                                        {% endif %}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </div>
+                                    {% else %}
+                                        <div class="form-group">
+                                            <tr>
+                                                <td class="title">
+                                                    <label class="control-label col-xs-4"
+                                                           for="id_{{ field.name }}">{{ field.label }}</label>
+                                                </td>
+                                                <td>
+                                                    <div class="col-sm-8">
+                                                        <table style="width:100%">
+                                                          <tr>
+                                                            <td class="text-center">{{ field }}</td>
+                                                          </tr>
+                                                        </table>
+                                                        {% for error in field.errors %}
+                                                            <div class="text-center" style="color:red">{{ error }}</div>
+                                                        {% endfor %}
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+
+    <!-- start: Javascript -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/jquery.ui.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+
+    <!-- plugins -->
+    <script src="{% static 'js/plugins/moment.min.js' %}"></script>
+    <script src="{% static 'js/plugins/jquery.nicescroll.js' %}"></script>
+    <script src="{% static 'js/plugins/fullcalendar.min.js' %}"></script>
+
+
+    <script src="{% static 'js/plugins/jquery.vmap.min.js' %}"></script>
+    <script src="{% static 'js/plugins/maps/jquery.vmap.world.js' %}"></script>
+    <script src="{% static 'js/plugins/jquery.vmap.sampledata.js' %}"></script>
+    <script src="{% static 'js/plugins/chart.min.js' %}"></script>
+
+
+    {#<!-- plugins datatables-->#}
+    {#<script src="{% static 'js/plugins/jquery.datatables.min.js' %}"></script>#}
+    {#<script src="{% static 'js/plugins/datatables.bootstrap.min.js' %}"></script>#}
+
+
+    <!-- custom -->
+    <script src="{% static 'js/main.js' %}"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            console.log("ready atleta!");
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie != '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+
+            $('#save').click(function () {
+                var nameButton = $(this).attr("name");
+                save_ajax(nameButton);
+            });
+
+            $('#saveAndNew').click(function () {
+                var nameButton = $(this).attr("name");
+                location.reload();
+                save_ajax(nameButton);
+            });
+
+            $('#b_cancelar').click(function () {
+                location.reload();
+                {#            var nameButton = $(this).attr("name");#}
+                {#            save_ajax(nameButton);#}
+            });
+
+            function save_ajax(nameButton) {
+                var csrftoken = getCookie('csrftoken');
+                var form = $("#form2");
+                url = form.attr('action');
+                var data_form = form.serialize() + '&' + nameButton + "=" + 1 + ",";
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: data_form,
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    },
+                    success: function (data) {
+                        $(".form_id").html(data);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

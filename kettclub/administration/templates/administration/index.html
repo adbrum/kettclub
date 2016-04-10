@@ -103,20 +103,42 @@
                     </div>
                     <form method="post" action="{% url 'administration:dash' %}">
                         {% csrf_token %}
+
                         <div class="col-md-4">
-                            <div class="form-group form-animate-text" style="margin-top:20px !important;">
-                                <input name="date1" type="text" class="form-text mask-date" required="">
-                                <span class="bar"></span>
-                                <label>Data início</label>
+                            <div class="control-group">
+                                <div class="col-md-11 xdisplay_inputx form-group form-animate-text has-feedback"
+                                     style="margin-top:20px !important;">
+                                    <input name="date1" type="text" placeholder="Data início"
+                                           class="form-text has-feedback-left active" id="single_cal3" required="">
+                                    <span class="bar"></span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="form-group form-animate-text" style="margin-top:20px !important;">
-                                <input name="date2" type="text" class="form-text mask-date" required="">
-                                <span class="bar"></span>
-                                <label>Data fim</label>
+                            <div class="control-group">
+                                <div class="col-md-11 xdisplay_inputx form-group form-animate-text has-feedback"
+                                     style="margin-top:20px !important;">
+                                    <input name="date2" type="text" placeholder="Data fim"
+                                           class="form-text has-feedback-left active" id="single_cal4" required="">
+                                    <span class="bar"></span>
+                                </div>
                             </div>
                         </div>
+
+{#                        <div class="col-md-4">#}
+{#                            <div class="form-group form-animate-text" style="margin-top:20px !important;">#}
+{#                                <input name="date1" type="text" class="form-text mask-date" required="">#}
+{#                                <span class="bar"></span>#}
+{#                                <label>Data início</label>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="col-md-4">#}
+{#                            <div class="form-group form-animate-text" style="margin-top:20px !important;">#}
+{#                                <input name="date2" type="text" class="form-text mask-date" required="">#}
+{#                                <span class="bar"></span>#}
+{#                                <label>Data fim</label>#}
+{#                            </div>#}
+{#                        </div>#}
                         <div class="col-md-2">
                             <div style="margin-top:40px !important;">
                                 <button class="btn btn-primary" type="submit">Filtrar</button>
@@ -152,178 +174,180 @@
                 </div>
             </div>
         </div>
-         <!-- start:content -->
-{#          <div id="content">#}
-          <div class="col-md-12 padding-0" style="margin-top:20px;">
+        <!-- start:content -->
+        {#          <div id="content">#}
+        <div class="col-md-12 padding-0" style="margin-top:20px;">
             <div class="col-md-12 padding-0">
                 <div class="col-md-6 padding-0">
-                   <div class="col-md-12 padding-0">
-                      <div class="col-md-12">
-                        <div class="panel chart-title">
-                          <h3><span class="fa fa-area-chart"></span>Gráficos presenças</h3>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="panel">
-                             <div class="panel-heading-white panel-heading text-center">
-                                <h4>Presenças da semana</h4>
-                              </div>
-                              <div class="panel-body">
-                                <center>
-                                <canvas class="doughnut-chart"></canvas>
-                                </center>
-                              </div>
-                        </div>
-                    </div>
-
-                   <div class="col-md-6">
-                        <div class="panel">
-                             <div class="panel-heading-white panel-heading text-center">
-                                <h4>Presenças do mês</h4>
-                              </div>
-                              <div class="panel-body">
-                                  <center>
-                                  <canvas class="pie-chart"></canvas>
-                                  </center>
-                              </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="panel">
-                            <div class="panel-heading-white panel-heading">
-                              <h4>Polar Area Chart</h4>
-                            </div>
-                            <div class="panel-body" style="padding-bottom:50px;">
-                               <canvas class="polar-chart"></canvas>
+                    <div class="col-md-12 padding-0">
+                        <div class="col-md-12">
+                            <div class="panel chart-title">
+                                <h3><span class="fa fa-area-chart"></span>Gráficos presenças</h3>
                             </div>
                         </div>
-                    </div>
-                   </div>
-                  </div>
-                  <div class="col-md-6">
-                      <div class="panel">
-                           <div class="panel-heading-white panel-heading">
-                              <h4>Presenças meses / 2015-2016</h4>
-                            </div>
-                            <div class="panel-body">
-                                <div class="col-md-12">
-                                  <canvas class="line-chart"></canvas>
+                        <div class="col-md-6">
+                            <div class="panel">
+                                <div class="panel-heading-white panel-heading text-center">
+                                    <h4>Presenças da semana</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <center>
+                                        <canvas class="doughnut-chart"></canvas>
+                                    </center>
                                 </div>
                             </div>
-                      </div>
+                        </div>
 
-                      <div class="panel">
-                           <div class="panel-heading-white panel-heading">
-                              <h4>Radar Chart</h4>
+                        <div class="col-md-6">
+                            <div class="panel">
+                                <div class="panel-heading-white panel-heading text-center">
+                                    <h4>Presenças do mês</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <center>
+                                        <canvas class="pie-chart"></canvas>
+                                    </center>
+                                </div>
                             </div>
-                            <div class="panel-body">
-                               <canvas class="radar-chart"></canvas>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="panel">
+                                <div class="panel-heading-white panel-heading">
+                                    <h4>Polar Area Chart</h4>
+                                </div>
+                                <div class="panel-body" style="padding-bottom:50px;">
+                                    <canvas class="polar-chart"></canvas>
+                                </div>
                             </div>
-                      </div>
-                  </div>
-            </div>
-            <div class="col-md-12">
-                <div class="panel">
-                       <div class="panel-heading-white panel-heading">
-                          <h4>Intensidde dos Treinos</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel">
+                        <div class="panel-heading-white panel-heading">
+                            <h4>Presenças meses / 2015-2016</h4>
                         </div>
                         <div class="panel-body">
                             <div class="col-md-12">
-                             <canvas class="bar-chart"></canvas>
+                                <canvas class="line-chart"></canvas>
                             </div>
                         </div>
-                  </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-heading-white panel-heading">
+                            <h4>Radar Chart</h4>
+                        </div>
+                        <div class="panel-body">
+                            <canvas class="radar-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="panel">
+                    <div class="panel-heading-white panel-heading">
+                        <h4>Intensidde dos Treinos</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-md-12">
+                            <canvas class="bar-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-          </div>
-    		  </div>
+        </div>
+    </div>
     <!-- end: content -->
 
 {% endblock content %}
 
 {% block javascript %}
+    <script src="{% static 'js/plugins/daterangepicker.js' %}"></script>
+
     <script type="text/javascript">
-      (function(jQuery){
+        (function (jQuery) {
 
-        var radarData = {
-            labels: ["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
-            datasets: [
-                {
-                    label: "Ano 2016",
-                    fillColor: "rgba(21,186,103,0.5)",
-                    strokeColor: "rgba(220,220,220,1)",
-                    pointColor: "rgba(220,220,220,1)",
-                    pointStrokeColor: "#fff",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(220,220,220,1)",
-                    data: {{ data }}
-                },
-                {
-                    label: "Ano 2015",
-                    fillColor: "rgba(21,113,186,0.5)",
-                    strokeColor: "rgba(151,187,205,1)",
-                    pointColor: "rgba(151,187,205,1)",
-                    pointStrokeColor: "#fff",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(151,187,205,1)",
-                    data: {{ data_02 }}
-                }
-            ]
-        };
+            var radarData = {
+                labels: ["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
+                datasets: [
+                    {
+                        label: "Ano 2016",
+                        fillColor: "rgba(21,186,103,0.5)",
+                        strokeColor: "rgba(220,220,220,1)",
+                        pointColor: "rgba(220,220,220,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(220,220,220,1)",
+                        data: {{ data }}
+                    },
+                    {
+                        label: "Ano 2015",
+                        fillColor: "rgba(21,113,186,0.5)",
+                        strokeColor: "rgba(151,187,205,1)",
+                        pointColor: "rgba(151,187,205,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(151,187,205,1)",
+                        data: {{ data_02 }}
+                    }
+                ]
+            };
 
-        var barData = {
-            labels: ["Repouso", "Muito, muito fácil", "Fácil", "Moderado", "Um pouco difícil", "difícil", "-","Muito difícil", "-", "-", "Máximo"],
-            datasets: [
-                {
-                    label: "My First dataset",
-                    fillColor: "rgba(21,186,103,0.5)",
-                    strokeColor: "rgba(220,220,220,0.8)",
-                    highlightFill: "rgba(220,220,220,0.75)",
-                    highlightStroke: "rgba(220,220,220,1)",
-                    data: [65, 59, 80, 81, 56, 55, 40, 56, 55, 40, 2]
-                },
-{#                {#}
-{#                    label: "My Second dataset",#}
-{#                    fillColor: "rgba(21,113,186,0.5)",#}
-{#                    strokeColor: "rgba(151,187,205,0.8)",#}
-{#                    highlightFill: "rgba(151,187,205,0.75)",#}
-{#                    highlightStroke: "rgba(151,187,205,1)",#}
-{#                    data: [28, 48, 40, 19, 86, 27, 90, 56, 55, 40]#}
-{#                }#}
-            ]
-        };
+            var barData = {
+                labels: ["Repouso", "Muito, muito fácil", "Fácil", "Moderado", "Um pouco difícil", "difícil", "-", "Muito difícil", "-", "-", "Máximo"],
+                datasets: [
+                    {
+                        label: "My First dataset",
+                        fillColor: "rgba(21,186,103,0.5)",
+                        strokeColor: "rgba(220,220,220,0.8)",
+                        highlightFill: "rgba(220,220,220,0.75)",
+                        highlightStroke: "rgba(220,220,220,1)",
+                        data: [65, 59, 80, 81, 56, 55, 40, 56, 55, 40, 2]
+                    },
+                    {#                {#}
+                    {#                    label: "My Second dataset",#}
+                    {#                    fillColor: "rgba(21,113,186,0.5)",#}
+                    {#                    strokeColor: "rgba(151,187,205,0.8)",#}
+                    {#                    highlightFill: "rgba(151,187,205,0.75)",#}
+                    {#                    highlightStroke: "rgba(151,187,205,1)",#}
+                    {#                    data: [28, 48, 40, 19, 86, 27, 90, 56, 55, 40]#}
+                    {#                }#}
+                ]
+            };
 
-        var lineChartData = {
-            labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
-            datasets: [
-                {
-                    label: "Ano 2016",
-                    fillColor: "rgba(21,186,103,0.5)",
-                    strokeColor: "rgba(220,220,220,1)",
-                    pointColor: "rgba(220,220,220,1)",
-                    pointStrokeColor: "#fff",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(220,220,220,1)",
-                    data: [65, 59, 80, 81, 56, 55, 40, 25, 0, 0, 0, 0]
-                },
-                {
-                    label: "Ano 2015",
-                    fillColor: "rgba(21,113,186,0.5)",
-                    strokeColor: "rgba(151,187,205,1)",
-                    pointColor: "rgba(151,187,205,1)",
-                    pointStrokeColor: "#fff",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(151,187,205,1)",
-                    data: [28, 48, 40, 19, 86, 27, 90, 80, 75, 56, 30]
-                }
-            ]
-        };
+            var lineChartData = {
+                labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+                datasets: [
+                    {
+                        label: "Ano 2016",
+                        fillColor: "rgba(21,186,103,0.5)",
+                        strokeColor: "rgba(220,220,220,1)",
+                        pointColor: "rgba(220,220,220,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(220,220,220,1)",
+                        data: [65, 59, 80, 81, 56, 55, 40, 25, 0, 0, 0, 0]
+                    },
+                    {
+                        label: "Ano 2015",
+                        fillColor: "rgba(21,113,186,0.5)",
+                        strokeColor: "rgba(151,187,205,1)",
+                        pointColor: "rgba(151,187,205,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(151,187,205,1)",
+                        data: [28, 48, 40, 19, 86, 27, 90, 80, 75, 56, 30]
+                    }
+                ]
+            };
 
 
-        var doughnutData = [
+            var doughnutData = [
                 {
                     value: 20,
-                    color:"#4ED18F",
+                    color: "#4ED18F",
                     highlight: "#15BA67",
                     label: "Segunda"
                 },
@@ -360,10 +384,10 @@
 
             ];
 
-          var doughnutData_01 = [
+            var doughnutData_01 = [
                 {
                     value: 100,
-                    color:"#4ED18F",
+                    color: "#4ED18F",
                     highlight: "#15BA67",
                     label: "Segunda"
                 },
@@ -400,46 +424,233 @@
 
             ];
 
-             window.onload = function(){
+            window.onload = function () {
                 var ctx = $(".doughnut-chart")[0].getContext("2d");
                 window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {
-                    responsive : true,
+                    responsive: true,
                     showTooltips: true
                 });
 
                 var ctx2 = $(".pie-chart")[0].getContext("2d");
                 window.myPie = new Chart(ctx2).Pie(doughnutData_01, {
-                    responsive : true,
+                    responsive: true,
                     showTooltips: true
                 });
 
                 var ctx3 = $(".line-chart")[0].getContext("2d");
                 window.myLine = new Chart(ctx3).Line(lineChartData, {
-                    responsive : true,
+                    responsive: true,
                     showTooltips: true
                 });
 
                 var ctx4 = $(".bar-chart")[0].getContext("2d");
                 window.myBar = new Chart(ctx4).Bar(barData, {
-                    responsive : true,
+                    responsive: true,
                     showTooltips: true
                 });
 
                 var ctx5 = $(".radar-chart")[0].getContext("2d");
                 window.myRadar = new Chart(ctx5).Radar(radarData, {
-                    responsive : true,
+                    responsive: true,
                     showTooltips: true
                 });
 
                 var ctx6 = $(".polar-chart")[0].getContext("2d");
                 window.myPolar = new Chart(ctx6).PolarArea(doughnutData, {
-                    responsive : true,
+                    responsive: true,
                     showTooltips: true
                 });
             };
         })(jQuery);
-     </script>
-  <!-- end: Javascript -->
+    </script>
+
+    <!-- datepicker -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var cb = function (start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+                $('#reportrange_right span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                //alert("Callback has fired: [" + start.format('MMMM D, YYYY') + " to " + end.format('MMMM D, YYYY') + ", label = " + label + "]");
+            }
+            var optionSet1 = {
+                startDate: moment().subtract(29, 'days'),
+                endDate: moment(),
+                minDate: '01/01/2012',
+                maxDate: '12/31/2015',
+                dateLimit: {
+                    days: 60
+                },
+                showDropdowns: true,
+                showWeekNumbers: true,
+                timePicker: false,
+                timePickerIncrement: 1,
+                timePicker12Hour: true,
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                },
+                opens: 'right',
+                buttonClasses: ['btn btn-default'],
+                applyClass: 'btn-small btn-primary',
+                cancelClass: 'btn-small',
+                format: 'MM/DD/YYYY',
+                separator: ' to ',
+                locale: {
+                    applyLabel: 'Submit',
+                    cancelLabel: 'Clear',
+                    fromLabel: 'From',
+                    toLabel: 'To',
+                    customRangeLabel: 'Custom',
+                    daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+                    monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                    firstDay: 1
+                }
+            };
+            $('#reportrange_right span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+            $('#reportrange_right').daterangepicker(optionSet1, cb);
+            $('#reportrange_right').on('show.daterangepicker', function () {
+                console.log("show event fired");
+            });
+            $('#reportrange_right').on('hide.daterangepicker', function () {
+                console.log("hide event fired");
+            });
+            $('#reportrange_right').on('apply.daterangepicker', function (ev, picker) {
+                console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
+            });
+            $('#reportrange_right').on('cancel.daterangepicker', function (ev, picker) {
+                console.log("cancel event fired");
+            });
+            $('#options1').click(function () {
+                $('#reportrange_right').data('daterangepicker').setOptions(optionSet1, cb);
+            });
+            $('#options2').click(function () {
+                $('#reportrange_right').data('daterangepicker').setOptions(optionSet2, cb);
+            });
+            $('#destroy').click(function () {
+                $('#reportrange_right').data('daterangepicker').remove();
+            });
+        });
+    </script>
+    <!-- datepicker -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var cb = function (start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+                $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                //alert("Callback has fired: [" + start.format('MMMM D, YYYY') + " to " + end.format('MMMM D, YYYY') + ", label = " + label + "]");
+            }
+            var optionSet1 = {
+                startDate: moment().subtract(29, 'days'),
+                endDate: moment(),
+                minDate: '01/01/2012',
+                maxDate: '12/31/2015',
+                dateLimit: {
+                    days: 60
+                },
+                showDropdowns: true,
+                showWeekNumbers: true,
+                timePicker: false,
+                timePickerIncrement: 1,
+                timePicker12Hour: true,
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                },
+                opens: 'left',
+                buttonClasses: ['btn btn-default'],
+                applyClass: 'btn-small btn-primary',
+                cancelClass: 'btn-small',
+                format: 'MM/DD/YYYY',
+                separator: ' to ',
+                locale: {
+                    applyLabel: 'Submit',
+                    cancelLabel: 'Clear',
+                    fromLabel: 'From',
+                    toLabel: 'To',
+                    customRangeLabel: 'Custom',
+                    daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+                    monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                    firstDay: 1
+                }
+            };
+            $('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+            $('#reportrange').daterangepicker(optionSet1, cb);
+            $('#reportrange').on('show.daterangepicker', function () {
+                console.log("show event fired");
+            });
+            $('#reportrange').on('hide.daterangepicker', function () {
+                console.log("hide event fired");
+            });
+            $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
+                console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
+            });
+            $('#reportrange').on('cancel.daterangepicker', function (ev, picker) {
+                console.log("cancel event fired");
+            });
+            $('#options1').click(function () {
+                $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
+            });
+            $('#options2').click(function () {
+                $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
+            });
+            $('#destroy').click(function () {
+                $('#reportrange').data('daterangepicker').remove();
+            });
+        });
+    </script>
+    <!-- /datepicker -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+{#            $('#single_cal1').daterangepicker({#}
+{#                singleDatePicker: true,#}
+{#                calender_style: "picker_1"#}
+{#            }, function (start, end, label) {#}
+{#                console.log(start.toISOString(), end.toISOString(), label);#}
+{#            });#}
+{#            $('#single_cal2').daterangepicker({#}
+{#                singleDatePicker: true,#}
+{#                calender_style: "picker_2"#}
+{#            }, function (start, end, label) {#}
+{#                console.log(start.toISOString(), end.toISOString(), label);#}
+{#            });#}
+            $('#single_cal3').daterangepicker({
+                singleDatePicker: true,
+                calender_style: "picker_3"
+            }, function (start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+            });
+            $('#single_cal4').daterangepicker({
+                singleDatePicker: true,
+                calender_style: "picker_3"
+            }, function (start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+            });
+{#            $('#single_cal4').daterangepicker({#}
+{#                singleDatePicker: true,#}
+{#                calender_style: "picker_4"#}
+{#            }, function (start, end, label) {#}
+{#                console.log(start.toISOString(), end.toISOString(), label);#}
+{#            });#}
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#reservation').daterangepicker(null, function (start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+            });
+        });
+    </script>
+    <!-- /datepicker -->
+
+    <!-- end: Javascript -->
 {% endblock javascript %}
 
 

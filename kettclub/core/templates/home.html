@@ -4,6 +4,12 @@
 <html lang="pt">
 
 {% block content %}
+
+
+
+
+
+
     <section id="subscription" style="padding-top: 200px;">
         <body id="page-top" class="form_id index  panel box-v1">
         <!-- Header -->
@@ -56,11 +62,6 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <h2>Inscrições</h2>
-                        {#                        <hr class="star-primary">#}
-                        {#                        <div class="intro-text">#}
-                        {#                            <span class="skills">Insrcição de um novo Atleta</span>#}
-                        {#                        </div>#}
-                        {#                      <a href="{% url 'subscription:new' %}" class="portfolio-link" data-toggle="modal">#}
                         <a id="criar_atleta" href="#" class="portfolio-link" data-toggle="modal">
                             <div class="caption">
                                 <div class="caption-content">
@@ -136,7 +137,8 @@
 
     <script src="{% static 'js/plugins/jquery.datatables.min.js' %}"></script>
     <script src="{% static 'js/plugins/datatables.bootstrap.min.js' %}"></script>
-    {#    <script src="{% static 'js/plugins/jquery.nicescroll.js' %}"></script>#}
+
+
 
     <!-- custom -->
     {#    <script src="{% static 'js/main.js' %}"></script>#}
@@ -178,4 +180,6 @@
             });
         });
     </script>
+
+
 {% endblock javascript %}

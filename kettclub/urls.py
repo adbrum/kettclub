@@ -1,14 +1,14 @@
 from django.conf.urls import url, include
 from django.contrib import admin
 from kettclub.administration.views import Logout, Login
-from kettclub.core.views import home, success, unauthorized
+from kettclub.core.views import home, unauthorized
 
 admin.site.site_header = 'Administração Kettclub'
 
 urlpatterns = [
-    url(r'^$', home, name='home'),
-    # url(r'^sucesso/', success, name='success'),
-    url(r'^naoautorizada/$', unauthorized, name='redirect'),
+    url(r'^$', home.as_view(), name='home'),
+    # url(r'^sucesso/', success.as_view(), name='success'),
+    url(r'^naoautorizada/', unauthorized.as_view(), name='redirect'),
 
     url(r'^administracao/', include('kettclub.administration.urls',
                                 namespace='administration')),

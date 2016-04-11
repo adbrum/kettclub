@@ -64,7 +64,8 @@ INSTALLED_APPS = [
     'kettclub.monthlyplans',
     'kettclub.healthanamnese',
     'kettclub.config',
-    'kettclub.util',
+    'kettclub.utils',
+
 ]
 
 #Inclui apps do sistema no INSTALLD_APPS

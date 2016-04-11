@@ -644,11 +644,9 @@ def fichaMeuPerfil(request, *args, **kwargs):
     utilizador = User.objects.get(id=idUser)
 
     if request.method == 'POST':
-        print('FICAHAAAAAAAAAAA PORDT')
         # url = reverse(kwargs={'idUser': idUser})
         return HttpResponseRedirect('/config/settings/perfil/' + idUser, {'idUser': idUser})
     else:
-        print('FICAHAAAAAAAAAAA')
         form = FichaMeuPerfilForm(instance=utilizador)
 
     return render(request, "config/meuPerfil.html", locals())

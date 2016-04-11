@@ -117,20 +117,24 @@
                 return cookieValue;
             }
 
+            $('#b_cancelar').click(function () {
+                window.location = "{% url 'administration:dash' %}"
+            });
+
             $(".edit_perfil").click(function () {
                 var csrftoken = getCookie('csrftoken');
                 var idUser = {{ idUser }}
-                $.ajax({
-                    url: '{% url 'config:meuPerfil' idUser %}',
-                    type: 'GET',
-                    data: {},
-                    beforeSend: function (xhr) {
-                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
-                    },
-                    success: function (data) {
-                        $(".form_id").html(data);
-                    }
-                });
+                        $.ajax({
+                            url: '{% url 'config:meuPerfil' idUser %}',
+                            type: 'GET',
+                            data: {},
+                            beforeSend: function (xhr) {
+                                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                            },
+                            success: function (data) {
+                                $(".form_id").html(data);
+                            }
+                        });
             });
         });
     </script>

@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% load wger_extras %}
+{% load cache %}
+{% load thumbnail %}
+
+<!--
+        Title
+-->
+{% block title %}{% trans "Equipment overview" %}{% endblock %}
+
+
+{% block header %}
+ <script>
+$(function() {
+    // Init the autocompleter
+    $("#exercise-search").catcomplete({
+            source: "{% url 'exercise-search' %}",
+            minLength: 2,
+            select: function(event, ui) {
+
+                // Redirect to exercise after clicking on a result
+                // Path is hard coded here, because we can't use the url-tag
+                window.location.href = '/exercise/' + ui.item.id + '/view/'
+            }
+    });
+});
+</script>
+{% endblock %}
+
+
+<!--
+        Main Content
+-->
+{% block content %}
+{% cache cache_timeout equipment-overview language.id %}
+<div class="panel-group" id="accordion">
+    {% for equipment in equipment_list %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse-{{equipment.pk}}">
+                    {% trans equipment.name %}
+                </a>
+            </h4>
+        </div>
+        <div id="collapse-{{equipment.pk}}" class="panel-collapse collapse">
+            <div class="panel-body">
+                <div class="list-group">
+                    {% for exercise in equipment.exercise_set.all %}
+                    {% if exercise.language in exercise_languages %}
+                    <a href="{{ exercise.get_absolute_url }}" class="list-group-item">
+                        <div class="media">
+                            <div style="width:60px;height:60px;" class="media-left">
+
+                            {% if exercise.main_image %}
+                                <img alt="{{ exercise.name }}"
+                                 class="media-object "
+                                 style="max-width:100%; max-height:100%;"
+                                 src="{{ exercise.main_image.image|thumbnail_url:'thumbnail' }}">
+                            {% else %}
+                            <img alt="{% trans 'Placeholder image for exercise' %}"
+                                 class="media-object "
+                                 style="max-width:100%; max-height:100%; opacity: 0.4;"
+                                 src="{% static 'images/icons/image-placeholder.svg' %}">
+                            {% endif %}
+                            </div>
+                            <div class="media-body" style="position: absolute; top: 10px; left: 100px;">
+                                <h4 class="media-heading">{{ exercise.name }}</h4>
+                                <span class="text-muted">
+                                    {% trans exercise.category.name %}
+                                    <!--
+                                    {% trans "Main muscles" %}: {{ exercise.muscles.all|join:", " }}
+                                    <br>
+                                    {% trans "Secondary muscles" %}: {{ exercise.muscles_secondary.all|join:", " }}
+                                    -->
+                                </span>
+                             </div>
+                        </div>
+                    </a>
+                    {% endif %}
+                    {% empty %}
+                        {% trans "No exercises for this equipment. Add or edit an exercise and set the equipment." %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endcache %}
+{% endblock %}
+
+
+<!--
+        Side bar
+-->
+{% block sidebar %}
+<p>
+    {% if user.is_authenticated and not user.userprofile.is_temporary %}
+    <a href="{% url 'exercise:exercise:add' %}" class="btn btn-success btn-sm">
+        {% trans "Add new exercise" %}
+    </a>
+    {% else %}
+    <a href="#" class="btn btn-success btn-sm disabled">
+        {% trans "Add new exercise" %}<br>
+        <small>
+        {% trans "Only registered users can do this" %}
+        </small>
+    </a>
+    {% endif %}
+</p>
+
+
+
+<h4>{% trans "Search" %}</h4>
+<form action="{% url 'exercise-search' %}"
+      method="get"
+      id="exercise_search_form">
+    {% csrf_token %}
+    <input name="term"
+           type="search"
+           id="exercise-search"
+           class="ajax-form-element form-control"
+           placeholder="{% trans 'exercise name' %}"
+           style="width:100%;">
+</form>
+{% endblock %}

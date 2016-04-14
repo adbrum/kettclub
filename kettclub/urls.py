@@ -2,7 +2,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from kettclub.administration.views import Logout, Login
 from kettclub.core.views import home, unauthorized
-
+from kettclub.exercises.api import views as exercises_api_views
 admin.site.site_header = 'Administração Kettclub'
 
 urlpatterns = [
@@ -31,5 +31,9 @@ urlpatterns = [
                                     namespace='healthanamnese')),
     url(r'^config/', include('kettclub.config.urls',
                                     namespace='config')),
+    url(r'^exercise/', include('kettclub.exercises.urls', namespace="exercise")),
+    url(r'^api/v2/exercise/search/$',
+        exercises_api_views.search,
+        name='exercise-search'),
     url(r'^admin/', admin.site.urls),
 ]

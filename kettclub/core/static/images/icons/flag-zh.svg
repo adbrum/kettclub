@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="170.66701"
+   id="svg2"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="flag-cn.svg"
+   sodipodi:version="0.32"
+   version="1.0"
+   width="256">
+  <metadata
+     id="metadata3">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title></dc:title>
+        <dc:description />
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>unsorted</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://www.openclipart.org/">
+            <dc:title>Open Clip Art Library, Source: Wikimedia Commons, Source: Wikimedia Commons, Source: Wikimedia Commons, Source: Wikimedia Commons</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title />
+          </cc:Agent>
+        </dc:creator>
+        <dc:rights>
+          <cc:Agent>
+            <dc:title />
+          </cc:Agent>
+        </dc:rights>
+        <dc:date />
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://en.wikipedia.org/wiki/Public_domain" />
+        <dc:language>en</dc:language>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs16">
+    <inkscape:perspective
+       id="perspective20"
+       inkscape:persp3d-origin="1500 : 666.66667 : 1"
+       inkscape:vp_x="0 : 1000 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="3000 : 1000 : 1"
+       sodipodi:type="inkscape:persp3d" />
+  </defs>
+  <sodipodi:namedview
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10.0"
+     guidetolerance="10.0"
+     id="base"
+     inkscape:current-layer="svg2"
+     inkscape:cx="483.00535"
+     inkscape:cy="957.00001"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:window-height="786"
+     inkscape:window-width="1243"
+     inkscape:window-x="75"
+     inkscape:window-y="102"
+     inkscape:zoom="0.18633333"
+     objecttolerance="10.0"
+     pagecolor="#ffffff"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-maximized="0" />
+  <rect
+     height="170.66701"
+     id="rect4"
+     style="fill:#de2910"
+     width="256"
+     x="0"
+     y="0" />
+  <path
+     d="M 27.690213,63.30495 33.364238,45.659514 18.453333,34.720393 36.920253,34.685993 42.673958,17.066659 48.413116,34.690793 66.88,34.740593 51.960073,45.667314 57.619538,63.31745 42.659359,52.446327 27.690213,63.30495 l 0,0 z"
+     id="star"
+     style="fill:#ffde00"
+     inkscape:connector-curvature="0" />
+  <use
+     height="2000"
+     id="use7"
+     transform="matrix(0.3128368,0.1151017,-0.1151013,0.3128368,76.942824,58.55964)"
+     width="3000"
+     x="0"
+     xlink:href="#star"
+     y="0" />
+  <use
+     height="2000"
+     id="use9"
+     transform="matrix(0.3330938,-0.0127962,0.01279615,0.3330938,87.672653,46.06612)"
+     width="3000"
+     x="0"
+     xlink:href="#star"
+     y="0" />
+  <use
+     height="2000"
+     id="use11"
+     transform="matrix(0.2988346,-0.1476936,0.147693,0.2988346,83.310992,27.678586)"
+     width="3000"
+     x="0"
+     xlink:href="#star"
+     y="0" />
+  <use
+     height="2000"
+     id="use13"
+     transform="matrix(0.3070677,0.1297109,-0.1297105,0.3070677,77.719845,-1.5844852)"
+     width="3000"
+     x="0"
+     xlink:href="#star"
+     y="0" />
+</svg>

@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'easy_thumbnails',
     'kettclub.core',
     'kettclub.subscriptions',
     'kettclub.externalapplication',
@@ -65,6 +66,7 @@ INSTALLED_APPS = [
     'kettclub.healthanamnese',
     'kettclub.config',
     'kettclub.utils',
+    'kettclub.exercises',
 
 ]
 
@@ -127,6 +129,27 @@ DATABASES = {
     'default': config('DATABASE_URL', default=defaut_dburl, cast=dburl),
 }
 
+#
+# Easy thumbnails
+#
+THUMBNAIL_ALIASES = {
+    '': {
+        'micro': {'size': (30, 30)},
+        'micro_cropped': {'size': (30, 30), 'crop': 'smart'},
+
+        'thumbnail': {'size': (80, 80)},
+        'thumbnail_cropped': {'size': (80, 80), 'crop': 'smart'},
+
+        'small': {'size': (200, 200)},
+        'small_cropped': {'size': (200, 200), 'crop': 'smart'},
+
+        'medium': {'size': (400, 400)},
+        'medium_cropped': {'size': (400, 400), 'crop': 'smart'},
+
+        'large': {'size': (800, 800), 'quality': 90},
+        'large_cropped': {'size': (800, 800), 'crop': 'smart', 'quality': 90},
+    },
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators

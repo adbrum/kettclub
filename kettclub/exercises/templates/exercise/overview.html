@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load thumbnail %}
+{#{% block nav %}#}
+{#    <div class="header-frame row">#}
+{#        {% include 'nav.html' only %}#}
+{#    </div>#}
+{#{% endblock nav %}#}
+
+{% block content %}
+    <!-- start: Content -->
+    <div id="content">
+    <div class="panel box-shadow-none content-header">
+        <div class="panel-body">
+            <div class="col-md-12">
+                <h3 class="animated fadeInLeft">Exercícios</h3>
+                <p class="animated fadeInDown">
+                    <a href="{% url 'administration:dash' %}">Dashboard</a> <span class="fa-angle-right fa"></span>
+                    Exercícios
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 top-20">
+        <div class="col-md-12 ">
+            <div class="panel form_id">
+                <div class="panel-heading"><h3>Exercícios</h3>
+                    {% regroup exercises by category as exercise_list %}
+                    <ul class="nav nav-tabs">
+                        {% for item in exercise_list %}
+                            <li {% if forloop.first %}class="active"{% endif %}>
+                                <a href="#tab-{{ item.grouper.id }}" id="category-{{ item.grouper.id }}"
+                                   data-toggle="tab">{% trans item.grouper.name %}</a>
+                            </li>
+                        {% empty %}
+                            <li>{% trans "No categories." %} {% trans "Use link to create one" %}</li>
+                        {% endfor %}
+                    </ul>
+
+                    <div class="tab-content">
+                        {% for item in exercise_list %}
+                            <div class="tab-pane {% if forloop.first %}active{% endif %}"
+                                 id="tab-{{ item.grouper.id }}">
+                                <div class="list-group">
+                                    {% for exercise in item.list|dictsort:"name" %}
+                                        <a href="{{ exercise.get_absolute_url }}" class="list-group-item">
+                                            <div class="visible-xs">
+                                                <span class="glyphicon glyphicon-chevron-right pull-right"></span>
+                                            </div>
+                                            <div class="media">
+                                                <div style="width:60px;height:60px;" class="media-left">
+
+                                                    {% if exercise.main_image %}
+                                                        <img alt="{{ exercise.name }}"
+                                                             class="media-object "
+                                                             style="max-width:100%; max-height:100%;"
+                                                             src="{{ exercise.main_image.image|thumbnail_url:'thumbnail' }}">
+                                                    {% else %}
+                                                        <img alt="{% trans 'Placeholder image for exercise' %}"
+                                                             class="media-object "
+                                                             style="max-width:100%; max-height:100%; opacity: 0.4;"
+                                                             src="{% static 'images/icons/image-placeholder.svg' %}">
+                                                    {% endif %}
+                                                </div>
+                                                <div class="media-body"
+                                                     style="position: absolute; top: 10px; left: 100px;">
+                                                    <h4 class="media-heading">{{ exercise.name }}</h4>
+                        <span class="text-muted">
+                            {% for equipment in exercise.equipment.all %}
+                                {% trans equipment.name %}
+                                {% if not forloop.last %},{% endif %}
+                            {% endfor %}
+                        </span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    {% empty %}
+                                        <a href="#" class="list-group-item">
+                                            <div class="col-md-offset-1 col-md-10">
+                                                {% trans "No exercises in this category. Add or edit an exercise and set its category" %}
+                                            </div>
+                                        </a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    {% block sidebar %}
+                        <p>
+                            {% if user.is_authenticated and not user.userprofile.is_temporary %}
+{#                                <a href="{% url 'exercise:exercise:add' %}" class="btn btn-success btn-sm">#}
+{#                                    {% trans "Add new exercise" %}#}
+{#                                </a>#}
+                            {% else %}
+                                <a href="#" class="btn btn-success btn-sm disabled">
+                                    {% trans "Add new exercise" %}<br>
+                                    <small>
+                                        {% trans "Only registered users can do this" %}
+                                    </small>
+                                </a>
+                            {% endif %}
+                        </p>
+
+                        <h4>{% trans "Search" %}</h4>
+
+                        <form action="{% url 'exercise-search' %}"
+                              method="get"
+                              id="exercise_search_form">
+                            {% csrf_token %}
+                            <input name="term"
+                                   type="search"
+                                   id="exercise-search"
+                                   class="ajax-form-element form-control"
+                                   placeholder="{% trans 'exercise name' %}"
+                            >
+                        </form>
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- end: content -->
+{% endblock content %}
+
+{% block javascript %}
+    <script src="{% static 'js/workout-manager.js' %}"></script>
+    <script src="{% static 'js/exercises.js' %}"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            console.log('Read!!!')
+
+            // Prevent the form from being submited if JavaScript is enabled
+            $("#exercise_search_form").submit(function () {
+                return false;
+            });
+
+            // Init the autocompleter
+            $("#exercise-search").catcomplete({
+                source: "{% url 'exercise-search' %}",
+                minLength: 2,
+                select: function (event, ui) {
+
+                    // Redirect to exercise after clicking on a result
+                    // Path is hard coded here, because we can't use the url-tag
+                    window.location.href = '/exercise/' + ui.item.id + '/view/'
+                }
+            });
+        });
+    </script>
+{% endblock javascript %}
